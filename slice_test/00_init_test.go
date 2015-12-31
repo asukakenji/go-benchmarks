@@ -16,10 +16,10 @@ import (
 /////////////////
 
 const (
-	_uintWithAllBitsSet   = ^uint(0)
-	_logSizeOfUintInBytes = _uintWithAllBitsSet>>8&1 + _uintWithAllBitsSet>>16&1 + _uintWithAllBitsSet>>32&1
-	sizeOfUintInBytes     = 1 << _logSizeOfUintInBytes
-	sizeOfUintInBits      = sizeOfUintInBytes << 3
+	maxUint              = ^uint(0)
+	logSizeOfUintInBytes = maxUint>>8&1 + maxUint>>16&1 + maxUint>>32&1
+	sizeOfUintInBytes    = 1 << logSizeOfUintInBytes
+	sizeOfUintInBits     = sizeOfUintInBytes << 3
 )
 
 ///////////////
@@ -124,7 +124,7 @@ func randomIntsInTheFirstPage() func() int {
 }
 
 func randomIntsInPage(pageIndex uint) func() int {
-	low := pageIndex*intsPerPage
+	low := pageIndex * intsPerPage
 	high := low + intsPerPage
 	max := high
 	numbersInPage := numbers[low:high:max]

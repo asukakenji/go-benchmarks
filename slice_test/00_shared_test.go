@@ -94,13 +94,39 @@ func benchmarkMakeLenCapAndFillRandomByAppend4WithForIndex(count, length, capaci
 	}
 }
 
-func benchmarkMakeLenAndFillRandomByAssignmentWithForIndex(count, length int) {
+func benchmarkMakeLenAndFillRandomByAssignment1WithForIndex(count, length int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
 		s := make([]int, length)
 		for j := 0; j < length; j++ {
-			x := gen()
-			s[j] = x
+			x1 := gen()
+			s[j] = x1
+		}
+	}
+}
+
+func benchmarkMakeLenAndFillRandomByAssignment2WithForIndex(count, length int) {
+	gen := randomIntsInTheFirstPage()
+	for i := 0; i < count; i++ {
+		s := make([]int, length)
+		for j := 0; j < length; j += 2 {
+			x1 := gen()
+			x2 := gen()
+			s[j], s[j+1] = x1, x2
+		}
+	}
+}
+
+func benchmarkMakeLenAndFillRandomByAssignment4WithForIndex(count, length int) {
+	gen := randomIntsInTheFirstPage()
+	for i := 0; i < count; i++ {
+		s := make([]int, length)
+		for j := 0; j < length; j += 4 {
+			x1 := gen()
+			x2 := gen()
+			x3 := gen()
+			x4 := gen()
+			s[j], s[j+1], s[j+2], s[j+3] = x1, x2, x3, x4
 		}
 	}
 }

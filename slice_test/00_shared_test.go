@@ -62,8 +62,34 @@ func benchmarkMakeLenCapAndFillRandomByAppend1WithForIndex(count, length, capaci
 	for i := 0; i < count; i++ {
 		s := make([]int, length, capacity)
 		for j := 0; j < capacity; j++ {
-			x := gen()
-			s = append(s, x)
+			x1 := gen()
+			s = append(s, x1)
+		}
+	}
+}
+
+func benchmarkMakeLenCapAndFillRandomByAppend2WithForIndex(count, length, capacity int) {
+	gen := randomIntsInTheFirstPage()
+	for i := 0; i < count; i++ {
+		s := make([]int, length, capacity)
+		for j := 0; j < capacity; j += 2 {
+			x1 := gen()
+			x2 := gen()
+			s = append(s, x1, x2)
+		}
+	}
+}
+
+func benchmarkMakeLenCapAndFillRandomByAppend4WithForIndex(count, length, capacity int) {
+	gen := randomIntsInTheFirstPage()
+	for i := 0; i < count; i++ {
+		s := make([]int, length, capacity)
+		for j := 0; j < capacity; j += 4 {
+			x1 := gen()
+			x2 := gen()
+			x3 := gen()
+			x4 := gen()
+			s = append(s, x1, x2, x3, x4)
 		}
 	}
 }

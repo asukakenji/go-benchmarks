@@ -8,62 +8,62 @@ import (
 // Benchmarks //
 ////////////////
 
-func BenchmarkCloneByMakeNM_0_0_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 0)
+func BenchmarkCloneByMakeCap_0_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 0)
 }
 
-func BenchmarkCloneByMakeNM_0_1_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 1)
+func BenchmarkCloneByMakeCap_1_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 1)
 }
 
-func BenchmarkCloneByMakeNM_0_2_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 2)
+func BenchmarkCloneByMakeCap_2_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 2)
 }
 
-func BenchmarkCloneByMakeNM_0_4_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 4)
+func BenchmarkCloneByMakeCap_4_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 4)
 }
 
-func BenchmarkCloneByMakeNM_0_8_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 8)
+func BenchmarkCloneByMakeCap_8_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 8)
 }
 
-func BenchmarkCloneByMakeNM_0_16_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 16)
+func BenchmarkCloneByMakeCap_16_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 16)
 }
 
-func BenchmarkCloneByMakeNM_0_32_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 32)
+func BenchmarkCloneByMakeCap_32_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 32)
 }
 
-func BenchmarkCloneByMakeNM_0_64_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 64)
+func BenchmarkCloneByMakeCap_64_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 64)
 }
 
-func BenchmarkCloneByMakeNM_0_128_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 128)
+func BenchmarkCloneByMakeCap_128_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 128)
 }
 
-func BenchmarkCloneByMakeNM_0_256_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 256)
+func BenchmarkCloneByMakeCap_256_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 256)
 }
 
-func BenchmarkCloneByMakeNM_0_512_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 512)
+func BenchmarkCloneByMakeCap_512_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 512)
 }
 
-func BenchmarkCloneByMakeNM_0_1024_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 1024)
+func BenchmarkCloneByMakeCap_1024_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 1024)
 }
 
-func BenchmarkCloneByMakeNM_0_2048_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 2048)
+func BenchmarkCloneByMakeCap_2048_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 2048)
 }
 
-func BenchmarkCloneByMakeNM_0_4096_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 4096)
+func BenchmarkCloneByMakeCap_4096_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 4096)
 }
 
-func BenchmarkCloneByMakeNM_0_8192_AndAppendMElements(b *testing.B) {
-	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 8192)
+func BenchmarkCloneByMakeCap_8192_AndAppendN(b *testing.B) {
+	benchmarkCloneByMakeCapAndAppendN(b.N, 8192)
 }

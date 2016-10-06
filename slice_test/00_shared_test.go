@@ -153,22 +153,22 @@ func benchmarkMakeLenAndFillRandomByAssignmentWithForRange2(count, length int) {
 	}
 }
 
-func benchmarkCloneByAppendMElementsToNilSlice(count, capacity int) {
+func benchmarkCloneByAppendNToNil(count, capacity int) {
 	for i := 0; i < count; i++ {
 		_ = append([]int(nil), numbers[0:capacity]...)
 	}
 }
 
-func benchmarkCloneByMakeNMAndAppendMElements(count, length, capacity int) {
+func benchmarkCloneByMakeCapAndAppendN(count, capacity int) {
 	for i := 0; i < count; i++ {
-		s := make([]int, length, capacity)
+		s := make([]int, 0, capacity)
 		s = append(s, numbers[0:capacity]...)
 	}
 }
 
-func benchmarkCloneByMakeNMAndCopy(count, length, capacity int) {
+func benchmarkCloneByMakeLenAndCopy(count, length int) {
 	for i := 0; i < count; i++ {
-		s := make([]int, length, capacity)
-		copy(s, numbers[0:capacity])
+		s := make([]int, length)
+		copy(s, numbers[0:length])
 	}
 }

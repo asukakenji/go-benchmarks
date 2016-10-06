@@ -8,68 +8,68 @@ import (
 // Benchmarks //
 ////////////////
 
-func benchmarkMakeN(b *testing.B, length int) {
-	for i := 0; i < b.N; i++ {
+func benchmarkMakeLen(count, length int) {
+	for i := 0; i < count; i++ {
 		_ = make([]int, length)
 	}
 }
 
-func BenchmarkMakeN_0(b *testing.B) {
-	benchmarkMakeN(b, 0)
+func BenchmarkMakeLen_0(b *testing.B) {
+	benchmarkMakeLen(b.N, 0)
 }
 
-func BenchmarkMakeN_1(b *testing.B) {
-	benchmarkMakeN(b, 1)
+func BenchmarkMakeLen_1(b *testing.B) {
+	benchmarkMakeLen(b.N, 1)
 }
 
-func BenchmarkMakeN_2(b *testing.B) {
-	benchmarkMakeN(b, 2)
+func BenchmarkMakeLen_2(b *testing.B) {
+	benchmarkMakeLen(b.N, 2)
 }
 
-func BenchmarkMakeN_4(b *testing.B) {
-	benchmarkMakeN(b, 4)
+func BenchmarkMakeLen_4(b *testing.B) {
+	benchmarkMakeLen(b.N, 4)
 }
 
-func BenchmarkMakeN_8(b *testing.B) {
-	benchmarkMakeN(b, 8)
+func BenchmarkMakeLen_8(b *testing.B) {
+	benchmarkMakeLen(b.N, 8)
 }
 
-func BenchmarkMakeN_16(b *testing.B) {
-	benchmarkMakeN(b, 16)
+func BenchmarkMakeLen_16(b *testing.B) {
+	benchmarkMakeLen(b.N, 16)
 }
 
-func BenchmarkMakeN_32(b *testing.B) {
-	benchmarkMakeN(b, 32)
+func BenchmarkMakeLen_32(b *testing.B) {
+	benchmarkMakeLen(b.N, 32)
 }
 
-func BenchmarkMakeN_64(b *testing.B) {
-	benchmarkMakeN(b, 64)
+func BenchmarkMakeLen_64(b *testing.B) {
+	benchmarkMakeLen(b.N, 64)
 }
 
-func BenchmarkMakeN_128(b *testing.B) {
-	benchmarkMakeN(b, 128)
+func BenchmarkMakeLen_128(b *testing.B) {
+	benchmarkMakeLen(b.N, 128)
 }
 
-func BenchmarkMakeN_256(b *testing.B) {
-	benchmarkMakeN(b, 256)
+func BenchmarkMakeLen_256(b *testing.B) {
+	benchmarkMakeLen(b.N, 256)
 }
 
-func BenchmarkMakeN_512(b *testing.B) {
-	benchmarkMakeN(b, 512)
+func BenchmarkMakeLen_512(b *testing.B) {
+	benchmarkMakeLen(b.N, 512)
 }
 
-func BenchmarkMakeN_1024(b *testing.B) {
-	benchmarkMakeN(b, 1024)
+func BenchmarkMakeLen_1024(b *testing.B) {
+	benchmarkMakeLen(b.N, 1024)
 }
 
-func BenchmarkMakeN_2048(b *testing.B) {
-	benchmarkMakeN(b, 2048)
+func BenchmarkMakeLen_2048(b *testing.B) {
+	benchmarkMakeLen(b.N, 2048)
 }
 
-func BenchmarkMakeN_4096(b *testing.B) {
-	benchmarkMakeN(b, 4096)
+func BenchmarkMakeLen_4096(b *testing.B) {
+	benchmarkMakeLen(b.N, 4096)
 }
 
-func BenchmarkMakeN_8192(b *testing.B) {
-	benchmarkMakeN(b, 8192)
+func BenchmarkMakeLen_8192(b *testing.B) {
+	benchmarkMakeLen(b.N, 8192)
 }

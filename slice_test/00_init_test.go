@@ -148,27 +148,27 @@ func randomInts() func() int {
 /////////////////
 
 func BenchmarkCalibrateEmptyFunction(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for i, count := 0, b.N; i < count; i++ {
 	}
 }
 
 func BenchmarkCalibrateRandomIntsInTheFirstPage(b *testing.B) {
 	gen := randomIntsInTheFirstPage()
-	for i := 0; i < b.N; i++ {
+	for i, count := 0, b.N; i < count; i++ {
 		gen()
 	}
 }
 
 func BenchmarkCalibrateRandomIntsInTheFirstPageAlt(b *testing.B) {
 	gen := randomIntsInPage(0)
-	for i := 0; i < b.N; i++ {
+	for i, count := 0, b.N; i < count; i++ {
 		gen()
 	}
 }
 
 func BenchmarkCalibrateRandomInts(b *testing.B) {
 	gen := randomInts()
-	for i := 0; i < b.N; i++ {
+	for i, count := 0, b.N; i < count; i++ {
 		gen()
 	}
 }

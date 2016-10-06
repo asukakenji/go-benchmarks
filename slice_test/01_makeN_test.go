@@ -8,12 +8,6 @@ import (
 // Benchmarks //
 ////////////////
 
-func benchmarkMakeLen(count, length int) {
-	for i := 0; i < count; i++ {
-		_ = make([]int, length)
-	}
-}
-
 func BenchmarkMakeLen_0(b *testing.B) {
 	benchmarkMakeLen(b.N, 0)
 }

@@ -8,12 +8,6 @@ import (
 // Benchmarks //
 ////////////////
 
-func benchmarkCloneByAppendMElementsToNilSlice(count, capacity int) {
-	for i := 0; i < count; i++ {
-		_ = append([]int(nil), numbers[0:capacity]...)
-	}
-}
-
 func BenchmarkCloneByAppendMElementsToNilSlice_1(b *testing.B) {
 	benchmarkCloneByAppendMElementsToNilSlice(b.N, 1)
 }

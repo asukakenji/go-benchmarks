@@ -8,13 +8,6 @@ import (
 // Benchmarks //
 ////////////////
 
-func benchmarkCloneByMakeNMAndAppendMElements(count, length, capacity int) {
-	for i := 0; i < count; i++ {
-		arr := make([]int, length, capacity)
-		arr = append(arr, numbers[0:capacity]...)
-	}
-}
-
 func BenchmarkCloneByMakeNM_0_0_AndAppendMElements(b *testing.B) {
 	benchmarkCloneByMakeNMAndAppendMElements(b.N, 0, 0)
 }

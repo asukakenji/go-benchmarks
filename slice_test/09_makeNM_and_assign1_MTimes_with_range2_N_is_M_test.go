@@ -8,72 +8,62 @@ import (
 // Benchmarks //
 ////////////////
 
-func benchmarkMakeNMAndAssignOneElementMTimesWithRange2(count, length, capacity int) {
-	gen := randomIntsInTheFirstPage()
-	for i := 0; i < count; i++ {
-		arr := make([]int, length, capacity)
-		for j, _ := range arr {
-			arr[j] = gen()
-		}
-	}
+func BenchmarkMakeLen_0_0_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 0)
 }
 
-func BenchmarkMakeNM_0_0_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 0, 0)
+func BenchmarkMakeLen_1_1_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 1)
 }
 
-func BenchmarkMakeNM_1_1_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 1, 1)
+func BenchmarkMakeLen_2_2_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 2)
 }
 
-func BenchmarkMakeNM_2_2_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 2, 2)
+func BenchmarkMakeLen_4_4_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 4)
 }
 
-func BenchmarkMakeNM_4_4_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 4, 4)
+func BenchmarkMakeLen_8_8_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 8)
 }
 
-func BenchmarkMakeNM_8_8_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 8, 8)
+func BenchmarkMakeLen_16_16_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 16)
 }
 
-func BenchmarkMakeNM_16_16_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 16, 16)
+func BenchmarkMakeLen_32_32_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 32)
 }
 
-func BenchmarkMakeNM_32_32_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 32, 32)
+func BenchmarkMakeLen_64_64_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 64)
 }
 
-func BenchmarkMakeNM_64_64_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 64, 64)
+func BenchmarkMakeLen_128_128_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 128)
 }
 
-func BenchmarkMakeNM_128_128_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 128, 128)
+func BenchmarkMakeLen_256_256_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 256)
 }
 
-func BenchmarkMakeNM_256_256_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 256, 256)
+func BenchmarkMakeLen_512_512_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 512)
 }
 
-func BenchmarkMakeNM_512_512_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 512, 512)
+func BenchmarkMakeLen_1024_1024_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 1024)
 }
 
-func BenchmarkMakeNM_1024_1024_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 1024, 1024)
+func BenchmarkMakeLen_2048_2048_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 2048)
 }
 
-func BenchmarkMakeNM_2048_2048_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 2048, 2048)
+func BenchmarkMakeLen_4096_4096_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 4096)
 }
 
-func BenchmarkMakeNM_4096_4096_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 4096, 4096)
-}
-
-func BenchmarkMakeNM_8192_8192_AndAssignOneElementMTimesWithRange2(b *testing.B) {
-	benchmarkMakeNMAndAssignOneElementMTimesWithRange2(b.N, 8192, 8192)
+func BenchmarkMakeLen_8192_8192_AndFillByAssignmentWithForRange2(b *testing.B) {
+	benchmarkMakeLenAndFillByAssignmentWithForRange2(b.N, 8192)
 }

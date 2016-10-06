@@ -30,37 +30,37 @@ func benchmarkMakeLenCapAndCap(count, length, capacity int) {
 	}
 }
 
-func benchmarkMakeLenCapAndAppend1(count, length, capacity int) {
+func benchmarkMakeCapAndAppend1(count, capacity int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
 		x := gen()
-		s := make([]int, length, capacity)
+		s := make([]int, 0, capacity)
 		s = append(s, x)
 	}
 }
 
-func benchmarkMakeLenCapAndAppend2(count, length, capacity int) {
+func benchmarkMakeCapAndAppend2(count, capacity int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
 		x := gen()
-		s := make([]int, length, capacity)
+		s := make([]int, 0, capacity)
 		s = append(s, x, x)
 	}
 }
 
-func benchmarkMakeLenCapAndAppend4(count, length, capacity int) {
+func benchmarkMakeCapAndAppend4(count, capacity int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
 		x := gen()
-		s := make([]int, length, capacity)
+		s := make([]int, 0, capacity)
 		s = append(s, x, x, x, x)
 	}
 }
 
-func benchmarkMakeLenCapAndFillRandomByAppend1WithForIndex(count, length, capacity int) {
+func benchmarkMakeCapAndFillRandomByAppend1WithForIndex(count, capacity int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
-		s := make([]int, length, capacity)
+		s := make([]int, 0, capacity)
 		for j := 0; j < capacity; j++ {
 			x1 := gen()
 			s = append(s, x1)
@@ -68,10 +68,10 @@ func benchmarkMakeLenCapAndFillRandomByAppend1WithForIndex(count, length, capaci
 	}
 }
 
-func benchmarkMakeLenCapAndFillRandomByAppend2WithForIndex(count, length, capacity int) {
+func benchmarkMakeCapAndFillRandomByAppend2WithForIndex(count, capacity int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
-		s := make([]int, length, capacity)
+		s := make([]int, 0, capacity)
 		for j := 0; j < capacity; j += 2 {
 			x1 := gen()
 			x2 := gen()
@@ -80,10 +80,10 @@ func benchmarkMakeLenCapAndFillRandomByAppend2WithForIndex(count, length, capaci
 	}
 }
 
-func benchmarkMakeLenCapAndFillRandomByAppend4WithForIndex(count, length, capacity int) {
+func benchmarkMakeCapAndFillRandomByAppend4WithForIndex(count, capacity int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
-		s := make([]int, length, capacity)
+		s := make([]int, 0, capacity)
 		for j := 0; j < capacity; j += 4 {
 			x1 := gen()
 			x2 := gen()

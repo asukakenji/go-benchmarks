@@ -14,52 +14,55 @@ package math
 //     return __builtin_popcountll(x);
 // }
 import "C"
-import "unsafe"
 
-// BitCountUintNaive returns the number of 1-bits in n.
-func BitCountUintNaive(n uint) uint {
+import (
+	"unsafe"
+)
+
+// BitCountUintNaive returns the number of 1-bits in x.
+func BitCountUintNaive(x uint) uint {
 	count := uint(0)
-	for n != 0 {
-		if n&1 != 0 {
+	for x != 0 {
+		if x&1 != 0 {
 			count++
 		}
-		n >>= 1
+		x >>= 1
 	}
 	return count
 }
 
-// BitCountUint32Naive returns the number of 1-bits in n.
-func BitCountUint32Naive(n uint32) uint {
+// BitCountUint32Naive returns the number of 1-bits in x.
+func BitCountUint32Naive(x uint32) uint {
 	count := uint(0)
-	for n != 0 {
-		if n&1 != 0 {
+	for x != 0 {
+		if x&1 != 0 {
 			count++
 		}
-		n >>= 1
+		x >>= 1
 	}
 	return count
 }
 
-// BitCountUint64Naive returns the number of 1-bits in n.
-func BitCountUint64Naive(n uint64) uint {
+// BitCountUint64Naive returns the number of 1-bits in x.
+func BitCountUint64Naive(x uint64) uint {
 	count := uint(0)
-	for n != 0 {
-		if n&1 != 0 {
+	for x != 0 {
+		if x&1 != 0 {
 			count++
 		}
-		n >>= 1
+		x >>= 1
 	}
 	return count
 }
 
-// BitCountUint32CallGCC returns the number of 1-bits in n.
-func BitCountUint32CallGCC(n uint32) uint {
-	return uint(C.popcount(C.uint(n)))
+// BitCountUint32CallGCC returns the number of 1-bits in x.
+func BitCountUint32CallGCC(x uint32) uint {
+	return uint(C.popcount(C.uint(x)))
 }
 
-// BitCountUint64CallGCC returns the number of 1-bits in n.
-func BitCountUint64CallGCC(n uint64) uint {
-	return uint(C.popcountll(C.ulonglong(n)))
+// BitCountUint64CallGCC returns the number of 1-bits in x.
+func BitCountUint64CallGCC(x uint64) uint {
+	return uint(C.popcountll(C.ulonglong(x)))
 }
 
 const (
@@ -94,23 +97,23 @@ func init() {
 	bitShift = sizeOfUintInBits - 8
 }
 
-// BitCountUintGCCImpl returns the number of 1-bits in n.
+// BitCountUintGCCImpl returns the number of 1-bits in x.
 // Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/libgcc2.c#L840-L859
 // Source: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=36041#c8
-func BitCountUintGCCImpl(n uint) uint {
-	n = n - ((n >> 1) & bitMask55)
-	n = (n & bitMask33) + ((n >> 2) & bitMask33)
-	n = (n + (n >> 4)) & bitMask0f
-	return (n * bitMask01) >> bitShift
+func BitCountUintGCCImpl(x uint) uint {
+	x = x - ((x >> 1) & bitMask55)
+	x = (x & bitMask33) + ((x >> 2) & bitMask33)
+	x = (x + (x >> 4)) & bitMask0f
+	return (x * bitMask01) >> bitShift
 }
 
-// BitCountUintGCCImplSwitch returns the number of 1-bits in n.
-func BitCountUintGCCImplSwitch(n uint) uint {
+// BitCountUintGCCImplSwitch returns the number of 1-bits in x.
+func BitCountUintGCCImplSwitch(x uint) uint {
 	switch sizeOfUintInBits {
 	case 32:
-		return BitCountUint32Pop1Alt(uint32(n))
+		return BitCountUint32Pop1Alt(uint32(x))
 	case 64:
-		return BitCountUint64Pop1Alt(uint64(n))
+		return BitCountUint64Pop1Alt(uint64(x))
 	default:
 		panic("uint is neither 32-bit nor 64-bit")
 	}

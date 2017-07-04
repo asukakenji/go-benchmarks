@@ -3,7 +3,7 @@ package math_test
 import (
 	"testing"
 
-	math "github.com/asukakenji/go-benchmarks/math_test"
+	"github.com/asukakenji/go-benchmarks/math"
 )
 
 func TestBitCountUintNaive(t *testing.T) {

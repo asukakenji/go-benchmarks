@@ -6,33 +6,39 @@ import (
 	"github.com/asukakenji/go-benchmarks/math"
 )
 
+var table = [...]uint{
+	0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4,
+	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
+	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
+	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
+
+	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
+	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
+	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
+	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
+
+	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
+	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
+	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
+	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
+
+	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
+	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
+	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
+	4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8,
+}
+
 func TestBitCountUintNaive(t *testing.T) {
+	for x, expected := range table {
+		got := math.BitCountUintNaive(uint(x))
+		if got != expected {
+			t.Errorf("BitCountUintNaive(%d) = %d, expected %d", x, got, expected)
+		}
+	}
 	cases := []struct {
-		n        uint
+		x        uint
 		expected uint
 	}{
-		{0, 0},
-		{1, 1},
-		{2, 1},
-		{3, 2},
-		{4, 1},
-		{5, 2},
-		{6, 2},
-		{7, 3},
-		{8, 1},
-		{9, 2},
-		{10, 2},
-		{11, 3},
-		{12, 2},
-		{13, 3},
-		{14, 3},
-		{15, 4},
-		{16, 1},
-		{0x11, 2},
-		{0x22, 2},
-		{0x44, 2},
-		{0x88, 2},
-		{0xff, 8},
 		{0x11111111, 8},
 		{0x22222222, 8},
 		{0x44444444, 8},
@@ -41,40 +47,24 @@ func TestBitCountUintNaive(t *testing.T) {
 		{0x12345678, 13},
 	}
 	for _, c := range cases {
-		got := math.BitCountUintNaive(c.n)
+		got := math.BitCountUintNaive(c.x)
 		if got != c.expected {
-			t.Errorf("BitCountUintNaive(%d) = %d, expected %d", c.n, got, c.expected)
+			t.Errorf("BitCountUintNaive(%d) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
 
 func TestBitCountUint32Naive(t *testing.T) {
+	for x, expected := range table {
+		got := math.BitCountUint32Naive(uint32(x))
+		if got != expected {
+			t.Errorf("BitCountUint32Naive(%d) = %d, expected %d", x, got, expected)
+		}
+	}
 	cases := []struct {
-		n        uint32
+		x        uint32
 		expected uint
 	}{
-		{0, 0},
-		{1, 1},
-		{2, 1},
-		{3, 2},
-		{4, 1},
-		{5, 2},
-		{6, 2},
-		{7, 3},
-		{8, 1},
-		{9, 2},
-		{10, 2},
-		{11, 3},
-		{12, 2},
-		{13, 3},
-		{14, 3},
-		{15, 4},
-		{16, 1},
-		{0x11, 2},
-		{0x22, 2},
-		{0x44, 2},
-		{0x88, 2},
-		{0xff, 8},
 		{0x11111111, 8},
 		{0x22222222, 8},
 		{0x44444444, 8},
@@ -83,40 +73,24 @@ func TestBitCountUint32Naive(t *testing.T) {
 		{0x12345678, 13},
 	}
 	for _, c := range cases {
-		got := math.BitCountUint32Naive(c.n)
+		got := math.BitCountUint32Naive(c.x)
 		if got != c.expected {
-			t.Errorf("BitCountUint32Naive(%d) = %d, expected %d", c.n, got, c.expected)
+			t.Errorf("BitCountUint32Naive(%d) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
 
 func TestBitCountUint64Naive(t *testing.T) {
+	for x, expected := range table {
+		got := math.BitCountUint64Naive(uint64(x))
+		if got != expected {
+			t.Errorf("BitCountUint64Naive(%d) = %d, expected %d", x, got, expected)
+		}
+	}
 	cases := []struct {
-		n        uint64
+		x        uint64
 		expected uint
 	}{
-		{0, 0},
-		{1, 1},
-		{2, 1},
-		{3, 2},
-		{4, 1},
-		{5, 2},
-		{6, 2},
-		{7, 3},
-		{8, 1},
-		{9, 2},
-		{10, 2},
-		{11, 3},
-		{12, 2},
-		{13, 3},
-		{14, 3},
-		{15, 4},
-		{16, 1},
-		{0x11, 2},
-		{0x22, 2},
-		{0x44, 2},
-		{0x88, 2},
-		{0xff, 8},
 		{0x11111111, 8},
 		{0x22222222, 8},
 		{0x44444444, 8},
@@ -126,9 +100,9 @@ func TestBitCountUint64Naive(t *testing.T) {
 		{0x123456789abcdef, 32},
 	}
 	for _, c := range cases {
-		got := math.BitCountUint64Naive(c.n)
+		got := math.BitCountUint64Naive(c.x)
 		if got != c.expected {
-			t.Errorf("BitCountUint64Naive(%d) = %d, expected %d", c.n, got, c.expected)
+			t.Errorf("BitCountUint64Naive(%d) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
@@ -143,12 +117,18 @@ func TestBitCountUint(t *testing.T) {
 	}
 	gen := randomIntsInTheFirstPage()
 	for _, bitCountUintFunc := range bitCountUintFuncs {
-		for i := 0; i < 512; i++ {
-			n := uint(gen())
-			expected := math.BitCountUintNaive(n)
-			got := bitCountUintFunc.f(n)
+		for x, expected := range table {
+			got := bitCountUintFunc.f(uint(x))
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", bitCountUintFunc.name, n, got, expected)
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUintFunc.name, x, got, expected)
+			}
+		}
+		for i := 0; i < 512; i++ {
+			x := uint(gen())
+			expected := math.BitCountUintNaive(x)
+			got := bitCountUintFunc.f(x)
+			if got != expected {
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUintFunc.name, x, got, expected)
 			}
 		}
 	}
@@ -173,12 +153,18 @@ func TestBitCountUint32(t *testing.T) {
 	}
 	gen := randomIntsInTheFirstPage()
 	for _, bitCountUint32Func := range bitCountUint32Funcs {
-		for i := 0; i < 512; i++ {
-			n := uint32(gen())
-			expected := math.BitCountUint32Naive(n)
-			got := bitCountUint32Func.f(n)
+		for x, expected := range table {
+			got := bitCountUint32Func.f(uint32(x))
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", bitCountUint32Func.name, n, got, expected)
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUint32Func.name, x, got, expected)
+			}
+		}
+		for i := 0; i < 512; i++ {
+			x := uint32(gen())
+			expected := math.BitCountUint32Naive(x)
+			got := bitCountUint32Func.f(x)
+			if got != expected {
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUint32Func.name, x, got, expected)
 			}
 		}
 	}
@@ -195,12 +181,18 @@ func TestBitCountUint64(t *testing.T) {
 	}
 	gen := randomIntsInTheFirstPage()
 	for _, bitCountUint64Func := range bitCountUint64Funcs {
-		for i := 0; i < 512; i++ {
-			n := uint64(gen())
-			expected := math.BitCountUint64Naive(n)
-			got := bitCountUint64Func.f(n)
+		for x, expected := range table {
+			got := bitCountUint64Func.f(uint64(x))
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", bitCountUint64Func.name, n, got, expected)
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUint64Func.name, x, got, expected)
+			}
+		}
+		for i := 0; i < 512; i++ {
+			x := uint64(gen())
+			expected := math.BitCountUint64Naive(x)
+			got := bitCountUint64Func.f(x)
+			if got != expected {
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUint64Func.name, x, got, expected)
 			}
 		}
 	}

@@ -6,98 +6,221 @@ import (
 	math "github.com/asukakenji/go-benchmarks/math_test"
 )
 
-func TestBitCountUInt32(t *testing.T) {
-	fs := []func(uint32) int{
-		math.BitCountUInt32Java,
-		math.BitCountUInt32CallGCC,
-		math.BitCountUInt32GCCImpl,
+func TestBitCountUintNaive(t *testing.T) {
+	cases := []struct {
+		n        uint
+		expected uint
+	}{
+		{0, 0},
+		{1, 1},
+		{2, 1},
+		{3, 2},
+		{4, 1},
+		{5, 2},
+		{6, 2},
+		{7, 3},
+		{8, 1},
+		{9, 2},
+		{10, 2},
+		{11, 3},
+		{12, 2},
+		{13, 3},
+		{14, 3},
+		{15, 4},
+		{16, 1},
+		{0x11, 2},
+		{0x22, 2},
+		{0x44, 2},
+		{0x88, 2},
+		{0xff, 8},
+		{0x11111111, 8},
+		{0x22222222, 8},
+		{0x44444444, 8},
+		{0x88888888, 8},
+		{0xffffffff, 32},
+		{0x12345678, 13},
 	}
-	names := []string{
-		"BitCountUInt32Java",
-		"BitCountUInt32CallGCC",
-		"BitCountUInt32GCCImpl",
+	for _, c := range cases {
+		got := math.BitCountUintNaive(c.n)
+		if got != c.expected {
+			t.Errorf("BitCountUintNaive(%d) = %d, expected %d", c.n, got, c.expected)
+		}
+	}
+}
+
+func TestBitCountUint32Naive(t *testing.T) {
+	cases := []struct {
+		n        uint32
+		expected uint
+	}{
+		{0, 0},
+		{1, 1},
+		{2, 1},
+		{3, 2},
+		{4, 1},
+		{5, 2},
+		{6, 2},
+		{7, 3},
+		{8, 1},
+		{9, 2},
+		{10, 2},
+		{11, 3},
+		{12, 2},
+		{13, 3},
+		{14, 3},
+		{15, 4},
+		{16, 1},
+		{0x11, 2},
+		{0x22, 2},
+		{0x44, 2},
+		{0x88, 2},
+		{0xff, 8},
+		{0x11111111, 8},
+		{0x22222222, 8},
+		{0x44444444, 8},
+		{0x88888888, 8},
+		{0xffffffff, 32},
+		{0x12345678, 13},
+	}
+	for _, c := range cases {
+		got := math.BitCountUint32Naive(c.n)
+		if got != c.expected {
+			t.Errorf("BitCountUint32Naive(%d) = %d, expected %d", c.n, got, c.expected)
+		}
+	}
+}
+
+func TestBitCountUint64Naive(t *testing.T) {
+	cases := []struct {
+		n        uint64
+		expected uint
+	}{
+		{0, 0},
+		{1, 1},
+		{2, 1},
+		{3, 2},
+		{4, 1},
+		{5, 2},
+		{6, 2},
+		{7, 3},
+		{8, 1},
+		{9, 2},
+		{10, 2},
+		{11, 3},
+		{12, 2},
+		{13, 3},
+		{14, 3},
+		{15, 4},
+		{16, 1},
+		{0x11, 2},
+		{0x22, 2},
+		{0x44, 2},
+		{0x88, 2},
+		{0xff, 8},
+		{0x11111111, 8},
+		{0x22222222, 8},
+		{0x44444444, 8},
+		{0x88888888, 8},
+		{0xffffffff, 32},
+		{0x12345678, 13},
+		{0x123456789abcdef, 32},
+	}
+	for _, c := range cases {
+		got := math.BitCountUint64Naive(c.n)
+		if got != c.expected {
+			t.Errorf("BitCountUint64Naive(%d) = %d, expected %d", c.n, got, c.expected)
+		}
+	}
+}
+
+func TestBitCountUint32(t *testing.T) {
+	bitCountUint32Funcs := []struct {
+		name string
+		f    func(uint32) uint
+	}{
+		{"BitCountUint32Java", math.BitCountUint32Java},
+		{"BitCountUint32CallGCC", math.BitCountUint32CallGCC},
+		{"BitCountUint32GCCImpl", math.BitCountUint32GCCImpl},
 	}
 	gen := randomIntsInTheFirstPage()
-	for i := 0; i < 512; i++ {
-		n := uint32(gen())
-		expected := math.BitCountUInt32Naive(n)
-		for j, f := range fs {
-			got := f(n)
+	for _, bitCountUint32Func := range bitCountUint32Funcs {
+		for i := 0; i < 512; i++ {
+			n := uint32(gen())
+			expected := math.BitCountUint32Naive(n)
+			got := bitCountUint32Func.f(n)
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", names[j], n, got, expected)
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUint32Func.name, n, got, expected)
 			}
 		}
 	}
 }
 
-func TestBitCountUInt64(t *testing.T) {
-	fs := []func(uint64) int{
-		math.BitCountUInt64Java,
-		math.BitCountUInt64CallGCC,
-		math.BitCountUInt64GCCImpl,
-	}
-	names := []string{
-		"BitCountUInt64Java",
-		"BitCountUInt64CallGCC",
-		"BitCountUInt64GCCImpl",
+func TestBitCountUint64(t *testing.T) {
+	bitCountUint64Funcs := []struct {
+		name string
+		f    func(uint64) uint
+	}{
+		{"BitCountUint64Java", math.BitCountUint64Java},
+		{"BitCountUint64CallGCC", math.BitCountUint64CallGCC},
+		{"BitCountUint64GCCImpl", math.BitCountUint64GCCImpl},
 	}
 	gen := randomIntsInTheFirstPage()
-	for i := 0; i < 512; i++ {
-		n := uint64(gen())
-		expected := math.BitCountUInt64Naive(n)
-		for j, f := range fs {
-			got := f(n)
+	for _, bitCountUint64Func := range bitCountUint64Funcs {
+		for i := 0; i < 512; i++ {
+			n := uint64(gen())
+			expected := math.BitCountUint64Naive(n)
+			got := bitCountUint64Func.f(n)
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", names[j], n, got, expected)
+				t.Errorf("%s(%d) = %d, expected %d", bitCountUint64Func.name, n, got, expected)
 			}
 		}
 	}
 }
 
-func benchmarkBitCountUInt32(b *testing.B, f func(uint32) int) {
+func benchmarkBitCountUint32(b *testing.B, f func(uint32) uint) {
 	gen := randomIntsInTheFirstPage()
 	for i, count := 0, b.N; i < count; i++ {
 		f(uint32(gen()))
 	}
 }
 
-func benchmarkBitCountUInt64(b *testing.B, f func(uint64) int) {
+func benchmarkBitCountUint64(b *testing.B, f func(uint64) uint) {
 	gen := randomIntsInTheFirstPage()
 	for i, count := 0, b.N; i < count; i++ {
 		f(uint64(gen()))
 	}
 }
 
-func BenchmarkBitCountUInt32Naive(b *testing.B) {
-	benchmarkBitCountUInt32(b, math.BitCountUInt32Naive)
+func BenchmarkBitCountUint32Naive(b *testing.B) {
+	benchmarkBitCountUint32(b, math.BitCountUint32Naive)
 }
 
-func BenchmarkBitCountUInt64Naive(b *testing.B) {
-	benchmarkBitCountUInt64(b, math.BitCountUInt64Naive)
+func BenchmarkBitCountUint64Naive(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64Naive)
 }
 
 // java.lang.Integer#bitCount
-func BenchmarkBitCountUInt32Java(b *testing.B) {
-	benchmarkBitCountUInt32(b, math.BitCountUInt32Java)
+func BenchmarkBitCountUint32Java(b *testing.B) {
+	benchmarkBitCountUint32(b, math.BitCountUint32Java)
 }
 
 // java.lang.Long#bitCount
-func BenchmarkBitCountUInt64Java(b *testing.B) {
-	benchmarkBitCountUInt64(b, math.BitCountUInt64Java)
+func BenchmarkBitCountUint64Java(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64Java)
 }
 
-func BenchmarkBitCountUInt32CallGCC(b *testing.B) {
-	benchmarkBitCountUInt32(b, math.BitCountUInt32CallGCC)
+func BenchmarkBitCountUint32CallGCC(b *testing.B) {
+	benchmarkBitCountUint32(b, math.BitCountUint32CallGCC)
 }
 
-func BenchmarkBitCountUInt64CallGCC(b *testing.B) {
-	benchmarkBitCountUInt64(b, math.BitCountUInt64CallGCC)
+func BenchmarkBitCountUint64CallGCC(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64CallGCC)
 }
 
-func BenchmarkBitCountUInt32GCCImpl(b *testing.B) {
-	benchmarkBitCountUInt32(b, math.BitCountUInt32GCCImpl)
+func BenchmarkBitCountUint32GCCImpl(b *testing.B) {
+	benchmarkBitCountUint32(b, math.BitCountUint32GCCImpl)
 }
 
-func BenchmarkBitCountUInt64GCCImpl(b *testing.B) {
-	benchmarkBitCountUInt64(b, math.BitCountUInt64GCCImpl)
+func BenchmarkBitCountUint64GCCImpl(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64GCCImpl)
 }

@@ -241,31 +241,6 @@ func TestBitCountUint64(t *testing.T) {
 	}
 }
 
-// --- uint ---
-
-// BenchmarkBitCountUintNaive-8                      	10000000	       186 ns/op
-// BenchmarkBitCountUintGCCImpl-8                    	100000000	        12.2 ns/op
-// BenchmarkBitCountUintGCCImplSwitch-8              	100000000	        11.9 ns/op
-
-func benchmarkBitCountUint(b *testing.B, f func(uint) uint) {
-	gen := randomIntsInTheFirstPage()
-	for i, count := 0, b.N; i < count; i++ {
-		f(uint(gen()))
-	}
-}
-
-func BenchmarkBitCountUintNaive(b *testing.B) {
-	benchmarkBitCountUint(b, math.BitCountUintNaive)
-}
-
-func BenchmarkBitCountUintGCCImpl(b *testing.B) {
-	benchmarkBitCountUint(b, math.BitCountUintGCCImpl)
-}
-
-func BenchmarkBitCountUintGCCImplSwitch(b *testing.B) {
-	benchmarkBitCountUint(b, math.BitCountUintGCCImplSwitch)
-}
-
 // --- uint32 ---
 
 // BenchmarkBitCountUint32Naive-8                    	20000000	        98.2 ns/op
@@ -396,4 +371,29 @@ func BenchmarkBitCountUint64Pop6(b *testing.B) {
 
 func BenchmarkBitCountUint64Hakmem(b *testing.B) {
 	benchmarkBitCountUint64(b, math.BitCountUint64Hakmem)
+}
+
+// --- uint ---
+
+// BenchmarkBitCountUintNaive-8                      	10000000	       186 ns/op
+// BenchmarkBitCountUintGCCImpl-8                    	100000000	        12.2 ns/op
+// BenchmarkBitCountUintGCCImplSwitch-8              	100000000	        11.9 ns/op
+
+func benchmarkBitCountUint(b *testing.B, f func(uint) uint) {
+	gen := randomIntsInTheFirstPage()
+	for i, count := 0, b.N; i < count; i++ {
+		f(uint(gen()))
+	}
+}
+
+func BenchmarkBitCountUintNaive(b *testing.B) {
+	benchmarkBitCountUint(b, math.BitCountUintNaive)
+}
+
+func BenchmarkBitCountUintGCCImpl(b *testing.B) {
+	benchmarkBitCountUint(b, math.BitCountUintGCCImpl)
+}
+
+func BenchmarkBitCountUintGCCImplSwitch(b *testing.B) {
+	benchmarkBitCountUint(b, math.BitCountUintGCCImplSwitch)
 }

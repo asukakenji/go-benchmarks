@@ -69,60 +69,6 @@ func BitCountUint64CallGCC(x uint64) uint {
 	return uint(C.popcountll(C.ulonglong(x)))
 }
 
-const (
-	maxUint              = ^uint(0)
-	logSizeOfUintInBytes = maxUint>>8&1 + maxUint>>16&1 + maxUint>>32&1
-	sizeOfUintInBytes    = 1 << logSizeOfUintInBytes
-	sizeOfUintInBits     = sizeOfUintInBytes << 3
-)
-
-var (
-	bitMask55 uint
-	bitMask33 uint
-	bitMask0f uint
-	bitMask01 uint
-	bitShift  uint
-)
-
-func init() {
-	genBitMask := func(x uint) uint {
-		bitMask := x
-		shift := uint(8)
-		for i := uint(0); i < logSizeOfUintInBytes; i++ {
-			bitMask |= (bitMask << shift)
-			shift <<= 1
-		}
-		return bitMask
-	}
-	bitMask55 = genBitMask(0x55)
-	bitMask33 = genBitMask(0x33)
-	bitMask0f = genBitMask(0x0f)
-	bitMask01 = genBitMask(0x01)
-	bitShift = sizeOfUintInBits - 8
-}
-
-// BitCountUintGCCImpl returns the number of 1-bits in x.
-// Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/libgcc2.c#L840-L859
-// Source: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=36041#c8
-func BitCountUintGCCImpl(x uint) uint {
-	x = x - ((x >> 1) & bitMask55)
-	x = (x & bitMask33) + ((x >> 2) & bitMask33)
-	x = (x + (x >> 4)) & bitMask0f
-	return (x * bitMask01) >> bitShift
-}
-
-// BitCountUintGCCImplSwitch returns the number of 1-bits in x.
-func BitCountUintGCCImplSwitch(x uint) uint {
-	switch sizeOfUintInBits {
-	case 32:
-		return BitCountUint32Pop1Alt(uint32(x))
-	case 64:
-		return BitCountUint64Pop1Alt(uint64(x))
-	default:
-		panic("uint is neither 32-bit nor 64-bit")
-	}
-}
-
 // BitCountUint32Pop0 returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop0)
 func BitCountUint32Pop0(x uint32) uint {
@@ -426,4 +372,58 @@ func BitCountUint64Hakmem(x uint64) uint {
 	z := (y >> 1) & 0x7777777777777777
 	z = x - y - z - ((z >> 1) & 0x7777777777777777)
 	return uint(((z + (z >> 4)) & 0x0f0f0f0f0f0f0f0f) % 255)
+}
+
+const (
+	maxUint              = ^uint(0)
+	logSizeOfUintInBytes = maxUint>>8&1 + maxUint>>16&1 + maxUint>>32&1
+	sizeOfUintInBytes    = 1 << logSizeOfUintInBytes
+	sizeOfUintInBits     = sizeOfUintInBytes << 3
+)
+
+var (
+	bitMask55 uint
+	bitMask33 uint
+	bitMask0f uint
+	bitMask01 uint
+	bitShift  uint
+)
+
+func init() {
+	genBitMask := func(x uint) uint {
+		bitMask := x
+		shift := uint(8)
+		for i := uint(0); i < logSizeOfUintInBytes; i++ {
+			bitMask |= (bitMask << shift)
+			shift <<= 1
+		}
+		return bitMask
+	}
+	bitMask55 = genBitMask(0x55)
+	bitMask33 = genBitMask(0x33)
+	bitMask0f = genBitMask(0x0f)
+	bitMask01 = genBitMask(0x01)
+	bitShift = sizeOfUintInBits - 8
+}
+
+// BitCountUintGCCImpl returns the number of 1-bits in x.
+// Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/libgcc2.c#L840-L859
+// Source: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=36041#c8
+func BitCountUintGCCImpl(x uint) uint {
+	x = x - ((x >> 1) & bitMask55)
+	x = (x & bitMask33) + ((x >> 2) & bitMask33)
+	x = (x + (x >> 4)) & bitMask0f
+	return (x * bitMask01) >> bitShift
+}
+
+// BitCountUintGCCImplSwitch returns the number of 1-bits in x.
+func BitCountUintGCCImplSwitch(x uint) uint {
+	switch sizeOfUintInBits {
+	case 32:
+		return BitCountUint32Pop1Alt(uint32(x))
+	case 64:
+		return BitCountUint64Pop1Alt(uint64(x))
+	default:
+		panic("uint is neither 32-bit nor 64-bit")
+	}
 }

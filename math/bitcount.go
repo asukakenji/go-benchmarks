@@ -214,6 +214,20 @@ func BitCountUint32Pop3(x uint32) uint {
 	return uint(x >> 24)
 }
 
+// BitCountUint64Pop3 returns the number of 1-bits in x.
+// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop3)
+func BitCountUint64Pop3(x uint64) uint {
+	n := (x >> 1) & 0x7777777777777777 // Count bits in
+	x = x - n                          // each 4-bit
+	n = (n >> 1) & 0x7777777777777777  // field.
+	x = x - n
+	n = (n >> 1) & 0x7777777777777777
+	x = x - n
+	x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f // Get byte sums.
+	x = x * 0x0101010101010101              // Add the bytes.
+	return uint(x >> 56)
+}
+
 // BitCountUint32Pop4 returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop4)
 func BitCountUint32Pop4(x uint32) uint {
@@ -262,7 +276,7 @@ func BitCountUint32Pop5a(x uint32) uint {
 	return uint(int32ToUint32(sum))
 }
 
-var table = [...]uint{
+var byteToBitCountTable = [...]uint{
 	0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4,
 	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
 	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
@@ -285,10 +299,23 @@ var table = [...]uint{
 }
 
 // BitCountUint32Pop6 returns the number of 1-bits in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5a)
+// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop6)
 func BitCountUint32Pop6(x uint32) uint {
-	return table[x&0xff] +
-		table[(x>>8)&0xff] +
-		table[(x>>16)&0xff] +
-		table[(x>>24)]
+	return byteToBitCountTable[x&0xff] +
+		byteToBitCountTable[(x>>8)&0xff] +
+		byteToBitCountTable[(x>>16)&0xff] +
+		byteToBitCountTable[(x>>24)]
+}
+
+// BitCountUint64Pop6 returns the number of 1-bits in x.
+// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop6)
+func BitCountUint64Pop6(x uint64) uint {
+	return byteToBitCountTable[x&0xff] +
+		byteToBitCountTable[(x>>8)&0xff] +
+		byteToBitCountTable[(x>>16)&0xff] +
+		byteToBitCountTable[(x>>24)&0xff] +
+		byteToBitCountTable[(x>>32)&0xff] +
+		byteToBitCountTable[(x>>40)&0xff] +
+		byteToBitCountTable[(x>>48)&0xff] +
+		byteToBitCountTable[(x>>56)]
 }

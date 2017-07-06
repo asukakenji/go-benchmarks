@@ -23,6 +23,8 @@ import "C"
 
 import "unsafe"
 
+import "github.com/asukakenji/go-benchmarks/common"
+
 // BitCountUintNaive returns the number of 1-bits in x.
 func BitCountUintNaive(x uint) uint {
 	count := uint(0)
@@ -374,13 +376,6 @@ func BitCountUint64Hakmem(x uint64) uint {
 	return uint(((z + (z >> 4)) & 0x0f0f0f0f0f0f0f0f) % 255)
 }
 
-const (
-	maxUint              = ^uint(0)
-	logSizeOfUintInBytes = maxUint>>8&1 + maxUint>>16&1 + maxUint>>32&1
-	sizeOfUintInBytes    = 1 << logSizeOfUintInBytes
-	sizeOfUintInBits     = sizeOfUintInBytes << 3
-)
-
 var (
 	bitMask55 uint
 	bitMask33 uint
@@ -393,7 +388,7 @@ func init() {
 	genBitMask := func(x uint) uint {
 		bitMask := x
 		shift := uint(8)
-		for i := uint(0); i < logSizeOfUintInBytes; i++ {
+		for i := uint(0); i < common.LogSizeOfUintInBytes; i++ {
 			bitMask |= (bitMask << shift)
 			shift <<= 1
 		}
@@ -403,7 +398,7 @@ func init() {
 	bitMask33 = genBitMask(0x33)
 	bitMask0f = genBitMask(0x0f)
 	bitMask01 = genBitMask(0x01)
-	bitShift = sizeOfUintInBits - 8
+	bitShift = common.SizeOfUintInBits - 8
 }
 
 // BitCountUintGCCImpl returns the number of 1-bits in x.
@@ -418,7 +413,7 @@ func BitCountUintGCCImpl(x uint) uint {
 
 // BitCountUintGCCImplSwitch returns the number of 1-bits in x.
 func BitCountUintGCCImplSwitch(x uint) uint {
-	switch sizeOfUintInBits {
+	switch common.SizeOfUintInBits {
 	case 32:
 		return BitCountUint32Pop1Alt(uint32(x))
 	case 64:

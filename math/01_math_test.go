@@ -170,6 +170,8 @@ func TestBitCountUint32(t *testing.T) {
 		{"BitCountUint32Pop5", math.BitCountUint32Pop5},
 		{"BitCountUint32Pop5a", math.BitCountUint32Pop5a},
 		{"BitCountUint32Pop6", math.BitCountUint32Pop6},
+		{"BitCountUint32Hakmem", math.BitCountUint32Hakmem},
+		{"BitCountUint32HakmemUnrolled", math.BitCountUint32HakmemUnrolled},
 	}
 	gen := randomIntsInTheFirstPage()
 	for _, bitCountUint32Func := range bitCountUint32Funcs {
@@ -203,10 +205,15 @@ func TestBitCountUint64(t *testing.T) {
 		f    func(uint64) uint
 	}{
 		{"BitCountUint64CallGCC", math.BitCountUint64CallGCC},
+		{"BitCountUint64Pop0", math.BitCountUint64Pop0},
 		{"BitCountUint64Pop1", math.BitCountUint64Pop1},
 		{"BitCountUint64Pop1Alt", math.BitCountUint64Pop1Alt},
 		{"BitCountUint64Pop3", math.BitCountUint64Pop3},
+		{"BitCountUint64Pop4", math.BitCountUint64Pop4},
+		{"BitCountUint64Pop5", math.BitCountUint64Pop5},
+		{"BitCountUint64Pop5a", math.BitCountUint64Pop5a},
 		{"BitCountUint64Pop6", math.BitCountUint64Pop6},
+		{"BitCountUint64Hakmem", math.BitCountUint64Hakmem},
 	}
 	gen := randomIntsInTheFirstPage()
 	for _, bitCountUint64Func := range bitCountUint64Funcs {
@@ -329,6 +336,14 @@ func BenchmarkBitCountUint32Pop6(b *testing.B) {
 	benchmarkBitCountUint32(b, math.BitCountUint32Pop6)
 }
 
+func BenchmarkBitCountUint32Hakmem(b *testing.B) {
+	benchmarkBitCountUint32(b, math.BitCountUint32Hakmem)
+}
+
+func BenchmarkBitCountUint32HakmemUnrolled(b *testing.B) {
+	benchmarkBitCountUint32(b, math.BitCountUint32HakmemUnrolled)
+}
+
 // --- uint64 ---
 
 // BenchmarkBitCountUint64Naive-8                    	10000000	       181 ns/op
@@ -363,6 +378,22 @@ func BenchmarkBitCountUint64Pop3(b *testing.B) {
 	benchmarkBitCountUint64(b, math.BitCountUint64Pop3)
 }
 
+func BenchmarkBitCountUint64Pop4(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64Pop4)
+}
+
+func BenchmarkBitCountUint64Pop5(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64Pop5)
+}
+
+func BenchmarkBitCountUint64Pop5a(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64Pop5a)
+}
+
 func BenchmarkBitCountUint64Pop6(b *testing.B) {
 	benchmarkBitCountUint64(b, math.BitCountUint64Pop6)
+}
+
+func BenchmarkBitCountUint64Hakmem(b *testing.B) {
+	benchmarkBitCountUint64(b, math.BitCountUint64Hakmem)
 }

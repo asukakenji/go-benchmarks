@@ -1,5 +1,11 @@
 package math
 
+/*
+References:
+http://www.hackersdelight.org/hdcodetxt/pop.c.txt
+http://www.dalkescientific.com/writings/diary/archive/2008/07/03/hakmem_and_other_popcounts.html
+*/
+
 // // These functions calls the built-ins in GCC / clang.
 //
 // static inline int popcount(unsigned int x) {
@@ -15,9 +21,7 @@ package math
 // }
 import "C"
 
-import (
-	"unsafe"
-)
+import "unsafe"
 
 // BitCountUintNaive returns the number of 1-bits in x.
 func BitCountUintNaive(x uint) uint {
@@ -130,6 +134,18 @@ func BitCountUint32Pop0(x uint32) uint {
 	return uint(x)
 }
 
+// BitCountUint64Pop0 returns the number of 1-bits in x.
+// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop0)
+func BitCountUint64Pop0(x uint64) uint {
+	x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555)
+	x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333)
+	x = (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f)
+	x = (x & 0x00ff00ff00ff00ff) + ((x >> 8) & 0x00ff00ff00ff00ff)
+	x = (x & 0x0000ffff0000ffff) + ((x >> 16) & 0x0000ffff0000ffff)
+	x = (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff)
+	return uint(x)
+}
+
 // BitCountUint32Pop1 returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop1)
 // Source: java.lang.Integer#bitCount
@@ -189,6 +205,16 @@ func BitCountUint32Pop2(x uint32) uint {
 	return uint(x % 63)               // Add 6-bit sums.
 }
 
+/* Does NOT work! */
+func bitCountUint64Pop2(x uint64) uint {
+	n := (x >> 1) & 01333333333333333333333 // Count bits in
+	x = x - n                               // each 3-bit
+	n = (n >> 1) & 01333333333333333333333  // field.
+	x = x - n
+	x = (x + (x >> 3)) & 00707070707070707070707 // 6-bit sums.
+	return uint(x % 63)                          // Add 6-bit sums.
+}
+
 // BitCountUint32Pop2Alt returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop2 + alternative)
 func BitCountUint32Pop2Alt(x uint32) uint {
@@ -196,8 +222,18 @@ func BitCountUint32Pop2Alt(x uint32) uint {
 	x = x - n                    // each 3-bit
 	n = (n >> 1) & 033333333333  // field.
 	x = x - n
-	x = (x + (x >> 3)) & 030707070707                 // 6-bit sums.
-	return uint(((x * 0404040404) >> 26) + (x >> 30)) // Add 6-bit sums.
+	x = (x + (x >> 3)) & 030707070707                   // 6-bit sums.
+	return uint(((x * 000404040404) >> 26) + (x >> 30)) // Add 6-bit sums.
+}
+
+/* Does NOT work! */
+func bitCountUint64Pop2Alt(x uint64) uint {
+	n := (x >> 1) & 01333333333333333333333 // Count bits in
+	x = x - n                               // each 3-bit
+	n = (n >> 1) & 01333333333333333333333  // field.
+	x = x - n
+	x = (x + (x >> 3)) & 00707070707070707070707              // 6-bit sums.
+	return uint(((x * 000404040404040404) >> 58) + (x >> 62)) // Add 6-bit sums.
 }
 
 // BitCountUint32Pop3 returns the number of 1-bits in x.
@@ -239,6 +275,17 @@ func BitCountUint32Pop4(x uint32) uint {
 	return n
 }
 
+// BitCountUint64Pop4 returns the number of 1-bits in x.
+// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop4)
+func BitCountUint64Pop4(x uint64) uint {
+	n := uint(0)
+	for x != 0 {
+		n = n + 1
+		x = x & (x - 1)
+	}
+	return n
+}
+
 func rotate32(x uint32, n uint) uint32 {
 	if n > 63 {
 		panic("rotate32, n out of range.")
@@ -254,6 +301,21 @@ func int32ToUint32(x int32) uint32 {
 	return *(*uint32)(unsafe.Pointer(&x))
 }
 
+func rotate64(x uint64, n uint) uint64 {
+	if n > 127 {
+		panic("rotate64, n out of range.")
+	}
+	return (x << n) | (x >> (64 - n))
+}
+
+func uint64ToInt64(x uint64) int64 {
+	return *(*int64)(unsafe.Pointer(&x))
+}
+
+func int64ToUint64(x int64) uint64 {
+	return *(*uint64)(unsafe.Pointer(&x))
+}
+
 // BitCountUint32Pop5 returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5)
 func BitCountUint32Pop5(x uint32) uint {
@@ -265,6 +327,17 @@ func BitCountUint32Pop5(x uint32) uint {
 	return uint(int32ToUint32(-sum))
 }
 
+// BitCountUint64Pop5 returns the number of 1-bits in x.
+// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5)
+func BitCountUint64Pop5(x uint64) uint {
+	sum := uint64ToInt64(x)
+	for i := 1; i <= 63; i++ {
+		x = rotate64(x, 1)
+		sum = sum + uint64ToInt64(x)
+	}
+	return uint(int64ToUint64(-sum))
+}
+
 // BitCountUint32Pop5a returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5a)
 func BitCountUint32Pop5a(x uint32) uint {
@@ -274,6 +347,17 @@ func BitCountUint32Pop5a(x uint32) uint {
 		sum = sum - uint32ToInt32(x)
 	}
 	return uint(int32ToUint32(sum))
+}
+
+// BitCountUint64Pop5a returns the number of 1-bits in x.
+// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5a)
+func BitCountUint64Pop5a(x uint64) uint {
+	sum := uint64ToInt64(x)
+	for x != 0 {
+		x = x >> 1
+		sum = sum - uint64ToInt64(x)
+	}
+	return uint(int64ToUint64(sum))
 }
 
 var byteToBitCountTable = [...]uint{
@@ -318,4 +402,28 @@ func BitCountUint64Pop6(x uint64) uint {
 		byteToBitCountTable[(x>>40)&0xff] +
 		byteToBitCountTable[(x>>48)&0xff] +
 		byteToBitCountTable[(x>>56)]
+}
+
+// BitCountUint32Hakmem returns the number of 1-bits in x.
+// Source: https://stackoverflow.com/q/8590432/142239
+func BitCountUint32Hakmem(x uint32) uint {
+	y := (x >> 1) & 033333333333
+	y = x - y - ((y >> 1) & 033333333333)
+	return uint(((y + (y >> 3)) & 030707070707) % 63)
+}
+
+// BitCountUint32HakmemUnrolled returns the number of 1-bits in x.
+// Source: https://stackoverflow.com/q/8590432/142239
+func BitCountUint32HakmemUnrolled(x uint32) uint {
+	y := x - ((x >> 1) & 033333333333) - ((x >> 2) & 011111111111)
+	return uint(((y + (y >> 3)) & 030707070707) % 63)
+}
+
+// BitCountUint64Hakmem returns the number of 1-bits in x.
+// Source: http://www.stmintz.com/ccc/index.php?id=94570
+func BitCountUint64Hakmem(x uint64) uint {
+	y := (x >> 1) & 0x7777777777777777
+	z := (y >> 1) & 0x7777777777777777
+	z = x - y - z - ((z >> 1) & 0x7777777777777777)
+	return uint(((z + (z >> 4)) & 0x0f0f0f0f0f0f0f0f) % 255)
 }

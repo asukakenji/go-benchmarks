@@ -244,17 +244,19 @@ func TestBitCountUint64(t *testing.T) {
 // --- uint32 ---
 
 // BenchmarkBitCountUint32Naive-8                    	20000000	        98.2 ns/op
-// BenchmarkBitCountUint32CallGCC-8                  	20000000	        67.1 ns/op
-// BenchmarkBitCountUint32Pop0-8                     	100000000	        12.6 ns/op
-// BenchmarkBitCountUint32Pop1-8                     	100000000	        11.9 ns/op
-// BenchmarkBitCountUint32Pop1Alt-8                  	100000000	        11.7 ns/op
-// BenchmarkBitCountUint32Pop2-8                     	100000000	        12.3 ns/op
-// BenchmarkBitCountUint32Pop2Alt-8                  	100000000	        11.9 ns/op
-// BenchmarkBitCountUint32Pop3-8                     	100000000	        11.8 ns/op
-// BenchmarkBitCountUint32Pop4-8                     	50000000	        27.4 ns/op
+// BenchmarkBitCountUint32CallGCC-8                  	20000000	        66.7 ns/op
+// BenchmarkBitCountUint32Pop0-8                     	100000000	        12.5 ns/op
+// BenchmarkBitCountUint32Pop1-8                     	100000000	        11.8 ns/op
+// BenchmarkBitCountUint32Pop1Alt-8                  	100000000	        11.6 ns/op
+// BenchmarkBitCountUint32Pop2-8                     	100000000	        12.2 ns/op
+// BenchmarkBitCountUint32Pop2Alt-8                  	100000000	        11.8 ns/op
+// BenchmarkBitCountUint32Pop3-8                     	100000000	        11.6 ns/op
+// BenchmarkBitCountUint32Pop4-8                     	50000000	        29.4 ns/op
 // BenchmarkBitCountUint32Pop5-8                     	10000000	       155 ns/op
-// BenchmarkBitCountUint32Pop5a-8                    	50000000	        28.8 ns/op
-// BenchmarkBitCountUint32Pop6-8                     	100000000	        11.7 ns/op
+// BenchmarkBitCountUint32Pop5a-8                    	50000000	        28.6 ns/op
+// BenchmarkBitCountUint32Pop6-8                     	100000000	        11.6 ns/op
+// BenchmarkBitCountUint32Hakmem-8                   	100000000	        13.1 ns/op
+// BenchmarkBitCountUint32HakmemUnrolled-8           	100000000	        12.9 ns/op
 
 func benchmarkBitCountUint32(b *testing.B, f func(uint32) uint) {
 	gen := randomIntsInTheFirstPage()
@@ -321,10 +323,16 @@ func BenchmarkBitCountUint32HakmemUnrolled(b *testing.B) {
 
 // --- uint64 ---
 
-// BenchmarkBitCountUint64Naive-8                    	10000000	       181 ns/op
-// BenchmarkBitCountUint64CallGCC-8                  	20000000	        66.0 ns/op
-// BenchmarkBitCountUint64Pop1-8                     	100000000	        12.6 ns/op
-// BenchmarkBitCountUint64Pop1Alt-8                  	100000000	        12.2 ns/op
+// BenchmarkBitCountUint64Naive-8                    	10000000	       180 ns/op
+// BenchmarkBitCountUint64CallGCC-8                  	20000000	        65.9 ns/op
+// BenchmarkBitCountUint64Pop1-8                     	100000000	        12.5 ns/op
+// BenchmarkBitCountUint64Pop1Alt-8                  	100000000	        12.1 ns/op
+// BenchmarkBitCountUint64Pop3-8                     	100000000	        12.1 ns/op
+// BenchmarkBitCountUint64Pop4-8                     	50000000	        37.8 ns/op
+// BenchmarkBitCountUint64Pop5-8                     	 5000000	       308 ns/op
+// BenchmarkBitCountUint64Pop5a-8                    	50000000	        38.6 ns/op
+// BenchmarkBitCountUint64Pop6-8                     	100000000	        13.9 ns/op
+// BenchmarkBitCountUint64Hakmem-8                   	100000000	        12.8 ns/op
 
 func benchmarkBitCountUint64(b *testing.B, f func(uint64) uint) {
 	gen := randomIntsInTheFirstPage()
@@ -375,9 +383,9 @@ func BenchmarkBitCountUint64Hakmem(b *testing.B) {
 
 // --- uint ---
 
-// BenchmarkBitCountUintNaive-8                      	10000000	       186 ns/op
-// BenchmarkBitCountUintGCCImpl-8                    	100000000	        12.2 ns/op
-// BenchmarkBitCountUintGCCImplSwitch-8              	100000000	        11.9 ns/op
+// BenchmarkBitCountUintNaive-8                      	10000000	       185 ns/op
+// BenchmarkBitCountUintGCCImpl-8                    	100000000	        12.1 ns/op
+// BenchmarkBitCountUintGCCImplSwitch-8              	100000000	        11.8 ns/op
 
 func benchmarkBitCountUint(b *testing.B, f func(uint) uint) {
 	gen := randomIntsInTheFirstPage()

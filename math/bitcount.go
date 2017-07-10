@@ -21,9 +21,10 @@ http://www.dalkescientific.com/writings/diary/archive/2008/07/03/hakmem_and_othe
 // }
 import "C"
 
-import "unsafe"
-
-import "github.com/asukakenji/go-benchmarks/common"
+import (
+	"github.com/asukakenji/go-benchmarks/common"
+	"github.com/asukakenji/go-benchmarks/reinterpret"
+)
 
 // BitCountUintNaive returns the number of 1-bits in x.
 func BitCountUintNaive(x uint) uint {
@@ -241,14 +242,6 @@ func rotate32(x uint32, n uint) uint32 {
 	return (x << n) | (x >> (32 - n))
 }
 
-func uint32ToInt32(x uint32) int32 {
-	return *(*int32)(unsafe.Pointer(&x))
-}
-
-func int32ToUint32(x int32) uint32 {
-	return *(*uint32)(unsafe.Pointer(&x))
-}
-
 func rotate64(x uint64, n uint) uint64 {
 	if n > 127 {
 		panic("rotate64, n out of range.")
@@ -256,56 +249,48 @@ func rotate64(x uint64, n uint) uint64 {
 	return (x << n) | (x >> (64 - n))
 }
 
-func uint64ToInt64(x uint64) int64 {
-	return *(*int64)(unsafe.Pointer(&x))
-}
-
-func int64ToUint64(x int64) uint64 {
-	return *(*uint64)(unsafe.Pointer(&x))
-}
-
 // BitCountUint32Pop5 returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5)
 func BitCountUint32Pop5(x uint32) uint {
-	sum := uint32ToInt32(x)
+	sum := reinterpret.Uint32AsInt32(x)
 	for i := 1; i <= 31; i++ {
 		x = rotate32(x, 1)
-		sum = sum + uint32ToInt32(x)
+		sum = sum + reinterpret.Uint32AsInt32(x)
 	}
-	return uint(int32ToUint32(-sum))
+	return uint(reinterpret.Int32AsUint32(-sum))
 }
 
 // BitCountUint64Pop5 returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5)
 func BitCountUint64Pop5(x uint64) uint {
-	sum := uint64ToInt64(x)
+	sum := reinterpret.Uint64AsInt64(x)
 	for i := 1; i <= 63; i++ {
 		x = rotate64(x, 1)
-		sum = sum + uint64ToInt64(x)
+		sum = sum + reinterpret.Uint64AsInt64(x)
 	}
-	return uint(int64ToUint64(-sum))
+	return uint(reinterpret.Int64AsUint64(-sum))
 }
 
 // BitCountUint32Pop5a returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5a)
 func BitCountUint32Pop5a(x uint32) uint {
-	sum := uint32ToInt32(x)
+	sum := reinterpret.Uint32AsInt32(x)
 	for x != 0 {
 		x = x >> 1
-		sum = sum - uint32ToInt32(x)
+		sum = sum - reinterpret.Uint32AsInt32(x)
 	}
-	return uint(int32ToUint32(sum))
+	return uint(reinterpret.Int32AsUint32(sum))
 }
 
 // BitCountUint64Pop5a returns the number of 1-bits in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5a)
 func BitCountUint64Pop5a(x uint64) uint {
-	sum := uint64ToInt64(x)
+	sum := reinterpret.Uint64AsInt64(x)
 	for x != 0 {
 		x = x >> 1
-		sum = sum - uint64ToInt64(x)
+		sum = sum - reinterpret.Uint64AsInt64(x)
 	}
-	return uint(int64ToUint64(sum))
+	return uint(reinterpret.Int64AsUint64(sum))
 }
 
 var byteToBitCountTable = [...]uint{
@@ -388,7 +373,7 @@ func init() {
 	genBitMask := func(x uint) uint {
 		bitMask := x
 		shift := uint(8)
-		for i := uint(0); i < common.LogSizeOfUintInBytes; i++ {
+		for i := uint(0); i < common.LogSizeOfIntInBytes; i++ {
 			bitMask |= (bitMask << shift)
 			shift <<= 1
 		}
@@ -398,7 +383,7 @@ func init() {
 	bitMask33 = genBitMask(0x33)
 	bitMask0f = genBitMask(0x0f)
 	bitMask01 = genBitMask(0x01)
-	bitShift = common.SizeOfUintInBits - 8
+	bitShift = common.SizeOfIntInBits - 8
 }
 
 // BitCountUintGCCImpl returns the number of 1-bits in x.
@@ -413,7 +398,7 @@ func BitCountUintGCCImpl(x uint) uint {
 
 // BitCountUintGCCImplSwitch returns the number of 1-bits in x.
 func BitCountUintGCCImplSwitch(x uint) uint {
-	switch common.SizeOfUintInBits {
+	switch common.SizeOfIntInBits {
 	case 32:
 		return BitCountUint32Pop1Alt(uint32(x))
 	case 64:

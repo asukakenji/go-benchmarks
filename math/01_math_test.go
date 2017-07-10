@@ -3,7 +3,9 @@ package math_test
 import (
 	"testing"
 
+	"github.com/asukakenji/go-benchmarks/benchmark"
 	"github.com/asukakenji/go-benchmarks/math"
+	"github.com/asukakenji/go-benchmarks/random"
 )
 
 var byteToBitCountTable = [...]uint{
@@ -128,7 +130,6 @@ func TestBitCountUint(t *testing.T) {
 		{"BitCountUintGCCImpl", math.BitCountUintGCCImpl},
 		{"BitCountUintGCCImplSwitch", math.BitCountUintGCCImplSwitch},
 	}
-	gen := randomIntsInTheFirstPage()
 	for _, bitCountUintFunc := range bitCountUintFuncs {
 		for x, expected := range byteToBitCountTable {
 			got := bitCountUintFunc.f(uint(x))
@@ -143,8 +144,9 @@ func TestBitCountUint(t *testing.T) {
 				t.Errorf("%s(%d) = %d, expected %d", bitCountUintFunc.name, x, got, expected)
 			}
 		}
+		gen := random.NewUintGenerator()
 		for i := 0; i < 512; i++ {
-			x := uint(gen())
+			x := gen.Next()
 			expected := math.BitCountUintNaive(x)
 			got := bitCountUintFunc.f(x)
 			if got != expected {
@@ -173,7 +175,6 @@ func TestBitCountUint32(t *testing.T) {
 		{"BitCountUint32Hakmem", math.BitCountUint32Hakmem},
 		{"BitCountUint32HakmemUnrolled", math.BitCountUint32HakmemUnrolled},
 	}
-	gen := randomIntsInTheFirstPage()
 	for _, bitCountUint32Func := range bitCountUint32Funcs {
 		for x, expected := range byteToBitCountTable {
 			got := bitCountUint32Func.f(uint32(x))
@@ -188,8 +189,9 @@ func TestBitCountUint32(t *testing.T) {
 				t.Errorf("%s(%d) = %d, expected %d", bitCountUint32Func.name, x, got, expected)
 			}
 		}
+		gen := random.NewUint32Generator()
 		for i := 0; i < 512; i++ {
-			x := uint32(gen())
+			x := gen.Next()
 			expected := math.BitCountUint32Naive(x)
 			got := bitCountUint32Func.f(x)
 			if got != expected {
@@ -215,7 +217,6 @@ func TestBitCountUint64(t *testing.T) {
 		{"BitCountUint64Pop6", math.BitCountUint64Pop6},
 		{"BitCountUint64Hakmem", math.BitCountUint64Hakmem},
 	}
-	gen := randomIntsInTheFirstPage()
 	for _, bitCountUint64Func := range bitCountUint64Funcs {
 		for x, expected := range byteToBitCountTable {
 			got := bitCountUint64Func.f(uint64(x))
@@ -230,8 +231,9 @@ func TestBitCountUint64(t *testing.T) {
 				t.Errorf("%s(%d) = %d, expected %d", bitCountUint64Func.name, x, got, expected)
 			}
 		}
+		gen := random.NewUint64Generator()
 		for i := 0; i < 512; i++ {
-			x := uint64(gen())
+			x := gen.Next()
 			expected := math.BitCountUint64Naive(x)
 			got := bitCountUint64Func.f(x)
 			if got != expected {
@@ -258,67 +260,76 @@ func TestBitCountUint64(t *testing.T) {
 // BenchmarkBitCountUint32Hakmem-8                   	100000000	        13.1 ns/op
 // BenchmarkBitCountUint32HakmemUnrolled-8           	100000000	        12.9 ns/op
 
-func benchmarkBitCountUint32(b *testing.B, f func(uint32) uint) {
-	gen := randomIntsInTheFirstPage()
-	for i, count := 0, b.N; i < count; i++ {
-		f(uint32(gen()))
-	}
-}
+var gen32 = random.NewUint32Generator()
 
 func BenchmarkBitCountUint32Naive(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Naive)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Naive)
 }
 
 func BenchmarkBitCountUint32CallGCC(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32CallGCC)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32CallGCC)
 }
 
 func BenchmarkBitCountUint32Pop0(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop0)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop0)
 }
 
 func BenchmarkBitCountUint32Pop1(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop1)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop1)
 }
 
 func BenchmarkBitCountUint32Pop1Alt(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop1Alt)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop1Alt)
 }
 
 func BenchmarkBitCountUint32Pop2(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop2)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop2)
 }
 
 func BenchmarkBitCountUint32Pop2Alt(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop2Alt)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop2Alt)
 }
 
 func BenchmarkBitCountUint32Pop3(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop3)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop3)
 }
 
 func BenchmarkBitCountUint32Pop4(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop4)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop4)
 }
 
 func BenchmarkBitCountUint32Pop5(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop5)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop5)
 }
 
 func BenchmarkBitCountUint32Pop5a(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop5a)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop5a)
 }
 
 func BenchmarkBitCountUint32Pop6(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Pop6)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop6)
 }
 
 func BenchmarkBitCountUint32Hakmem(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32Hakmem)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Hakmem)
 }
 
 func BenchmarkBitCountUint32HakmemUnrolled(b *testing.B) {
-	benchmarkBitCountUint32(b, math.BitCountUint32HakmemUnrolled)
+	gen32.Reset()
+	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32HakmemUnrolled)
 }
 
 // --- uint64 ---
@@ -334,51 +345,56 @@ func BenchmarkBitCountUint32HakmemUnrolled(b *testing.B) {
 // BenchmarkBitCountUint64Pop6-8                     	100000000	        13.9 ns/op
 // BenchmarkBitCountUint64Hakmem-8                   	100000000	        12.8 ns/op
 
-func benchmarkBitCountUint64(b *testing.B, f func(uint64) uint) {
-	gen := randomIntsInTheFirstPage()
-	for i, count := 0, b.N; i < count; i++ {
-		f(uint64(gen()))
-	}
-}
+var gen64 = random.NewUint64Generator()
 
 func BenchmarkBitCountUint64Naive(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Naive)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Naive)
 }
 
 func BenchmarkBitCountUint64CallGCC(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64CallGCC)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64CallGCC)
 }
 
 func BenchmarkBitCountUint64Pop1(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Pop1)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop1)
 }
 
 func BenchmarkBitCountUint64Pop1Alt(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Pop1Alt)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop1Alt)
 }
 
 func BenchmarkBitCountUint64Pop3(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Pop3)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop3)
 }
 
 func BenchmarkBitCountUint64Pop4(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Pop4)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop4)
 }
 
 func BenchmarkBitCountUint64Pop5(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Pop5)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop5)
 }
 
 func BenchmarkBitCountUint64Pop5a(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Pop5a)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop5a)
 }
 
 func BenchmarkBitCountUint64Pop6(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Pop6)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop6)
 }
 
 func BenchmarkBitCountUint64Hakmem(b *testing.B) {
-	benchmarkBitCountUint64(b, math.BitCountUint64Hakmem)
+	gen64.Reset()
+	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Hakmem)
 }
 
 // --- uint ---
@@ -387,21 +403,16 @@ func BenchmarkBitCountUint64Hakmem(b *testing.B) {
 // BenchmarkBitCountUintGCCImpl-8                    	100000000	        12.1 ns/op
 // BenchmarkBitCountUintGCCImplSwitch-8              	100000000	        11.8 ns/op
 
-func benchmarkBitCountUint(b *testing.B, f func(uint) uint) {
-	gen := randomIntsInTheFirstPage()
-	for i, count := 0, b.N; i < count; i++ {
-		f(uint(gen()))
-	}
-}
+var gen = random.NewUintGenerator()
 
 func BenchmarkBitCountUintNaive(b *testing.B) {
-	benchmarkBitCountUint(b, math.BitCountUintNaive)
+	benchmark.UintFuncUint(b, gen.Next, math.BitCountUintNaive)
 }
 
 func BenchmarkBitCountUintGCCImpl(b *testing.B) {
-	benchmarkBitCountUint(b, math.BitCountUintGCCImpl)
+	benchmark.UintFuncUint(b, gen.Next, math.BitCountUintGCCImpl)
 }
 
 func BenchmarkBitCountUintGCCImplSwitch(b *testing.B) {
-	benchmarkBitCountUint(b, math.BitCountUintGCCImplSwitch)
+	benchmark.UintFuncUint(b, gen.Next, math.BitCountUintGCCImplSwitch)
 }

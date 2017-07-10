@@ -3,9 +3,9 @@ package math_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/benchmark"
+	"github.com/asukakenji/go-benchmarks/common/benchmark"
+	"github.com/asukakenji/go-benchmarks/common/random"
 	"github.com/asukakenji/go-benchmarks/math"
-	"github.com/asukakenji/go-benchmarks/random"
 )
 
 var byteToBitCountTable = [...]uint{

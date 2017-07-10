@@ -23,7 +23,7 @@ import "C"
 
 import (
 	"github.com/asukakenji/go-benchmarks/common"
-	"github.com/asukakenji/go-benchmarks/reinterpret"
+	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
 // BitCountUintNaive returns the number of 1-bits in x.

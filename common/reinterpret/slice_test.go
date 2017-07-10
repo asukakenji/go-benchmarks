@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/reinterpret"
+	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
 func TestIntSliceAsByteSlice(t *testing.T) {

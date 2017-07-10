@@ -3,7 +3,7 @@ package reinterpret_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/reinterpret"
+	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
 func TestIntAsUint(t *testing.T) {

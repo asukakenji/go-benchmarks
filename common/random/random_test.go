@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common"
-	"github.com/asukakenji/go-benchmarks/random"
+	"github.com/asukakenji/go-benchmarks/common/random"
 )
 
 func TestNewIntGeneratorNext(t *testing.T) {

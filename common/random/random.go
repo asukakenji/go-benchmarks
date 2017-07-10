@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/asukakenji/go-benchmarks/common"
-	"github.com/asukakenji/go-benchmarks/reinterpret"
+	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
 // IntGenerator (ID: RNG-2)

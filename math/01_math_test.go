@@ -245,174 +245,144 @@ func TestBitCountUint64(t *testing.T) {
 
 // --- uint32 ---
 
-// BenchmarkBitCountUint32Naive-8                    	20000000	        98.2 ns/op
-// BenchmarkBitCountUint32CallGCC-8                  	20000000	        66.7 ns/op
-// BenchmarkBitCountUint32Pop0-8                     	100000000	        12.5 ns/op
-// BenchmarkBitCountUint32Pop1-8                     	100000000	        11.8 ns/op
-// BenchmarkBitCountUint32Pop1Alt-8                  	100000000	        11.6 ns/op
-// BenchmarkBitCountUint32Pop2-8                     	100000000	        12.2 ns/op
-// BenchmarkBitCountUint32Pop2Alt-8                  	100000000	        11.8 ns/op
-// BenchmarkBitCountUint32Pop3-8                     	100000000	        11.6 ns/op
-// BenchmarkBitCountUint32Pop4-8                     	50000000	        29.4 ns/op
-// BenchmarkBitCountUint32Pop5-8                     	10000000	       155 ns/op
-// BenchmarkBitCountUint32Pop5a-8                    	50000000	        28.6 ns/op
-// BenchmarkBitCountUint32Pop6-8                     	100000000	        11.6 ns/op
-// BenchmarkBitCountUint32Hakmem-8                   	100000000	        13.1 ns/op
-// BenchmarkBitCountUint32HakmemUnrolled-8           	100000000	        12.9 ns/op
-
-var gen32 = random.NewUint32Generator()
+// BenchmarkBitCountUint32Naive-8            	20000000	        94.6 ns/op
+// BenchmarkBitCountUint32CallGCC-8          	20000000	        64.9 ns/op
+// BenchmarkBitCountUint32Pop0-8             	200000000	         6.29 ns/op
+// BenchmarkBitCountUint32Pop1-8             	300000000	         5.66 ns/op
+// BenchmarkBitCountUint32Pop1Alt-8          	300000000	         5.79 ns/op
+// BenchmarkBitCountUint32Pop2-8             	200000000	         6.26 ns/op
+// BenchmarkBitCountUint32Pop2Alt-8          	300000000	         5.38 ns/op
+// BenchmarkBitCountUint32Pop3-8             	300000000	         5.38 ns/op
+// BenchmarkBitCountUint32Pop4-8             	100000000	        21.4 ns/op
+// BenchmarkBitCountUint32Pop5-8             	10000000	       149 ns/op
+// BenchmarkBitCountUint32Pop5a-8            	100000000	        22.3 ns/op
+// BenchmarkBitCountUint32Pop6-8             	300000000	         5.39 ns/op
+// BenchmarkBitCountUint32Hakmem-8           	200000000	         6.67 ns/op
+// BenchmarkBitCountUint32HakmemUnrolled-8   	200000000	         6.71 ns/op
 
 func BenchmarkBitCountUint32Naive(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Naive)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Naive)
 }
 
 func BenchmarkBitCountUint32CallGCC(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32CallGCC)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32CallGCC)
 }
 
 func BenchmarkBitCountUint32Pop0(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop0)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop0)
 }
 
 func BenchmarkBitCountUint32Pop1(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop1)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop1)
 }
 
 func BenchmarkBitCountUint32Pop1Alt(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop1Alt)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop1Alt)
 }
 
 func BenchmarkBitCountUint32Pop2(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop2)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop2)
 }
 
 func BenchmarkBitCountUint32Pop2Alt(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop2Alt)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop2Alt)
 }
 
 func BenchmarkBitCountUint32Pop3(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop3)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop3)
 }
 
 func BenchmarkBitCountUint32Pop4(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop4)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop4)
 }
 
 func BenchmarkBitCountUint32Pop5(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop5)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop5)
 }
 
 func BenchmarkBitCountUint32Pop5a(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop5a)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop5a)
 }
 
 func BenchmarkBitCountUint32Pop6(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Pop6)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Pop6)
 }
 
 func BenchmarkBitCountUint32Hakmem(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32Hakmem)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32Hakmem)
 }
 
 func BenchmarkBitCountUint32HakmemUnrolled(b *testing.B) {
-	gen32.Reset()
-	benchmark.UintFuncUint32(b, gen32.Next, math.BitCountUint32HakmemUnrolled)
+	benchmark.RandomUintFuncUint32(b, math.BitCountUint32HakmemUnrolled)
 }
 
 // --- uint64 ---
 
-// BenchmarkBitCountUint64Naive-8                    	10000000	       180 ns/op
-// BenchmarkBitCountUint64CallGCC-8                  	20000000	        65.9 ns/op
-// BenchmarkBitCountUint64Pop1-8                     	100000000	        12.5 ns/op
-// BenchmarkBitCountUint64Pop1Alt-8                  	100000000	        12.1 ns/op
-// BenchmarkBitCountUint64Pop3-8                     	100000000	        12.1 ns/op
-// BenchmarkBitCountUint64Pop4-8                     	50000000	        37.8 ns/op
-// BenchmarkBitCountUint64Pop5-8                     	 5000000	       308 ns/op
-// BenchmarkBitCountUint64Pop5a-8                    	50000000	        38.6 ns/op
-// BenchmarkBitCountUint64Pop6-8                     	100000000	        13.9 ns/op
-// BenchmarkBitCountUint64Hakmem-8                   	100000000	        12.8 ns/op
-
-var gen64 = random.NewUint64Generator()
+// BenchmarkBitCountUint64Naive-8            	10000000	       173 ns/op
+// BenchmarkBitCountUint64CallGCC-8          	20000000	        65.3 ns/op
+// BenchmarkBitCountUint64Pop1-8             	200000000	         6.07 ns/op
+// BenchmarkBitCountUint64Pop1Alt-8          	300000000	         5.25 ns/op
+// BenchmarkBitCountUint64Pop3-8             	300000000	         5.48 ns/op
+// BenchmarkBitCountUint64Pop4-8             	50000000	        29.9 ns/op
+// BenchmarkBitCountUint64Pop5-8             	 5000000	       301 ns/op
+// BenchmarkBitCountUint64Pop5a-8            	50000000	        35.0 ns/op
+// BenchmarkBitCountUint64Pop6-8             	200000000	         7.60 ns/op
+// BenchmarkBitCountUint64Hakmem-8           	200000000	         6.04 ns/op
 
 func BenchmarkBitCountUint64Naive(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Naive)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Naive)
 }
 
 func BenchmarkBitCountUint64CallGCC(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64CallGCC)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64CallGCC)
 }
 
 func BenchmarkBitCountUint64Pop1(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop1)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Pop1)
 }
 
 func BenchmarkBitCountUint64Pop1Alt(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop1Alt)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Pop1Alt)
 }
 
 func BenchmarkBitCountUint64Pop3(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop3)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Pop3)
 }
 
 func BenchmarkBitCountUint64Pop4(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop4)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Pop4)
 }
 
 func BenchmarkBitCountUint64Pop5(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop5)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Pop5)
 }
 
 func BenchmarkBitCountUint64Pop5a(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop5a)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Pop5a)
 }
 
 func BenchmarkBitCountUint64Pop6(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Pop6)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Pop6)
 }
 
 func BenchmarkBitCountUint64Hakmem(b *testing.B) {
-	gen64.Reset()
-	benchmark.UintFuncUint64(b, gen64.Next, math.BitCountUint64Hakmem)
+	benchmark.RandomUintFuncUint64(b, math.BitCountUint64Hakmem)
 }
 
 // --- uint ---
 
-// BenchmarkBitCountUintNaive-8                      	10000000	       185 ns/op
-// BenchmarkBitCountUintGCCImpl-8                    	100000000	        12.1 ns/op
-// BenchmarkBitCountUintGCCImplSwitch-8              	100000000	        11.8 ns/op
-
-var gen = random.NewUintGenerator()
+// BenchmarkBitCountUintNaive-8              	10000000	       179 ns/op
+// BenchmarkBitCountUintGCCImpl-8            	200000000	         6.13 ns/op
+// BenchmarkBitCountUintGCCImplSwitch-8      	300000000	         5.46 ns/op
 
 func BenchmarkBitCountUintNaive(b *testing.B) {
-	benchmark.UintFuncUint(b, gen.Next, math.BitCountUintNaive)
+	benchmark.RandomUintFuncUint(b, math.BitCountUintNaive)
 }
 
 func BenchmarkBitCountUintGCCImpl(b *testing.B) {
-	benchmark.UintFuncUint(b, gen.Next, math.BitCountUintGCCImpl)
+	benchmark.RandomUintFuncUint(b, math.BitCountUintGCCImpl)
 }
 
 func BenchmarkBitCountUintGCCImplSwitch(b *testing.B) {
-	benchmark.UintFuncUint(b, gen.Next, math.BitCountUintGCCImplSwitch)
+	benchmark.RandomUintFuncUint(b, math.BitCountUintGCCImplSwitch)
 }

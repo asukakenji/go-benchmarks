@@ -7,7 +7,7 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/random"
 )
 
-func TestNewIntGeneratorNext(t *testing.T) {
+func TestIntGenerator(t *testing.T) {
 	gen := random.NewIntGenerator()
 Outer:
 	for {
@@ -34,7 +34,7 @@ Outer:
 	}
 }
 
-func TestNewUintGeneratorNext(t *testing.T) {
+func TestUintGenerator(t *testing.T) {
 	gen := random.NewUintGenerator()
 Outer:
 	for {
@@ -61,7 +61,7 @@ Outer:
 	}
 }
 
-func TestNewUint32GeneratorNext(t *testing.T) {
+func TestUint32Generator(t *testing.T) {
 	gen := random.NewUint32Generator()
 Outer:
 	for {
@@ -88,7 +88,7 @@ Outer:
 	}
 }
 
-func TestNewUint64GeneratorNext(t *testing.T) {
+func TestUint64Generator(t *testing.T) {
 	gen := random.NewUint64Generator()
 Outer:
 	for {

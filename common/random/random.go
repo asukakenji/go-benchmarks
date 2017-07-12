@@ -8,13 +8,17 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
-// IntGenerator (ID: RNG-2)
+// IntGenerator is a type for generating reproducible random numbers
+// used in test cases or benchmarks.
+//
+// ID: RNG-2
 type IntGenerator struct {
 	index     uint
 	increment uint
 	numbers   []int
 }
 
+// NewIntGenerator allocates and returns a new IntGenerator.
 func NewIntGenerator() *IntGenerator {
 	gen := &IntGenerator{
 		numbers: make([]int, common.IntCountPerPage),
@@ -23,6 +27,7 @@ func NewIntGenerator() *IntGenerator {
 	return gen
 }
 
+// Next returns the next random number.
 func (gen *IntGenerator) Next() int {
 	gen.index += gen.increment
 	if gen.index >= common.IntCountPerPage {
@@ -31,10 +36,15 @@ func (gen *IntGenerator) Next() int {
 	return gen.numbers[gen.index]
 }
 
+// Reset reverts the state of gen to the same state as
+// before Next() is called for the first time.
+// It should be called every time when a new benchmark starts,
+// before Next() is called for the first time.
 func (gen *IntGenerator) Reset() {
 	gen.index = 0
 }
 
+// Reinitialize generates a new set of random numbers in gen.
 func (gen *IntGenerator) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)
@@ -51,13 +61,17 @@ func (gen *IntGenerator) Reinitialize() {
 	rng.Read(reinterpret.IntSliceAsByteSlice(gen.numbers))
 }
 
-// UintGenerator (ID: RNG-7)
+// UintGenerator is a type for generating reproducible random numbers
+// used in test cases or benchmarks.
+//
+// ID: RNG-7
 type UintGenerator struct {
 	index     uint
 	increment uint
 	numbers   []uint
 }
 
+// NewUintGenerator allocates and returns a new UintGenerator.
 func NewUintGenerator() *UintGenerator {
 	gen := &UintGenerator{
 		numbers: make([]uint, common.IntCountPerPage),
@@ -66,6 +80,7 @@ func NewUintGenerator() *UintGenerator {
 	return gen
 }
 
+// Next returns the next random number.
 func (gen *UintGenerator) Next() uint {
 	gen.index += gen.increment
 	if gen.index >= common.IntCountPerPage {
@@ -74,10 +89,15 @@ func (gen *UintGenerator) Next() uint {
 	return gen.numbers[gen.index]
 }
 
+// Reset reverts the state of gen to the same state as
+// before Next() is called for the first time.
+// It should be called every time when a new benchmark starts,
+// before Next() is called for the first time.
 func (gen *UintGenerator) Reset() {
 	gen.index = 0
 }
 
+// Reinitialize generates a new set of random numbers in gen.
 func (gen *UintGenerator) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)
@@ -89,7 +109,10 @@ func (gen *UintGenerator) Reinitialize() {
 	rng.Read(reinterpret.UintSliceAsByteSlice(gen.numbers))
 }
 
-// Uint32Generator (ID: RNG-10)
+// Uint32Generator is a type for generating reproducible random numbers
+// used in test cases or benchmarks.
+//
+// ID: RNG-10
 type Uint32Generator struct {
 	index     uint
 	increment uint
@@ -97,6 +120,7 @@ type Uint32Generator struct {
 	numbers   []uint32
 }
 
+// NewUint32Generator allocates and returns a new Uint32Generator.
 func NewUint32Generator() *Uint32Generator {
 	count := common.PageSizeInBytes >> 2
 	gen := &Uint32Generator{
@@ -107,6 +131,7 @@ func NewUint32Generator() *Uint32Generator {
 	return gen
 }
 
+// Next returns the next random number.
 func (gen *Uint32Generator) Next() uint32 {
 	gen.index += gen.increment
 	if gen.index >= gen.count {
@@ -115,10 +140,15 @@ func (gen *Uint32Generator) Next() uint32 {
 	return gen.numbers[gen.index]
 }
 
+// Reset reverts the state of gen to the same state as
+// before Next() is called for the first time.
+// It should be called every time when a new benchmark starts,
+// before Next() is called for the first time.
 func (gen *Uint32Generator) Reset() {
 	gen.index = 0
 }
 
+// Reinitialize generates a new set of random numbers in gen.
 func (gen *Uint32Generator) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)
@@ -130,7 +160,10 @@ func (gen *Uint32Generator) Reinitialize() {
 	rng.Read(reinterpret.Uint32SliceAsByteSlice(gen.numbers))
 }
 
-// Uint64Generator (ID: RNG-11)
+// Uint64Generator is a type for generating reproducible random numbers
+// used in test cases or benchmarks.
+//
+// ID: RNG-11
 type Uint64Generator struct {
 	index     uint
 	increment uint
@@ -138,6 +171,7 @@ type Uint64Generator struct {
 	numbers   []uint64
 }
 
+// NewUint64Generator allocates and returns a new Uint64Generator.
 func NewUint64Generator() *Uint64Generator {
 	count := common.PageSizeInBytes >> 3
 	gen := &Uint64Generator{
@@ -148,6 +182,7 @@ func NewUint64Generator() *Uint64Generator {
 	return gen
 }
 
+// Next returns the next random number.
 func (gen *Uint64Generator) Next() uint64 {
 	gen.index += gen.increment
 	if gen.index >= gen.count {
@@ -156,10 +191,15 @@ func (gen *Uint64Generator) Next() uint64 {
 	return gen.numbers[gen.index]
 }
 
+// Reset reverts the state of gen to the same state as
+// before Next() is called for the first time.
+// It should be called every time when a new benchmark starts,
+// before Next() is called for the first time.
 func (gen *Uint64Generator) Reset() {
 	gen.index = 0
 }
 
+// Reinitialize generates a new set of random numbers in gen.
 func (gen *Uint64Generator) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)

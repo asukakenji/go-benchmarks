@@ -114,3 +114,14 @@ Outer:
 		}
 	}
 }
+
+func TestUintSliceGenerator(t *testing.T) {
+	gen := random.NewUintSliceGenerator()
+	for i, count := uint(0), uint(1024); i < count; i++ {
+		for j, count := uint(0), uint(1024); j < count; j++ {
+			gen.Next()
+		}
+		gen.Reinitialize()
+	}
+	gen.Reset()
+}

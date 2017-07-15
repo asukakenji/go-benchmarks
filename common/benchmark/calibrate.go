@@ -2,6 +2,25 @@ package benchmark
 
 import "testing"
 
+// CalibrateUintSliceGenerator calibrates the UintSliceGenerator function.
+// It should be called once before all benchmarks if any benchmark depends on
+// UintSliceGenerator.
+//
+// ID: BC-0-23(7)-19(0-23(7)-19(0-23(7)))
+func CalibrateUintSliceGenerator(b *testing.B, genUintSliceFunc func() []uint) uint {
+	dummy := uint(0) // Prevent the call from being optimized out
+	consumer := func(s []uint) {
+		if len(s) != 0 {
+			dummy += s[0]
+		}
+	}
+	for i, count := 0, b.N; i < count; i++ {
+		s := genUintSliceFunc()
+		consumer(s)
+	}
+	return dummy
+}
+
 // CalibrateUintFuncUint calibrates the UintFuncUint function.
 // It should be called once before all benchmarks if any benchmark depends on
 // UintFuncUint.
@@ -37,6 +56,26 @@ func CalibrateUintFuncUint64(b *testing.B, genUint64Func func() uint64) uint64 {
 	dummy := uint64(0) // Prevent the call from being optimized out
 	for i, count := 0, b.N; i < count; i++ {
 		dummy += genUint64Func()
+	}
+	return dummy
+}
+
+// CalibrateRandomUintSliceGenerator calibrates the RandomUintSliceGenerator function.
+// It should be called once before all benchmarks if any benchmark depends on
+// RandomUintSliceGenerator.
+//
+// ID: BRC-0-23(7)-19(0-23(7)-19(0-23(7)))
+func CalibrateRandomUintSliceGenerator(b *testing.B, genUintSliceFunc func() []uint) uint {
+	dummy := uint(0) // Prevent the call from being optimized out
+	consumer := func(s []uint) {
+		if len(s) != 0 {
+			dummy += s[0]
+		}
+	}
+	genUintSlice.Reset()
+	for i, count := 0, b.N; i < count; i++ {
+		s := genUintSlice.Next()
+		consumer(s)
 	}
 	return dummy
 }

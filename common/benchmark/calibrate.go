@@ -65,7 +65,7 @@ func CalibrateUintFuncUint64(b *testing.B, genUint64Func func() uint64) uint64 {
 // RandomUintSliceGenerator.
 //
 // ID: BRC-0-23(7)-19(0-23(7)-19(0-23(7)))
-func CalibrateRandomUintSliceGenerator(b *testing.B, genUintSliceFunc func() []uint) uint {
+func CalibrateRandomUintSliceGenerator(b *testing.B) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
 	consumer := func(s []uint) {
 		if len(s) != 0 {

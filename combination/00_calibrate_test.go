@@ -6,6 +6,6 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 )
 
-func BenchmarkRandomUintSliceGenerator(b *testing.B) {
-	benchmark.CalibrateRandomUintSliceGenerator(b)
+func BenchmarkUintSliceGeneratorWithRandom(b *testing.B) {
+	benchmark.CalibrateUintSliceGeneratorWithRandom(b)
 }

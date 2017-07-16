@@ -22,45 +22,45 @@ import (
 // BenchmarkBitCount64Hakmem-8       	200000000	         6.06 ns/op
 
 func BenchmarkBitCount64Naive(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Naive)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Naive)
 }
 
 func BenchmarkBitCount64CallGCC(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.CallGCC)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.CallGCC)
 }
 
 func BenchmarkBitCount64Pop0(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop0)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop0)
 }
 
 func BenchmarkBitCount64Pop1(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop1)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop1)
 }
 
 func BenchmarkBitCount64Pop1Alt(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop1Alt)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop1Alt)
 }
 
 func BenchmarkBitCount64Pop3(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop3)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop3)
 }
 
 func BenchmarkBitCount64Pop4(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop4)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop4)
 }
 
 func BenchmarkBitCount64Pop5(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop5)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop5)
 }
 
 func BenchmarkBitCount64Pop5a(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop5a)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop5a)
 }
 
 func BenchmarkBitCount64Pop6(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Pop6)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Pop6)
 }
 
 func BenchmarkBitCount64Hakmem(b *testing.B) {
-	benchmark.RandomUintFuncUint64(b, bitcount64.Hakmem)
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Hakmem)
 }

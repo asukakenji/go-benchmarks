@@ -100,21 +100,21 @@ func TestMergeEachPairOfElementsInMultisetByAddition(t *testing.T) {
 // BenchmarkMergeEachPairOfElementsInMultisetByAddition3-8       	   20000	     87955 ns/op
 
 func BenchmarkMergeEachPairOfElementsInMultisetByAddition0(b *testing.B) {
-	benchmark.RandomUintSliceGenerator(b, combination.MergeEachPairOfElementsInMultisetByAddition0)
+	benchmark.UintSliceGeneratorWithRandom(b, combination.MergeEachPairOfElementsInMultisetByAddition0)
 }
 
 func BenchmarkMergeEachPairOfElementsInMultisetByAddition1(b *testing.B) {
-	benchmark.RandomUintSliceGenerator(b, combination.MergeEachPairOfElementsInMultisetByAddition1)
+	benchmark.UintSliceGeneratorWithRandom(b, combination.MergeEachPairOfElementsInMultisetByAddition1)
 }
 
 func BenchmarkMergeEachPairOfElementsInMultisetByAddition2Alt1(b *testing.B) {
-	benchmark.RandomUintSliceGenerator(b, combination.MergeEachPairOfElementsInMultisetByAddition2Alt1)
+	benchmark.UintSliceGeneratorWithRandom(b, combination.MergeEachPairOfElementsInMultisetByAddition2Alt1)
 }
 
 func BenchmarkMergeEachPairOfElementsInMultisetByAddition2Alt2(b *testing.B) {
-	benchmark.RandomUintSliceGenerator(b, combination.MergeEachPairOfElementsInMultisetByAddition2Alt2)
+	benchmark.UintSliceGeneratorWithRandom(b, combination.MergeEachPairOfElementsInMultisetByAddition2Alt2)
 }
 
 func BenchmarkMergeEachPairOfElementsInMultisetByAddition3(b *testing.B) {
-	benchmark.RandomUintSliceGenerator(b, combination.MergeEachPairOfElementsInMultisetByAddition3)
+	benchmark.UintSliceGeneratorWithRandom(b, combination.MergeEachPairOfElementsInMultisetByAddition3)
 }

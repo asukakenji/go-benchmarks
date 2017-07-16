@@ -21,6 +21,19 @@ func CalibrateUintSliceGenerator(b *testing.B, genUintSliceFunc func() []uint) u
 	return dummy
 }
 
+// CalibrateBoolFuncInt calibrates the BoolFuncInt function.
+// It should be called once before all benchmarks if any benchmark depends on
+// BoolFuncInt.
+//
+// ID: BC-1-2
+func CalibrateBoolFuncInt(b *testing.B, genIntFunc func() int) int {
+	dummy := 0 // Prevent the call from being optimized out
+	for i, count := 0, b.N; i < count; i++ {
+		dummy += genIntFunc()
+	}
+	return dummy
+}
+
 // CalibrateUintFuncUint calibrates the UintFuncUint function.
 // It should be called once before all benchmarks if any benchmark depends on
 // UintFuncUint.
@@ -60,12 +73,12 @@ func CalibrateUintFuncUint64(b *testing.B, genUint64Func func() uint64) uint64 {
 	return dummy
 }
 
-// CalibrateRandomUintSliceGenerator calibrates the RandomUintSliceGenerator function.
+// CalibrateUintSliceGeneratorWithRandom calibrates the UintSliceGeneratorWithRandom function.
 // It should be called once before all benchmarks if any benchmark depends on
-// RandomUintSliceGenerator.
+// UintSliceGeneratorWithRandom.
 //
 // ID: BRC-0-23(7)-19(0-23(7)-19(0-23(7)))
-func CalibrateRandomUintSliceGenerator(b *testing.B) uint {
+func CalibrateUintSliceGeneratorWithRandom(b *testing.B) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
 	consumer := func(s []uint) {
 		if len(s) != 0 {
@@ -80,12 +93,26 @@ func CalibrateRandomUintSliceGenerator(b *testing.B) uint {
 	return dummy
 }
 
-// CalibrateRandomUintFuncUint calibrates the RandomUintFuncUint function.
+// CalibrateBoolFuncIntWithRandom calibrates the BoolFuncIntWithRandom function.
 // It should be called once before all benchmarks if any benchmark depends on
-// RandomUintFuncUint.
+// BoolFuncIntWithRandom.
+//
+// ID: BRC-1-2
+func CalibrateBoolFuncIntWithRandom(b *testing.B) int {
+	dummy := 0 // Prevent the call from being optimized out
+	genInt.Reset()
+	for i, count := 0, b.N; i < count; i++ {
+		dummy += genInt.Next()
+	}
+	return dummy
+}
+
+// CalibrateUintFuncUintWithRandom calibrates the UintFuncUintWithRandom function.
+// It should be called once before all benchmarks if any benchmark depends on
+// UintFuncUintWithRandom.
 //
 // ID: BRC-7-7
-func CalibrateRandomUintFuncUint(b *testing.B) uint {
+func CalibrateUintFuncUintWithRandom(b *testing.B) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
 	genUint.Reset()
 	for i, count := 0, b.N; i < count; i++ {
@@ -94,12 +121,12 @@ func CalibrateRandomUintFuncUint(b *testing.B) uint {
 	return dummy
 }
 
-// CalibrateRandomUintFuncUint32 calibrates the RandomUintFuncUint32 function.
+// CalibrateUintFuncUint32WithRandom calibrates the UintFuncUint32WithRandom function.
 // It should be called once before all benchmarks if any benchmark depends on
-// RandomUintFuncUint32.
+// UintFuncUint32WithRandom.
 //
 // ID: BRC-7-10
-func CalibrateRandomUintFuncUint32(b *testing.B) uint32 {
+func CalibrateUintFuncUint32WithRandom(b *testing.B) uint32 {
 	dummy := uint32(0) // Prevent the call from being optimized out
 	genUint32.Reset()
 	for i, count := 0, b.N; i < count; i++ {
@@ -108,12 +135,12 @@ func CalibrateRandomUintFuncUint32(b *testing.B) uint32 {
 	return dummy
 }
 
-// CalibrateRandomUintFuncUint64 calibrates the RandomUintFuncUint64 function.
+// CalibrateUintFuncUint64WithRandom calibrates the UintFuncUint64WithRandom function.
 // It should be called once before all benchmarks if any benchmark depends on
-// RandomUintFuncUint64.
+// UintFuncUint64WithRandom.
 //
 // ID: BRC-7-11
-func CalibrateRandomUintFuncUint64(b *testing.B) uint64 {
+func CalibrateUintFuncUint64WithRandom(b *testing.B) uint64 {
 	dummy := uint64(0) // Prevent the call from being optimized out
 	genUint64.Reset()
 	for i, count := 0, b.N; i < count; i++ {

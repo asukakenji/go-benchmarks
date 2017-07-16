@@ -6,6 +6,6 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 )
 
-func BenchmarkRandomUintFuncUint64(b *testing.B) {
-	benchmark.CalibrateRandomUintFuncUint64(b)
+func BenchmarkUintFuncUint64WithRandom(b *testing.B) {
+	benchmark.CalibrateUintFuncUint64WithRandom(b)
 }

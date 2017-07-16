@@ -25,57 +25,57 @@ import (
 // BenchmarkBitCount32HakmemUnrolled-8   	200000000	         6.41 ns/op
 
 func BenchmarkBitCount32Naive(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Naive)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Naive)
 }
 
 func BenchmarkBitCount32CallGCC(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.CallGCC)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.CallGCC)
 }
 
 func BenchmarkBitCount32Pop0(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop0)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop0)
 }
 
 func BenchmarkBitCount32Pop1(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop1)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop1)
 }
 
 func BenchmarkBitCount32Pop1Alt(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop1Alt)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop1Alt)
 }
 
 func BenchmarkBitCount32Pop2(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop2)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop2)
 }
 
 func BenchmarkBitCount32Pop2Alt(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop2Alt)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop2Alt)
 }
 
 func BenchmarkBitCount32Pop3(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop3)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop3)
 }
 
 func BenchmarkBitCount32Pop4(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop4)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop4)
 }
 
 func BenchmarkBitCount32Pop5(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop5)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop5)
 }
 
 func BenchmarkBitCount32Pop5a(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop5a)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop5a)
 }
 
 func BenchmarkBitCount32Pop6(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Pop6)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Pop6)
 }
 
 func BenchmarkBitCount32Hakmem(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.Hakmem)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.Hakmem)
 }
 
 func BenchmarkBitCount32HakmemUnrolled(b *testing.B) {
-	benchmark.RandomUintFuncUint32(b, bitcount32.HakmemUnrolled)
+	benchmark.UintFuncUint32WithRandom(b, bitcount32.HakmemUnrolled)
 }

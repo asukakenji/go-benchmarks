@@ -6,6 +6,6 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 )
 
-func BenchmarkRandomUintFuncUint(b *testing.B) {
-	benchmark.CalibrateRandomUintFuncUint(b)
+func BenchmarkUintFuncUintWithRandom(b *testing.B) {
+	benchmark.CalibrateUintFuncUintWithRandom(b)
 }

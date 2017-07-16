@@ -3,7 +3,7 @@ package benchmark
 import "testing"
 
 // UintSliceGenerator benchmarks a function with the signature:
-//     f func([]uint, func([]uint))
+//     func([]uint, func([]uint))
 // ID: B-0-23(7)-19(0-23(7)-19(0-23(7)))
 func UintSliceGenerator(b *testing.B, genUintSliceFunc func() []uint, f func([]uint, func([]uint))) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
@@ -14,6 +14,21 @@ func UintSliceGenerator(b *testing.B, genUintSliceFunc func() []uint, f func([]u
 	}
 	for i, count := 0, b.N; i < count; i++ {
 		f(genUintSliceFunc(), consumer)
+	}
+	return dummy
+}
+
+// BoolFuncInt benchmarks a function with the signature:
+//     func(int) bool
+// ID: B-1-2
+func BoolFuncInt(b *testing.B, genIntFunc func() int, f func(int) bool) int {
+	dummy := 0 // Prevent the call from being optimized out
+	for i, count := 0, b.N; i < count; i++ {
+		if f(genIntFunc()) {
+			dummy++
+		} else {
+			dummy--
+		}
 	}
 	return dummy
 }
@@ -51,11 +66,11 @@ func UintFuncUint64(b *testing.B, genUint64Func func() uint64, f func(uint64) ui
 	return dummy
 }
 
-// RandomUintSliceGenerator benchmarks a function with the signature:
-//     f func([]uint, func([]uint))
+// UintSliceGeneratorWithRandom benchmarks a function with the signature:
+//     func([]uint, func([]uint))
 // with random numbers.
 // ID: B-0-23(7)-19(0-23(7)-19(0-23(7)))
-func RandomUintSliceGenerator(b *testing.B, f func([]uint, func([]uint))) uint {
+func UintSliceGeneratorWithRandom(b *testing.B, f func([]uint, func([]uint))) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
 	consumer := func(s []uint) {
 		if len(s) != 0 {
@@ -69,11 +84,28 @@ func RandomUintSliceGenerator(b *testing.B, f func([]uint, func([]uint))) uint {
 	return dummy
 }
 
-// RandomUintFuncUint benchmarks a function with the signature:
+// BoolFuncIntWithRandom benchmarks a function with the signature:
+//     func(int) bool
+// with random numbers.
+// ID: BR-1-2
+func BoolFuncIntWithRandom(b *testing.B, f func(int) bool) int {
+	dummy := 0 // Prevent the call from being optimized out
+	genInt.Reset()
+	for i, count := 0, b.N; i < count; i++ {
+		if f(genInt.Next()) {
+			dummy++
+		} else {
+			dummy--
+		}
+	}
+	return dummy
+}
+
+// UintFuncUintWithRandom benchmarks a function with the signature:
 //     func(uint) uint
 // with random numbers.
 // ID: BR-7-7
-func RandomUintFuncUint(b *testing.B, f func(uint) uint) uint {
+func UintFuncUintWithRandom(b *testing.B, f func(uint) uint) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
 	genUint.Reset()
 	for i, count := 0, b.N; i < count; i++ {
@@ -82,11 +114,11 @@ func RandomUintFuncUint(b *testing.B, f func(uint) uint) uint {
 	return dummy
 }
 
-// RandomUintFuncUint32 benchmarks a function with the signature:
+// UintFuncUint32WithRandom benchmarks a function with the signature:
 //     func(uint32) uint
 // with random numbers.
 // ID: BR-7-10
-func RandomUintFuncUint32(b *testing.B, f func(uint32) uint) uint {
+func UintFuncUint32WithRandom(b *testing.B, f func(uint32) uint) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
 	genUint32.Reset()
 	for i, count := 0, b.N; i < count; i++ {
@@ -95,11 +127,11 @@ func RandomUintFuncUint32(b *testing.B, f func(uint32) uint) uint {
 	return dummy
 }
 
-// RandomUintFuncUint64 benchmarks a function with the signature:
+// UintFuncUint64WithRandom benchmarks a function with the signature:
 //     func(uint64) uint
 // with random numbers.
 // ID: BR-7-11
-func RandomUintFuncUint64(b *testing.B, f func(uint64) uint) uint {
+func UintFuncUint64WithRandom(b *testing.B, f func(uint64) uint) uint {
 	dummy := uint(0) // Prevent the call from being optimized out
 	genUint64.Reset()
 	for i, count := 0, b.N; i < count; i++ {

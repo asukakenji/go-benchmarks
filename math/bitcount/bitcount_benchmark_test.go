@@ -16,21 +16,21 @@ import (
 // BenchmarkBitCountPop1AltSwitch-8   	300000000	         5.54 ns/op <- Best
 
 func BenchmarkBitCountNaive(b *testing.B) {
-	benchmark.RandomUintFuncUint(b, bitcount.Naive)
+	benchmark.UintFuncUintWithRandom(b, bitcount.Naive)
 }
 
 func BenchmarkBitCountPop1Alt(b *testing.B) {
-	benchmark.RandomUintFuncUint(b, bitcount.Pop1Alt)
+	benchmark.UintFuncUintWithRandom(b, bitcount.Pop1Alt)
 }
 
 func BenchmarkBitCountPop4(b *testing.B) {
-	benchmark.RandomUintFuncUint(b, bitcount.Pop4)
+	benchmark.UintFuncUintWithRandom(b, bitcount.Pop4)
 }
 
 func BenchmarkBitCountPop5a(b *testing.B) {
-	benchmark.RandomUintFuncUint(b, bitcount.Pop5a)
+	benchmark.UintFuncUintWithRandom(b, bitcount.Pop5a)
 }
 
 func BenchmarkBitCountPop1AltSwitch(b *testing.B) {
-	benchmark.RandomUintFuncUint(b, bitcount.Pop1AltSwitch)
+	benchmark.UintFuncUintWithRandom(b, bitcount.Pop1AltSwitch)
 }

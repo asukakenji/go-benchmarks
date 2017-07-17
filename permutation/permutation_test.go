@@ -4,7 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/permutation"
+	"github.com/asukakenji/go-benchmarks/permutation/b0"
+	"github.com/asukakenji/go-benchmarks/permutation/b0a"
+	"github.com/asukakenji/go-benchmarks/permutation/b1"
 )
 
 func TestPermutation(t *testing.T) {
@@ -12,14 +14,24 @@ func TestPermutation(t *testing.T) {
 		name string
 		f    func([]uint, func([]uint))
 	}{
-		{"Permutation0", permutation.Permutation0},
-		{"Permutation0Alt1", permutation.Permutation0Alt1},
-		{"Permutation1Alt1", permutation.Permutation1Alt1},
-		{"Permutation1Alt2", permutation.Permutation1Alt2},
-		{"Permutation1Alt3", permutation.Permutation1Alt3},
-		{"Permutation1Alt4", permutation.Permutation1Alt4},
-		{"Permutation1Alt5", permutation.Permutation1Alt5},
-		{"Permutation1Alt6", permutation.Permutation1Alt6},
+		{"b0.Permutation0ParamOrder0", b0.Permutation0ParamOrder0},
+		{"b0.Permutation0ParamOrder1", b0.Permutation0ParamOrder1},
+		{"b0.Permutation0ParamOrder2", b0.Permutation0ParamOrder2},
+		{"b0.Permutation0ParamOrder3", b0.Permutation0ParamOrder3},
+		{"b0.Permutation0ParamOrder4", b0.Permutation0ParamOrder4},
+		{"b0.Permutation0ParamOrder5", b0.Permutation0ParamOrder5},
+		{"b0a.Permutation0ParamOrder0", b0a.Permutation0ParamOrder0},
+		{"b0a.Permutation0ParamOrder1", b0a.Permutation0ParamOrder1},
+		{"b0a.Permutation0ParamOrder2", b0a.Permutation0ParamOrder2},
+		{"b0a.Permutation0ParamOrder3", b0a.Permutation0ParamOrder3},
+		{"b0a.Permutation0ParamOrder4", b0a.Permutation0ParamOrder4},
+		{"b0a.Permutation0ParamOrder5", b0a.Permutation0ParamOrder5},
+		{"b1.Permutation1ParamOrder0", b1.Permutation1ParamOrder0},
+		{"b1.Permutation1ParamOrder1", b1.Permutation1ParamOrder1},
+		{"b1.Permutation1ParamOrder2", b1.Permutation1ParamOrder2},
+		{"b1.Permutation1ParamOrder3", b1.Permutation1ParamOrder3},
+		{"b1.Permutation1ParamOrder4", b1.Permutation1ParamOrder4},
+		{"b1.Permutation1ParamOrder5", b1.Permutation1ParamOrder5},
 	}
 	cases := []struct {
 		s        []uint

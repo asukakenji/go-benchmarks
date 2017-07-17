@@ -1,6 +1,5 @@
 // Package b1a is different from b1 in the sense that
 // len(s) is cached in a variable common to both branches.
-
 package b1a
 
 // permutation1ParamOrder0 is the recurive function called by

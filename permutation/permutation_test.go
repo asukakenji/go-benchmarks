@@ -8,6 +8,19 @@ import (
 )
 
 func TestPermutation(t *testing.T) {
+	implementations := []struct {
+		name string
+		f    func([]uint, func([]uint))
+	}{
+		{"Permutation0", permutation.Permutation0},
+		{"Permutation0Alt1", permutation.Permutation0Alt1},
+		{"Permutation1Alt1", permutation.Permutation1Alt1},
+		{"Permutation1Alt2", permutation.Permutation1Alt2},
+		{"Permutation1Alt3", permutation.Permutation1Alt3},
+		{"Permutation1Alt4", permutation.Permutation1Alt4},
+		{"Permutation1Alt5", permutation.Permutation1Alt5},
+		{"Permutation1Alt6", permutation.Permutation1Alt6},
+	}
 	cases := []struct {
 		s        []uint
 		expected [][]uint
@@ -72,16 +85,23 @@ func TestPermutation(t *testing.T) {
 			},
 		},
 	}
-	for _, c := range cases {
-		got := [][]uint{}
-		f := func(x []uint) {
-			x2 := make([]uint, len(x))
-			copy(x2, x)
-			got = append(got, x2)
-		}
-		permutation.Permutation0(c.s, f)
-		if !reflect.DeepEqual(got, c.expected) {
-			t.Errorf("Permutation0(%d) = %v, expected %v", c.s, got, c.expected)
+	for _, impl := range implementations {
+		for _, c := range cases {
+			sCopy := make([]uint, len(c.s))
+			copy(sCopy, c.s)
+			got := [][]uint{}
+			f := func(x []uint) {
+				xCopy := make([]uint, len(x))
+				copy(xCopy, x)
+				got = append(got, xCopy)
+			}
+			impl.f(c.s, f)
+			if !reflect.DeepEqual(c.s, sCopy) {
+				t.Errorf("%s changed the input: %v, expected %v", impl.name, c.s, sCopy)
+			}
+			if !reflect.DeepEqual(got, c.expected) {
+				t.Errorf("%s(%v, <func>) = %v, expected %v", impl.name, c.s, got, c.expected)
+			}
 		}
 	}
 }

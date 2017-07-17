@@ -13,12 +13,12 @@ func BenchmarkUintSliceGenerator(b *testing.B) {
 	benchmark.CalibrateUintSliceGenerator(b, bcommon.NextSlice)
 }
 
-// BenchmarkPermutation0Order0-8   	    3000	    489586 ns/op
-// BenchmarkPermutation0Order1-8   	    3000	    493239 ns/op
-// BenchmarkPermutation0Order2-8   	    3000	    482563 ns/op <- Best
-// BenchmarkPermutation0Order3-8   	    3000	    485425 ns/op <- Best
-// BenchmarkPermutation0Order4-8   	    3000	    501199 ns/op
-// BenchmarkPermutation0Order5-8   	    3000	    481738 ns/op <- Best
+// BenchmarkPermutation0Order0-8   	    3000	    489643 ns/op
+// BenchmarkPermutation0Order1-8   	    3000	    492871 ns/op
+// BenchmarkPermutation0Order2-8   	    3000	    482690 ns/op <- Best
+// BenchmarkPermutation0Order3-8   	    3000	    485489 ns/op <- Best
+// BenchmarkPermutation0Order4-8   	    3000	    500723 ns/op
+// BenchmarkPermutation0Order5-8   	    3000	    482149 ns/op <- Best
 
 func BenchmarkPermutation0Order0(b *testing.B) {
 	bcommon.Reset()

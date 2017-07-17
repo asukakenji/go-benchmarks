@@ -7,6 +7,7 @@ import (
 	"github.com/asukakenji/go-benchmarks/permutation/b0"
 	"github.com/asukakenji/go-benchmarks/permutation/b0a"
 	"github.com/asukakenji/go-benchmarks/permutation/b1"
+	"github.com/asukakenji/go-benchmarks/permutation/b1a"
 )
 
 func TestPermutation(t *testing.T) {
@@ -32,6 +33,12 @@ func TestPermutation(t *testing.T) {
 		{"b1.Permutation1ParamOrder3", b1.Permutation1ParamOrder3},
 		{"b1.Permutation1ParamOrder4", b1.Permutation1ParamOrder4},
 		{"b1.Permutation1ParamOrder5", b1.Permutation1ParamOrder5},
+		{"b1a.Permutation1ParamOrder0", b1a.Permutation1ParamOrder0},
+		{"b1a.Permutation1ParamOrder1", b1a.Permutation1ParamOrder1},
+		{"b1a.Permutation1ParamOrder2", b1a.Permutation1ParamOrder2},
+		{"b1a.Permutation1ParamOrder3", b1a.Permutation1ParamOrder3},
+		{"b1a.Permutation1ParamOrder4", b1a.Permutation1ParamOrder4},
+		{"b1a.Permutation1ParamOrder5", b1a.Permutation1ParamOrder5},
 	}
 	cases := []struct {
 		s        []uint

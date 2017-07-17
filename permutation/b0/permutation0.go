@@ -6,7 +6,7 @@ func permutation0ParamOrder0(s0, s []uint, f func([]uint)) {
 	if len(s) == 1 {
 		f(s0)
 	} else {
-		for i, count := 0, len(s); i < count; i++ {
+		for i := 0; i < len(s); i++ {
 			s[0], s[i] = s[i], s[0]
 			permutation0ParamOrder0(s0, s[1:], f)
 			s[0], s[i] = s[i], s[0]
@@ -31,7 +31,7 @@ func permutation0ParamOrder1(s0 []uint, f func([]uint), s []uint) {
 	if len(s) == 1 {
 		f(s0)
 	} else {
-		for i, count := 0, len(s); i < count; i++ {
+		for i := 0; i < len(s); i++ {
 			s[0], s[i] = s[i], s[0]
 			permutation0ParamOrder1(s0, f, s[1:])
 			s[0], s[i] = s[i], s[0]
@@ -56,7 +56,7 @@ func permutation0ParamOrder2(s, s0 []uint, f func([]uint)) {
 	if len(s) == 1 {
 		f(s0)
 	} else {
-		for i, count := 0, len(s); i < count; i++ {
+		for i := 0; i < len(s); i++ {
 			s[0], s[i] = s[i], s[0]
 			permutation0ParamOrder2(s[1:], s0, f)
 			s[0], s[i] = s[i], s[0]
@@ -81,7 +81,7 @@ func permutation0ParamOrder3(s []uint, f func([]uint), s0 []uint) {
 	if len(s) == 1 {
 		f(s0)
 	} else {
-		for i, count := 0, len(s); i < count; i++ {
+		for i := 0; i < len(s); i++ {
 			s[0], s[i] = s[i], s[0]
 			permutation0ParamOrder3(s[1:], f, s0)
 			s[0], s[i] = s[i], s[0]
@@ -106,7 +106,7 @@ func permutation0ParamOrder4(f func([]uint), s0, s []uint) {
 	if len(s) == 1 {
 		f(s0)
 	} else {
-		for i, count := 0, len(s); i < count; i++ {
+		for i := 0; i < len(s); i++ {
 			s[0], s[i] = s[i], s[0]
 			permutation0ParamOrder4(f, s0, s[1:])
 			s[0], s[i] = s[i], s[0]
@@ -131,7 +131,7 @@ func permutation0ParamOrder5(f func([]uint), s, s0 []uint) {
 	if len(s) == 1 {
 		f(s0)
 	} else {
-		for i, count := 0, len(s); i < count; i++ {
+		for i := 0; i < len(s); i++ {
 			s[0], s[i] = s[i], s[0]
 			permutation0ParamOrder5(f, s[1:], s0)
 			s[0], s[i] = s[i], s[0]

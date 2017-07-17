@@ -1,5 +1,5 @@
 // Package b0a is different from b0 in the sense that
-// in b0a, len(s) is stored in a variable common to both branches.
+// len(s) is cached in a variable common to both branches.
 
 package b0a
 

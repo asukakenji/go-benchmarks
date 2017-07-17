@@ -8,6 +8,7 @@ import (
 	"github.com/asukakenji/go-benchmarks/permutation/b0a"
 	"github.com/asukakenji/go-benchmarks/permutation/b1"
 	"github.com/asukakenji/go-benchmarks/permutation/b1a"
+	"github.com/asukakenji/go-benchmarks/permutation/b1b"
 )
 
 func TestPermutation(t *testing.T) {
@@ -39,6 +40,30 @@ func TestPermutation(t *testing.T) {
 		{"b1a.Permutation1ParamOrder3", b1a.Permutation1ParamOrder3},
 		{"b1a.Permutation1ParamOrder4", b1a.Permutation1ParamOrder4},
 		{"b1a.Permutation1ParamOrder5", b1a.Permutation1ParamOrder5},
+		{"b1b.Permutation1ParamOrder00", b1b.Permutation1ParamOrder00},
+		{"b1b.Permutation1ParamOrder01", b1b.Permutation1ParamOrder01},
+		{"b1b.Permutation1ParamOrder02", b1b.Permutation1ParamOrder02},
+		{"b1b.Permutation1ParamOrder03", b1b.Permutation1ParamOrder03},
+		{"b1b.Permutation1ParamOrder10", b1b.Permutation1ParamOrder10},
+		{"b1b.Permutation1ParamOrder11", b1b.Permutation1ParamOrder11},
+		{"b1b.Permutation1ParamOrder12", b1b.Permutation1ParamOrder12},
+		{"b1b.Permutation1ParamOrder13", b1b.Permutation1ParamOrder13},
+		{"b1b.Permutation1ParamOrder20", b1b.Permutation1ParamOrder20},
+		{"b1b.Permutation1ParamOrder21", b1b.Permutation1ParamOrder21},
+		{"b1b.Permutation1ParamOrder22", b1b.Permutation1ParamOrder22},
+		{"b1b.Permutation1ParamOrder23", b1b.Permutation1ParamOrder23},
+		{"b1b.Permutation1ParamOrder30", b1b.Permutation1ParamOrder30},
+		{"b1b.Permutation1ParamOrder31", b1b.Permutation1ParamOrder31},
+		{"b1b.Permutation1ParamOrder32", b1b.Permutation1ParamOrder32},
+		{"b1b.Permutation1ParamOrder33", b1b.Permutation1ParamOrder33},
+		{"b1b.Permutation1ParamOrder40", b1b.Permutation1ParamOrder40},
+		{"b1b.Permutation1ParamOrder41", b1b.Permutation1ParamOrder41},
+		{"b1b.Permutation1ParamOrder42", b1b.Permutation1ParamOrder42},
+		{"b1b.Permutation1ParamOrder43", b1b.Permutation1ParamOrder43},
+		{"b1b.Permutation1ParamOrder50", b1b.Permutation1ParamOrder50},
+		{"b1b.Permutation1ParamOrder51", b1b.Permutation1ParamOrder51},
+		{"b1b.Permutation1ParamOrder52", b1b.Permutation1ParamOrder52},
+		{"b1b.Permutation1ParamOrder53", b1b.Permutation1ParamOrder53},
 	}
 	cases := []struct {
 		s        []uint

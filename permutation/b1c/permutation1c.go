@@ -1,6 +1,6 @@
-// Package b1c is different from b1 in the sense that
+// Package b1c is different from b1a in the sense that
 // closure is used, and len(s) is cached in a variable.
-// This is actually slower than b1 due to the overhead of closure.
+// This makes b1c about 15% slower than b1a due to the overhead of closure.
 package b1c
 
 // Permutation1ParamOrder0 generates all permutations of s,

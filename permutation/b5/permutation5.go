@@ -1,3 +1,6 @@
+// Package b5 is different from previous packages in the sense that
+// it implements the permutation without recursion.
+// It is surprisingly slower than the recursive ones.
 package b5
 
 // Permutation5Inc generates all permutations of s,

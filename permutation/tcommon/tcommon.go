@@ -1,9 +1,20 @@
 package tcommon
 
+import (
+	"reflect"
+	"sort"
+	"testing"
+)
+
+type Implementation struct {
+	Name string
+	F    func([]uint, func([]uint))
+}
+
 var (
-	Cases = []struct {
-		S        []uint
-		Expected [][]uint
+	cases = []struct {
+		s        []uint
+		expected [][]uint
 	}{
 		{
 			[]uint{},
@@ -191,3 +202,37 @@ var (
 		},
 	}
 )
+
+func TestPermutation(t *testing.T, impl Implementation) {
+	for _, c := range cases {
+		sCopy := make([]uint, len(c.s))
+		copy(sCopy, c.s)
+		got := [][]uint{}
+		f := func(x []uint) {
+			xCopy := make([]uint, len(x))
+			copy(xCopy, x)
+			got = append(got, xCopy)
+		}
+		impl.F(c.s, f)
+		if !reflect.DeepEqual(c.s, sCopy) {
+			t.Errorf("%s changed the input: %v, expected %v", impl.Name, c.s, sCopy)
+		}
+		sort.Slice(got, func(i, j int) bool {
+			if len(got) == 0 {
+				return false
+			}
+			for index, count := 0, len(got[0]); index < count; index++ {
+				if got[i][index] < got[j][index] {
+					return true
+				}
+				if got[i][index] > got[j][index] {
+					return false
+				}
+			}
+			return false
+		})
+		if !reflect.DeepEqual(got, c.expected) {
+			t.Errorf("%s(%v, <func>) = %v, expected %v", impl.Name, c.s, got, c.expected)
+		}
+	}
+}

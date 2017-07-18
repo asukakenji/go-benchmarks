@@ -4,6 +4,10 @@ package b5
 // and apply f to each of them.
 func Permutation5Inc(s []uint, f func([]uint)) {
 	n := len(s)
+	if n == 0 {
+		f(s)
+		return
+	}
 	a := make([]int, n)
 	for d := 0; d < n; d++ {
 		a[d] = d

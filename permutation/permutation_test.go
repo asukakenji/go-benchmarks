@@ -2,6 +2,7 @@ package permutation_test
 
 import (
 	"reflect"
+	"sort"
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/permutation/b0"
@@ -10,6 +11,8 @@ import (
 	"github.com/asukakenji/go-benchmarks/permutation/b1a"
 	"github.com/asukakenji/go-benchmarks/permutation/b2"
 	"github.com/asukakenji/go-benchmarks/permutation/b3"
+	"github.com/asukakenji/go-benchmarks/permutation/b4"
+	"github.com/asukakenji/go-benchmarks/permutation/b5"
 )
 
 func TestPermutation(t *testing.T) {
@@ -71,6 +74,13 @@ func TestPermutation(t *testing.T) {
 		{"b3.Permutation3ParamOrder3", b3.Permutation3ParamOrder3},
 		{"b3.Permutation3ParamOrder4", b3.Permutation3ParamOrder4},
 		{"b3.Permutation3ParamOrder5", b3.Permutation3ParamOrder5},
+		{"b4.Permutation4ParamOrder0", b4.Permutation4ParamOrder0},
+		{"b4.Permutation4ParamOrder1", b4.Permutation4ParamOrder1},
+		{"b4.Permutation4ParamOrder2", b4.Permutation4ParamOrder2},
+		{"b4.Permutation4ParamOrder3", b4.Permutation4ParamOrder3},
+		{"b4.Permutation4ParamOrder4", b4.Permutation4ParamOrder4},
+		{"b4.Permutation4ParamOrder5", b4.Permutation4ParamOrder5},
+		{"b5.Permutation5Inc", b5.Permutation5Inc},
 	}
 	cases := []struct {
 		s        []uint
@@ -102,8 +112,8 @@ func TestPermutation(t *testing.T) {
 				{1, 3, 2},
 				{2, 1, 3},
 				{2, 3, 1},
-				{3, 2, 1},
 				{3, 1, 2},
+				{3, 2, 1},
 			},
 		},
 		{
@@ -113,26 +123,151 @@ func TestPermutation(t *testing.T) {
 				{1, 2, 4, 3},
 				{1, 3, 2, 4},
 				{1, 3, 4, 2},
-				{1, 4, 3, 2},
 				{1, 4, 2, 3},
+				{1, 4, 3, 2},
 				{2, 1, 3, 4},
 				{2, 1, 4, 3},
 				{2, 3, 1, 4},
 				{2, 3, 4, 1},
-				{2, 4, 3, 1},
 				{2, 4, 1, 3},
-				{3, 2, 1, 4},
-				{3, 2, 4, 1},
+				{2, 4, 3, 1},
 				{3, 1, 2, 4},
 				{3, 1, 4, 2},
+				{3, 2, 1, 4},
+				{3, 2, 4, 1},
 				{3, 4, 1, 2},
 				{3, 4, 2, 1},
-				{4, 2, 3, 1},
-				{4, 2, 1, 3},
-				{4, 3, 2, 1},
-				{4, 3, 1, 2},
-				{4, 1, 3, 2},
 				{4, 1, 2, 3},
+				{4, 1, 3, 2},
+				{4, 2, 1, 3},
+				{4, 2, 3, 1},
+				{4, 3, 1, 2},
+				{4, 3, 2, 1},
+			},
+		},
+		{
+			[]uint{1, 2, 3, 4, 5},
+			[][]uint{
+				{1, 2, 3, 4, 5},
+				{1, 2, 3, 5, 4},
+				{1, 2, 4, 3, 5},
+				{1, 2, 4, 5, 3},
+				{1, 2, 5, 3, 4},
+				{1, 2, 5, 4, 3},
+				{1, 3, 2, 4, 5},
+				{1, 3, 2, 5, 4},
+				{1, 3, 4, 2, 5},
+				{1, 3, 4, 5, 2},
+				{1, 3, 5, 2, 4},
+				{1, 3, 5, 4, 2},
+				{1, 4, 2, 3, 5},
+				{1, 4, 2, 5, 3},
+				{1, 4, 3, 2, 5},
+				{1, 4, 3, 5, 2},
+				{1, 4, 5, 2, 3},
+				{1, 4, 5, 3, 2},
+				{1, 5, 2, 3, 4},
+				{1, 5, 2, 4, 3},
+				{1, 5, 3, 2, 4},
+				{1, 5, 3, 4, 2},
+				{1, 5, 4, 2, 3},
+				{1, 5, 4, 3, 2},
+				{2, 1, 3, 4, 5},
+				{2, 1, 3, 5, 4},
+				{2, 1, 4, 3, 5},
+				{2, 1, 4, 5, 3},
+				{2, 1, 5, 3, 4},
+				{2, 1, 5, 4, 3},
+				{2, 3, 1, 4, 5},
+				{2, 3, 1, 5, 4},
+				{2, 3, 4, 1, 5},
+				{2, 3, 4, 5, 1},
+				{2, 3, 5, 1, 4},
+				{2, 3, 5, 4, 1},
+				{2, 4, 1, 3, 5},
+				{2, 4, 1, 5, 3},
+				{2, 4, 3, 1, 5},
+				{2, 4, 3, 5, 1},
+				{2, 4, 5, 1, 3},
+				{2, 4, 5, 3, 1},
+				{2, 5, 1, 3, 4},
+				{2, 5, 1, 4, 3},
+				{2, 5, 3, 1, 4},
+				{2, 5, 3, 4, 1},
+				{2, 5, 4, 1, 3},
+				{2, 5, 4, 3, 1},
+				{3, 1, 2, 4, 5},
+				{3, 1, 2, 5, 4},
+				{3, 1, 4, 2, 5},
+				{3, 1, 4, 5, 2},
+				{3, 1, 5, 2, 4},
+				{3, 1, 5, 4, 2},
+				{3, 2, 1, 4, 5},
+				{3, 2, 1, 5, 4},
+				{3, 2, 4, 1, 5},
+				{3, 2, 4, 5, 1},
+				{3, 2, 5, 1, 4},
+				{3, 2, 5, 4, 1},
+				{3, 4, 1, 2, 5},
+				{3, 4, 1, 5, 2},
+				{3, 4, 2, 1, 5},
+				{3, 4, 2, 5, 1},
+				{3, 4, 5, 1, 2},
+				{3, 4, 5, 2, 1},
+				{3, 5, 1, 2, 4},
+				{3, 5, 1, 4, 2},
+				{3, 5, 2, 1, 4},
+				{3, 5, 2, 4, 1},
+				{3, 5, 4, 1, 2},
+				{3, 5, 4, 2, 1},
+				{4, 1, 2, 3, 5},
+				{4, 1, 2, 5, 3},
+				{4, 1, 3, 2, 5},
+				{4, 1, 3, 5, 2},
+				{4, 1, 5, 2, 3},
+				{4, 1, 5, 3, 2},
+				{4, 2, 1, 3, 5},
+				{4, 2, 1, 5, 3},
+				{4, 2, 3, 1, 5},
+				{4, 2, 3, 5, 1},
+				{4, 2, 5, 1, 3},
+				{4, 2, 5, 3, 1},
+				{4, 3, 1, 2, 5},
+				{4, 3, 1, 5, 2},
+				{4, 3, 2, 1, 5},
+				{4, 3, 2, 5, 1},
+				{4, 3, 5, 1, 2},
+				{4, 3, 5, 2, 1},
+				{4, 5, 1, 2, 3},
+				{4, 5, 1, 3, 2},
+				{4, 5, 2, 1, 3},
+				{4, 5, 2, 3, 1},
+				{4, 5, 3, 1, 2},
+				{4, 5, 3, 2, 1},
+				{5, 1, 2, 3, 4},
+				{5, 1, 2, 4, 3},
+				{5, 1, 3, 2, 4},
+				{5, 1, 3, 4, 2},
+				{5, 1, 4, 2, 3},
+				{5, 1, 4, 3, 2},
+				{5, 2, 1, 3, 4},
+				{5, 2, 1, 4, 3},
+				{5, 2, 3, 1, 4},
+				{5, 2, 3, 4, 1},
+				{5, 2, 4, 1, 3},
+				{5, 2, 4, 3, 1},
+				{5, 3, 1, 2, 4},
+				{5, 3, 1, 4, 2},
+				{5, 3, 2, 1, 4},
+				{5, 3, 2, 4, 1},
+				{5, 3, 4, 1, 2},
+				{5, 3, 4, 2, 1},
+				{5, 4, 1, 2, 3},
+				{5, 4, 1, 3, 2},
+				{5, 4, 2, 1, 3},
+				{5, 4, 2, 3, 1},
+				{5, 4, 3, 1, 2},
+				{5, 4, 3, 2, 1},
 			},
 		},
 	}
@@ -150,6 +285,20 @@ func TestPermutation(t *testing.T) {
 			if !reflect.DeepEqual(c.s, sCopy) {
 				t.Errorf("%s changed the input: %v, expected %v", impl.name, c.s, sCopy)
 			}
+			sort.Slice(got, func(i, j int) bool {
+				if len(got) == 0 {
+					return false
+				}
+				for index, count := 0, len(got[0]); index < count; index++ {
+					if got[i][index] < got[j][index] {
+						return true
+					}
+					if got[i][index] > got[j][index] {
+						return false
+					}
+				}
+				return false
+			})
 			if !reflect.DeepEqual(got, c.expected) {
 				t.Errorf("%s(%v, <func>) = %v, expected %v", impl.name, c.s, got, c.expected)
 			}

@@ -1,38 +1,15 @@
-package bitcount_test
+package onescount
 
 import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common/random"
-	"github.com/asukakenji/go-benchmarks/math/bitcount"
 )
 
-var byteToBitCountTable = [...]uint{
-	0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4,
-	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
-	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
-	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
-
-	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
-	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
-	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
-	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
-
-	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
-	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
-	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
-	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
-
-	2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6,
-	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
-	3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
-	4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8,
-}
-
-func TestBitCountNaive(t *testing.T) {
+func TestBitCount64Naive(t *testing.T) {
 	cases := []struct {
 		x        uint32
-		expected uint
+		expected int
 	}{
 		{0x00000000, 0},
 		{0x11111111, 8},
@@ -56,28 +33,35 @@ func TestBitCountNaive(t *testing.T) {
 		{0xfedcba98, 20},
 	}
 	for x, expected := range byteToBitCountTable {
-		got := bitcount.Naive(uint(x))
+		got := OnesCount64Naive(uint64(x))
 		if got != expected {
-			t.Errorf("bitcount.Naive(%d) = %d, expected %d", x, got, expected)
+			t.Errorf("OnesCount64Naive(%d) = %d, expected %d", x, got, expected)
 		}
 	}
 	for _, c := range cases {
-		got := bitcount.Naive(uint(c.x))
+		got := OnesCount64Naive(uint64(c.x))
 		if got != c.expected {
-			t.Errorf("bitcount.Naive(%d) = %d, expected %d", c.x, got, c.expected)
+			t.Errorf("OnesCount64Naive(%d) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
 
-func TestBitCount(t *testing.T) {
+func TestBitCount64(t *testing.T) {
 	implementations := []struct {
 		name string
-		f    func(uint) uint
+		f    func(uint64) int
 	}{
-		{"bitcount.Pop1Alt", bitcount.Pop1Alt},
-		{"bitcount.Pop4", bitcount.Pop4},
-		{"bitcount.Pop5a", bitcount.Pop5a},
-		{"bitcount.Pop1AltSwitch", bitcount.Pop1AltSwitch},
+		{"OnesCount64CallGCC", OnesCount64CallGCC},
+		{"OnesCount64Pop0", OnesCount64Pop0},
+		{"OnesCount64Pop1", OnesCount64Pop1},
+		{"OnesCount64Pop1Alt", OnesCount64Pop1Alt},
+		{"OnesCount64Pop3", OnesCount64Pop3},
+		{"OnesCount64Pop4", OnesCount64Pop4},
+		{"OnesCount64Pop5", OnesCount64Pop5},
+		{"OnesCount64Pop5a", OnesCount64Pop5a},
+		{"OnesCount64Pop6", OnesCount64Pop6},
+		{"OnesCount64Hakmem", OnesCount64Hakmem},
+		{"OnesCount64Asm", OnesCount64Asm},
 	}
 	cases := []uint64{
 		0x0000000000000000,
@@ -101,22 +85,22 @@ func TestBitCount(t *testing.T) {
 	}
 	for _, impl := range implementations {
 		for x, expected := range byteToBitCountTable {
-			got := impl.f(uint(x))
+			got := impl.f(uint64(x))
 			if got != expected {
 				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
 		for _, x := range cases {
-			expected := bitcount.Naive(uint(x))
-			got := impl.f(uint(x))
+			expected := OnesCount64Naive(uint64(x))
+			got := impl.f(uint64(x))
 			if got != expected {
 				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
-		gen := random.NewUintGenerator()
+		gen := random.NewUint64Generator()
 		for i := 0; i < 512; i++ {
 			x := gen.Next()
-			expected := bitcount.Naive(x)
+			expected := OnesCount64Naive(x)
 			got := impl.f(x)
 			if got != expected {
 				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)

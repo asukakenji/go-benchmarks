@@ -64,3 +64,7 @@ func BenchmarkBitCount64Pop6(b *testing.B) {
 func BenchmarkBitCount64Hakmem(b *testing.B) {
 	benchmark.UintFuncUint64WithRandom(b, bitcount64.Hakmem)
 }
+
+func BenchmarkBitCount64Asm(b *testing.B) {
+	benchmark.UintFuncUint64WithRandom(b, bitcount64.Asm)
+}

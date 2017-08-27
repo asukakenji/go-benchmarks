@@ -84,6 +84,7 @@ func TestBitCount64(t *testing.T) {
 		{"bitcount64.Pop5a", bitcount64.Pop5a},
 		{"bitcount64.Pop6", bitcount64.Pop6},
 		{"bitcount64.Hakmem", bitcount64.Hakmem},
+		{"bitcount64.Asm", bitcount64.Asm},
 	}
 	cases := []uint64{
 		0x0000000000000000,

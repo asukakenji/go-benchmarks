@@ -13,7 +13,6 @@ func TestOnesCount32All(t *testing.T) {
 		f    func(uint32) int
 	}{
 		{"OnesCount32CallGCC", OnesCount32CallGCC},
-		{"OnesCount32Pop0", OnesCount32Pop0},
 		{"OnesCount32Pop1", OnesCount32Pop1},
 		{"OnesCount32Pop1Alt", OnesCount32Pop1Alt},
 		{"OnesCount32Pop2", OnesCount32Pop2},

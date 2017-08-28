@@ -14,7 +14,6 @@ func TestBitCount64All(t *testing.T) {
 		f    func(uint64) int
 	}{
 		{"OnesCount64CallGCC", OnesCount64CallGCC},
-		{"OnesCount64Pop0", OnesCount64Pop0},
 		{"OnesCount64Pop1", OnesCount64Pop1},
 		{"OnesCount64Pop1Alt", OnesCount64Pop1Alt},
 		{"OnesCount64Pop3", OnesCount64Pop3},

@@ -7,7 +7,7 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-var byteToBitCountTable = [...]int{
+var pop8tab = [256]uint8{
 	0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4,
 	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
 	1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
@@ -39,41 +39,41 @@ type OnesCountFuncs struct {
 
 func BasicTableTest(t *testing.T, onesCountFuncs *OnesCountFuncs) {
 	if onesCountFuncs.Uint != nil {
-		for x, expected := range byteToBitCountTable {
+		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint(uint(x))
-			if got != expected {
+			if got != int(expected) {
 				t.Errorf("OnesCount(%d) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
 	if onesCountFuncs.Uint8 != nil {
-		for x, expected := range byteToBitCountTable {
+		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint8(uint8(x))
-			if got != expected {
+			if got != int(expected) {
 				t.Errorf("OnesCount8(%d) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
 	if onesCountFuncs.Uint16 != nil {
-		for x, expected := range byteToBitCountTable {
+		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint16(uint16(x))
-			if got != expected {
+			if got != int(expected) {
 				t.Errorf("OnesCount16(%d) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
 	if onesCountFuncs.Uint32 != nil {
-		for x, expected := range byteToBitCountTable {
+		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint32(uint32(x))
-			if got != expected {
+			if got != int(expected) {
 				t.Errorf("OnesCount32(%d) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
 	if onesCountFuncs.Uint64 != nil {
-		for x, expected := range byteToBitCountTable {
+		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint64(uint64(x))
-			if got != expected {
+			if got != int(expected) {
 				t.Errorf("OnesCount64(%d) = %d, expected %d", x, got, expected)
 			}
 		}

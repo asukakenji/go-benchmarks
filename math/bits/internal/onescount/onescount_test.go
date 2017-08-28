@@ -12,7 +12,6 @@ func TestOnesCountAll(t *testing.T) {
 		name string
 		f    func(uint) int
 	}{
-		{"OnesCountPop1Alt", OnesCountPop1Alt},
 		{"OnesCountPop1AltSwitch", OnesCountPop1AltSwitch},
 	}
 	cases := []uint64{

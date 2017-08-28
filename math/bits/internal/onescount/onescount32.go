@@ -28,17 +28,6 @@ func OnesCount32CallGCC(x uint32) int {
 	return int(C.popcount(C.uint(x)))
 }
 
-// OnesCount32Pop1Alt returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop1 + alternative)
-// Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/libgcc2.c#L840-L859
-// Source: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=36041#c8
-func OnesCount32Pop1Alt(x uint32) int {
-	x = x - ((x >> 1) & 0x55555555)
-	x = (x & 0x33333333) + ((x >> 2) & 0x33333333)
-	x = (x + (x >> 4)) & 0x0f0f0f0f
-	return int((x * 0x01010101) >> 24)
-}
-
 // OnesCount32Pop2 returns the number of one bits ("population count") in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop2)
 func OnesCount32Pop2(x uint32) int {

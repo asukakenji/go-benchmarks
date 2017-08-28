@@ -28,17 +28,6 @@ func OnesCount64CallGCC(x uint64) int {
 	return int(C.popcountll(C.ulonglong(x)))
 }
 
-// OnesCount64Pop1Alt returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop1 + alternative)
-// Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/libgcc2.c#L840-L859
-// Source: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=36041#c8
-func OnesCount64Pop1Alt(x uint64) int {
-	x = x - ((x >> 1) & 0x5555555555555555)
-	x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333)
-	x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f
-	return int((x * 0x0101010101010101) >> 56)
-}
-
 /* Does NOT work! */
 func onesCount64Pop2(x uint64) int {
 	n := (x >> 1) & 01333333333333333333333 // Count bits in

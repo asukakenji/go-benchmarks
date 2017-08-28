@@ -6,22 +6,7 @@ http://www.hackersdelight.org/hdcodetxt/pop.c.txt
 http://www.dalkescientific.com/writings/diary/archive/2008/07/03/hakmem_and_other_popcounts.html
 */
 
-import (
-	"github.com/asukakenji/go-benchmarks/common"
-	"github.com/asukakenji/go-benchmarks/common/reinterpret"
-)
-
-// OnesCountNaive returns the number of one bits ("population count") in x.
-func OnesCountNaive(x uint) int {
-	count := 0
-	for x != 0 {
-		if x&1 != 0 {
-			count++
-		}
-		x >>= 1
-	}
-	return count
-}
+import "github.com/asukakenji/go-benchmarks/common"
 
 var (
 	bitMask55 uint
@@ -56,28 +41,6 @@ func OnesCountPop1Alt(x uint) int {
 	x = (x & bitMask33) + ((x >> 2) & bitMask33)
 	x = (x + (x >> 4)) & bitMask0f
 	return int((x * bitMask01) >> bitShift)
-}
-
-// OnesCountPop4 returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop4)
-func OnesCountPop4(x uint) int {
-	n := 0
-	for x != 0 {
-		n = n + 1
-		x = x & (x - 1)
-	}
-	return n
-}
-
-// OnesCountPop5a returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5a)
-func OnesCountPop5a(x uint) int {
-	sum := reinterpret.UintAsInt(x)
-	for x != 0 {
-		x = x >> 1
-		sum = sum - reinterpret.UintAsInt(x)
-	}
-	return sum
 }
 
 // OnesCountPop1AltSwitch returns the number of one bits ("population count") in x.

@@ -23,18 +23,6 @@ import "C"
 
 import "github.com/asukakenji/go-benchmarks/common/reinterpret"
 
-// OnesCount32Naive returns the number of one bits ("population count") in x.
-func OnesCount32Naive(x uint32) int {
-	count := int(0)
-	for x != 0 {
-		if x&1 != 0 {
-			count++
-		}
-		x >>= 1
-	}
-	return count
-}
-
 // OnesCount32CallGCC returns the number of one bits ("population count") in x.
 func OnesCount32CallGCC(x uint32) int {
 	return int(C.popcount(C.uint(x)))
@@ -111,17 +99,6 @@ func OnesCount32Pop3(x uint32) int {
 	return int(x >> 24)
 }
 
-// OnesCount32Pop4 returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop4)
-func OnesCount32Pop4(x uint32) int {
-	n := 0
-	for x != 0 {
-		n = n + 1
-		x = x & (x - 1)
-	}
-	return n
-}
-
 func rotate32(x uint32, n uint) uint32 {
 	if n > 63 {
 		panic("rotate32, n out of range.")
@@ -138,26 +115,6 @@ func OnesCount32Pop5(x uint32) int {
 		sum = sum + reinterpret.Uint32AsInt32(x)
 	}
 	return int(-sum)
-}
-
-// OnesCount32Pop5a returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop5a)
-func OnesCount32Pop5a(x uint32) int {
-	sum := reinterpret.Uint32AsInt32(x)
-	for x != 0 {
-		x = x >> 1
-		sum = sum - reinterpret.Uint32AsInt32(x)
-	}
-	return int(sum)
-}
-
-// OnesCount32Pop6 returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop6)
-func OnesCount32Pop6(x uint32) int {
-	return byteToBitCountTable[x&0xff] +
-		byteToBitCountTable[(x>>8)&0xff] +
-		byteToBitCountTable[(x>>16)&0xff] +
-		byteToBitCountTable[(x>>24)]
 }
 
 // OnesCount32Hakmem returns the number of one bits ("population count") in x.

@@ -4,49 +4,11 @@ import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common/random"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-func TestBitCount64Naive(t *testing.T) {
-	cases := []struct {
-		x        uint32
-		expected int
-	}{
-		{0x00000000, 0},
-		{0x11111111, 8},
-		{0x22222222, 8},
-		{0x33333333, 16},
-		{0x44444444, 8},
-		{0x55555555, 16},
-		{0x66666666, 16},
-		{0x77777777, 24},
-		{0x88888888, 8},
-		{0x99999999, 16},
-		{0xaaaaaaaa, 16},
-		{0xbbbbbbbb, 24},
-		{0xcccccccc, 16},
-		{0xdddddddd, 24},
-		{0xeeeeeeee, 24},
-		{0xffffffff, 32},
-		{0x01234567, 12},
-		{0x76543210, 12},
-		{0x89abcdef, 20},
-		{0xfedcba98, 20},
-	}
-	for x, expected := range byteToBitCountTable {
-		got := OnesCount64Naive(uint64(x))
-		if got != expected {
-			t.Errorf("OnesCount64Naive(%d) = %d, expected %d", x, got, expected)
-		}
-	}
-	for _, c := range cases {
-		got := OnesCount64Naive(uint64(c.x))
-		if got != c.expected {
-			t.Errorf("OnesCount64Naive(%d) = %d, expected %d", c.x, got, c.expected)
-		}
-	}
-}
-
-func TestBitCount64(t *testing.T) {
+func TestBitCount64All(t *testing.T) {
 	implementations := []struct {
 		name string
 		f    func(uint64) int
@@ -56,10 +18,8 @@ func TestBitCount64(t *testing.T) {
 		{"OnesCount64Pop1", OnesCount64Pop1},
 		{"OnesCount64Pop1Alt", OnesCount64Pop1Alt},
 		{"OnesCount64Pop3", OnesCount64Pop3},
-		{"OnesCount64Pop4", OnesCount64Pop4},
 		{"OnesCount64Pop5", OnesCount64Pop5},
-		{"OnesCount64Pop5a", OnesCount64Pop5a},
-		{"OnesCount64Pop6", OnesCount64Pop6},
+		{"OnesCount64Pop6", table.OnesCount64},
 		{"OnesCount64Hakmem", OnesCount64Hakmem},
 		{"OnesCount64Asm", OnesCount64Asm},
 	}
@@ -84,14 +44,8 @@ func TestBitCount64(t *testing.T) {
 		0xfedcba9876543210,
 	}
 	for _, impl := range implementations {
-		for x, expected := range byteToBitCountTable {
-			got := impl.f(uint64(x))
-			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
-			}
-		}
 		for _, x := range cases {
-			expected := OnesCount64Naive(uint64(x))
+			expected := naive.OnesCount64(uint64(x))
 			got := impl.f(uint64(x))
 			if got != expected {
 				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
@@ -100,7 +54,7 @@ func TestBitCount64(t *testing.T) {
 		gen := random.NewUint64Generator()
 		for i := 0; i < 512; i++ {
 			x := gen.Next()
-			expected := OnesCount64Naive(x)
+			expected := naive.OnesCount64(x)
 			got := impl.f(x)
 			if got != expected {
 				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)

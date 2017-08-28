@@ -28,20 +28,6 @@ func OnesCount64CallGCC(x uint64) int {
 	return int(C.popcountll(C.ulonglong(x)))
 }
 
-// OnesCount64Pop1 returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop1)
-// Source: java.lang.Long#bitCount
-// Source: http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/Long.java#Long.bitCount%28long%29
-func OnesCount64Pop1(x uint64) int {
-	x = x - ((x >> 1) & 0x5555555555555555)
-	x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333)
-	x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f
-	x = x + (x >> 8)
-	x = x + (x >> 16)
-	x = x + (x >> 32)
-	return int(x & 0x000000000000007f)
-}
-
 // OnesCount64Pop1Alt returns the number of one bits ("population count") in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop1 + alternative)
 // Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/libgcc2.c#L840-L859

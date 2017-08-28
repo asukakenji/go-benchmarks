@@ -28,19 +28,6 @@ func OnesCount32CallGCC(x uint32) int {
 	return int(C.popcount(C.uint(x)))
 }
 
-// OnesCount32Pop1 returns the number of one bits ("population count") in x.
-// Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop1)
-// Source: java.lang.Integer#bitCount
-// Source: http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/Integer.java#Integer.bitCount%28int%29
-func OnesCount32Pop1(x uint32) int {
-	x = x - ((x >> 1) & 0x55555555)
-	x = (x & 0x33333333) + ((x >> 2) & 0x33333333)
-	x = (x + (x >> 4)) & 0x0f0f0f0f
-	x = x + (x >> 8)
-	x = x + (x >> 16)
-	return int(x & 0x0000003f)
-}
-
 // OnesCount32Pop1Alt returns the number of one bits ("population count") in x.
 // Source: http://www.hackersdelight.org/hdcodetxt/pop.c.txt (pop1 + alternative)
 // Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/libgcc2.c#L840-L859

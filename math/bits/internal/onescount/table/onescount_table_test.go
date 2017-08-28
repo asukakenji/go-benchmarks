@@ -8,7 +8,7 @@ import (
 )
 
 func TestOnesCountAllNaive(t *testing.T) {
-	onescount.NaiveTest(t, table.OnesCount)
+	onescount.NaiveTest(t, table.OnesCountConcept)
 	onescount.NaiveTest8(t, table.OnesCount8)
 	onescount.NaiveTest16(t, table.OnesCount16)
 	onescount.NaiveTest32(t, table.OnesCount32)

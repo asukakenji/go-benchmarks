@@ -10,23 +10,25 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/stdlib"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/subtract"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount64Calibrate-8   	1000000000	         2.09 ns/op
-// BenchmarkOnesCount64Naive-8       	10000000	       175 ns/op
-// BenchmarkOnesCount64Table-8       	200000000	         7.62 ns/op
-// BenchmarkOnesCount64Pop0-8        	200000000	         7.01 ns/op
-// BenchmarkOnesCount64Pop1-8        	200000000	         6.07 ns/op
-// BenchmarkOnesCount64Pop1Alt-8     	300000000	         5.32 ns/op <- Best
-// BenchmarkOnesCount64Reset-8       	50000000	        33.4 ns/op
-// BenchmarkOnesCount64Subtract-8    	50000000	        35.7 ns/op
-// BenchmarkOnesCount64CallGCC-8     	20000000	        64.9 ns/op
-// BenchmarkOnesCount64Pop3-8        	300000000	         5.54 ns/op
-// BenchmarkOnesCount64Pop5-8        	 5000000	       306 ns/op
-// BenchmarkOnesCount64Hakmem-8      	200000000	         6.11 ns/op
-// BenchmarkOnesCount64Asm-8         	300000000	         5.68 ns/op
+// BenchmarkOnesCount64Calibrate-8   	1000000000	         2.34 ns/op
+// BenchmarkOnesCount64Naive-8       	10000000	       185 ns/op
+// BenchmarkOnesCount64Table-8       	200000000	         7.89 ns/op
+// BenchmarkOnesCount64Stdlib-8      	200000000	         6.42 ns/op
+// BenchmarkOnesCount64Pop0-8        	200000000	         7.11 ns/op
+// BenchmarkOnesCount64Pop1-8        	200000000	         6.21 ns/op
+// BenchmarkOnesCount64Pop1Alt-8     	300000000	         5.37 ns/op <- Best
+// BenchmarkOnesCount64Reset-8       	50000000	        32.4 ns/op
+// BenchmarkOnesCount64Subtract-8    	30000000	        43.0 ns/op
+// BenchmarkOnesCount64CallGCC-8     	20000000	        63.3 ns/op
+// BenchmarkOnesCount64Pop3-8        	300000000	         5.58 ns/op
+// BenchmarkOnesCount64Pop5-8        	 5000000	       308 ns/op
+// BenchmarkOnesCount64Hakmem-8      	200000000	         6.12 ns/op
+// BenchmarkOnesCount64Asm-8         	300000000	         5.50 ns/op
 
 func BenchmarkOnesCount64Calibrate(b *testing.B) {
 	benchmark.CalibrateAnyFuncUint64WithRandom(b)
@@ -38,6 +40,10 @@ func BenchmarkOnesCount64Naive(b *testing.B) {
 
 func BenchmarkOnesCount64Table(b *testing.B) {
 	benchmark.IntFuncUint64WithRandom(b, table.OnesCount64)
+}
+
+func BenchmarkOnesCount64Stdlib(b *testing.B) {
+	benchmark.IntFuncUint64WithRandom(b, stdlib.OnesCount64)
 }
 
 func BenchmarkOnesCount64Pop0(b *testing.B) {

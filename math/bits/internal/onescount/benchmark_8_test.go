@@ -9,18 +9,20 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/stdlib"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/subtract"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount8Calibrate-8   	1000000000	         2.25 ns/op
-// BenchmarkOnesCount8Naive-8       	50000000	        28.4 ns/op
-// BenchmarkOnesCount8Table-8       	500000000	         3.88 ns/op <- Best
-// BenchmarkOnesCount8Pop0-8        	300000000	         5.22 ns/op
-// BenchmarkOnesCount8Pop1-8        	300000000	         4.73 ns/op
-// BenchmarkOnesCount8Pop1A-8       	300000000	         4.78 ns/op
-// BenchmarkOnesCount8Reset-8       	100000000	        13.0 ns/op
-// BenchmarkOnesCount8Subtract-8    	100000000	        12.3 ns/op
+// BenchmarkOnesCount8Calibrate-8   	1000000000	         2.31 ns/op
+// BenchmarkOnesCount8Naive-8       	50000000	        29.5 ns/op
+// BenchmarkOnesCount8Table-8       	300000000	         4.13 ns/op <- Best
+// BenchmarkOnesCount8Stdlib-8      	300000000	         4.13 ns/op <- Best
+// BenchmarkOnesCount8Pop0-8        	300000000	         5.44 ns/op
+// BenchmarkOnesCount8Pop1-8        	300000000	         5.01 ns/op
+// BenchmarkOnesCount8Pop1A-8       	300000000	         4.92 ns/op
+// BenchmarkOnesCount8Reset-8       	100000000	        13.8 ns/op
+// BenchmarkOnesCount8Subtract-8    	100000000	        12.9 ns/op
 
 func BenchmarkOnesCount8Calibrate(b *testing.B) {
 	benchmark.CalibrateAnyFuncUint8WithRandom(b)
@@ -32,6 +34,10 @@ func BenchmarkOnesCount8Naive(b *testing.B) {
 
 func BenchmarkOnesCount8Table(b *testing.B) {
 	benchmark.IntFuncUint8WithRandom(b, table.OnesCount8)
+}
+
+func BenchmarkOnesCount8Stdlib(b *testing.B) {
+	benchmark.IntFuncUint8WithRandom(b, stdlib.OnesCount8)
 }
 
 func BenchmarkOnesCount8Pop0(b *testing.B) {

@@ -15,8 +15,8 @@ package reset
 func OnesCount(x uint) int {
 	n := 0
 	for x != 0 {
-		n++
 		x &= (x - 1)
+		n++
 	}
 	return n
 }
@@ -25,8 +25,8 @@ func OnesCount(x uint) int {
 func OnesCount8(x uint8) int {
 	n := 0
 	for x != 0 {
-		n++
 		x &= (x - 1)
+		n++
 	}
 	return n
 }
@@ -35,8 +35,8 @@ func OnesCount8(x uint8) int {
 func OnesCount16(x uint16) int {
 	n := 0
 	for x != 0 {
-		n++
 		x &= (x - 1)
+		n++
 	}
 	return n
 }
@@ -45,8 +45,8 @@ func OnesCount16(x uint16) int {
 func OnesCount32(x uint32) int {
 	n := 0
 	for x != 0 {
-		n++
 		x &= (x - 1)
+		n++
 	}
 	return n
 }
@@ -55,8 +55,8 @@ func OnesCount32(x uint32) int {
 func OnesCount64(x uint64) int {
 	n := 0
 	for x != 0 {
-		n++
 		x &= (x - 1)
+		n++
 	}
 	return n
 }

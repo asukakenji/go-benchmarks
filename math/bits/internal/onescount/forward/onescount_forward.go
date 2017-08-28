@@ -1,4 +1,4 @@
-package intswitch
+package forward
 
 import "github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
 

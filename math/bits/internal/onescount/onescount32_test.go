@@ -45,7 +45,7 @@ func TestOnesCount32All(t *testing.T) {
 			expected := naive.OnesCount32(uint32(x))
 			got := impl.f(uint32(x))
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
+				t.Errorf("%s(0x%08x) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
 		gen := random.NewUint32Generator()
@@ -54,7 +54,7 @@ func TestOnesCount32All(t *testing.T) {
 			expected := naive.OnesCount32(x)
 			got := impl.f(x)
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
+				t.Errorf("%s(0x%08x) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
 	}

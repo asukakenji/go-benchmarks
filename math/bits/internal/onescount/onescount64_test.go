@@ -45,7 +45,7 @@ func TestBitCount64All(t *testing.T) {
 			expected := naive.OnesCount64(uint64(x))
 			got := impl.f(uint64(x))
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
+				t.Errorf("%s(0x%016x) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
 		gen := random.NewUint64Generator()
@@ -54,7 +54,7 @@ func TestBitCount64All(t *testing.T) {
 			expected := naive.OnesCount64(x)
 			got := impl.f(x)
 			if got != expected {
-				t.Errorf("%s(%d) = %d, expected %d", impl.name, x, got, expected)
+				t.Errorf("%s(0x%016x) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
 	}

@@ -42,7 +42,7 @@ func BasicTableTest(t *testing.T, onesCountFuncs *OnesCountFuncs) {
 		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint(uint(x))
 			if got != int(expected) {
-				t.Errorf("OnesCount(%d) = %d, expected %d", x, got, expected)
+				t.Errorf("OnesCount(0x%x) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
@@ -50,7 +50,7 @@ func BasicTableTest(t *testing.T, onesCountFuncs *OnesCountFuncs) {
 		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint8(uint8(x))
 			if got != int(expected) {
-				t.Errorf("OnesCount8(%d) = %d, expected %d", x, got, expected)
+				t.Errorf("OnesCount8(0x%02x) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
@@ -58,7 +58,7 @@ func BasicTableTest(t *testing.T, onesCountFuncs *OnesCountFuncs) {
 		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint16(uint16(x))
 			if got != int(expected) {
-				t.Errorf("OnesCount16(%d) = %d, expected %d", x, got, expected)
+				t.Errorf("OnesCount16(0x%04x) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
@@ -66,7 +66,7 @@ func BasicTableTest(t *testing.T, onesCountFuncs *OnesCountFuncs) {
 		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint32(uint32(x))
 			if got != int(expected) {
-				t.Errorf("OnesCount32(%d) = %d, expected %d", x, got, expected)
+				t.Errorf("OnesCount32(0x%08x) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
@@ -74,7 +74,7 @@ func BasicTableTest(t *testing.T, onesCountFuncs *OnesCountFuncs) {
 		for x, expected := range pop8tab {
 			got := onesCountFuncs.Uint64(uint64(x))
 			if got != int(expected) {
-				t.Errorf("OnesCount64(%d) = %d, expected %d", x, got, expected)
+				t.Errorf("OnesCount64(0x%016x) = %d, expected %d", x, got, expected)
 			}
 		}
 	}
@@ -86,7 +86,7 @@ func TableTest(t *testing.T, onesCountFunc func(uint) int) {
 		expected := table.OnesCountConcept(x)
 		got := onesCountFunc(x)
 		if got != expected {
-			t.Errorf("OnesCount(%d) = %d, expected %d", x, got, expected)
+			t.Errorf("OnesCount(0x%x) = %d, expected %d", x, got, expected)
 		}
 	}
 }
@@ -97,7 +97,7 @@ func TableTest8(t *testing.T, onesCount8Func func(uint8) int) {
 		expected := table.OnesCount8(x)
 		got := onesCount8Func(x)
 		if got != expected {
-			t.Errorf("OnesCount8(%d) = %d, expected %d", x, got, expected)
+			t.Errorf("OnesCount8(0x%02x) = %d, expected %d", x, got, expected)
 		}
 	}
 }
@@ -108,7 +108,7 @@ func TableTest16(t *testing.T, onesCount16Func func(uint16) int) {
 		expected := table.OnesCount16(x)
 		got := onesCount16Func(x)
 		if got != expected {
-			t.Errorf("OnesCount16(%d) = %d, expected %d", x, got, expected)
+			t.Errorf("OnesCount16(0x%04x) = %d, expected %d", x, got, expected)
 		}
 	}
 }
@@ -119,7 +119,7 @@ func TableTest32(t *testing.T, onesCount32Func func(uint32) int) {
 		expected := table.OnesCount32(x)
 		got := onesCount32Func(x)
 		if got != expected {
-			t.Errorf("OnesCount32(%d) = %d, expected %d", x, got, expected)
+			t.Errorf("OnesCount32(0x%08x) = %d, expected %d", x, got, expected)
 		}
 	}
 }
@@ -130,7 +130,7 @@ func TableTest64(t *testing.T, onesCount64Func func(uint64) int) {
 		expected := table.OnesCount64(x)
 		got := onesCount64Func(x)
 		if got != expected {
-			t.Errorf("OnesCount64(%d) = %d, expected %d", x, got, expected)
+			t.Errorf("OnesCount64(0x%016x) = %d, expected %d", x, got, expected)
 		}
 	}
 }

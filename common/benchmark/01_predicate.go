@@ -2,6 +2,15 @@ package benchmark
 
 import "testing"
 
+// BoolPredicate benchmarks a function with the signature:
+//     func(bool) bool
+// ID: B-1-1
+func BoolPredicate(b *testing.B, supplier func() bool, predicate func(bool) bool) {
+	for i, count := 0, b.N; i < count; i++ {
+		predicate(supplier())
+	}
+}
+
 // IntPredicate benchmarks a function with the signature:
 //     func(int) bool
 // ID: B-1-2

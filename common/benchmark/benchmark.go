@@ -18,21 +18,6 @@ func UintSliceGenerator(b *testing.B, genUintSliceFunc func() []uint, f func([]u
 	return dummy
 }
 
-// BoolFuncInt benchmarks a function with the signature:
-//     func(int) bool
-// ID: B-1-2
-func BoolFuncInt(b *testing.B, genIntFunc func() int, f func(int) bool) int {
-	dummy := 0 // Prevent the call from being optimized out
-	for i, count := 0, b.N; i < count; i++ {
-		if f(genIntFunc()) {
-			dummy++
-		} else {
-			dummy--
-		}
-	}
-	return dummy
-}
-
 // UintFuncUint benchmarks a function with the signature:
 //     func(uint) uint
 // ID: B-7-7

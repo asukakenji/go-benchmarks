@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
@@ -24,38 +25,52 @@ import (
 // BenchmarkOnesCount16Reset-8       	100000000	        17.3 ns/op
 // BenchmarkOnesCount16Subtract-8    	100000000	        17.2 ns/op
 
-func BenchmarkOnesCount16Calibrate(b *testing.B) {
-	benchmark.CalibrateAnyFuncUint16WithRandom(b)
+var uint16Supplier = randomsupplier.NewUint16()
+
+func BenchmarkLeadingZeros16CalibrateSupplier(b *testing.B) {
+	benchmark.Uint16Supplier(b, uint16Supplier.Next)
+}
+
+func BenchmarkLeadingZeros16CalibrateBenchmarker(b *testing.B) {
+	benchmark.CalibrateUint16ToIntFunc(b, uint16Supplier.Next)
 }
 
 func BenchmarkOnesCount16Naive(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, naive.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, naive.OnesCount16)
 }
 
 func BenchmarkOnesCount16Table(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, table.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, table.OnesCount16)
 }
 
 func BenchmarkOnesCount16Stdlib(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, stdlib.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, stdlib.OnesCount16)
 }
 
 func BenchmarkOnesCount16Pop0(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, pop0.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, pop0.OnesCount16)
 }
 
 func BenchmarkOnesCount16Pop1(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, pop1.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, pop1.OnesCount16)
 }
 
 func BenchmarkOnesCount16Pop1A(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, pop1a.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, pop1a.OnesCount16)
 }
 
 func BenchmarkOnesCount16Reset(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, reset.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, reset.OnesCount16)
 }
 
 func BenchmarkOnesCount16Subtract(b *testing.B) {
-	benchmark.IntFuncUint16WithRandom(b, subtract.OnesCount16)
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, subtract.OnesCount16)
 }

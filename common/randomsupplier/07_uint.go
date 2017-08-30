@@ -1,4 +1,4 @@
-package random
+package randomsupplier
 
 import (
 	"math/rand"
@@ -8,27 +8,27 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
-// IntGenerator is a type for generating reproducible random numbers
+// Uint is a type for generating reproducible random numbers
 // used in test cases or benchmarks.
 //
-// ID: RNG-2
-type IntGenerator struct {
+// ID: RNG-7
+type Uint struct {
 	index     uint
 	increment uint
-	numbers   []int
+	numbers   []uint
 }
 
-// NewIntGenerator allocates and returns a new IntGenerator.
-func NewIntGenerator() *IntGenerator {
-	gen := &IntGenerator{
-		numbers: make([]int, common.IntCountPerPage),
+// NewUint allocates and returns a new Uint.
+func NewUint() *Uint {
+	gen := &Uint{
+		numbers: make([]uint, common.IntCountPerPage),
 	}
 	gen.Reinitialize()
 	return gen
 }
 
 // Next returns the next random number.
-func (gen *IntGenerator) Next() int {
+func (gen *Uint) Next() uint {
 	gen.index += gen.increment
 	if gen.index >= common.IntCountPerPage {
 		gen.index -= common.IntCountPerPage
@@ -40,12 +40,12 @@ func (gen *IntGenerator) Next() int {
 // before Next() is called for the first time.
 // It should be called every time when a new benchmark starts,
 // before Next() is called for the first time.
-func (gen *IntGenerator) Reset() {
+func (gen *Uint) Reset() {
 	gen.index = 0
 }
 
 // Reinitialize generates a new set of random numbers in gen.
-func (gen *IntGenerator) Reinitialize() {
+func (gen *Uint) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)
 	rng := rand.New(src)
@@ -58,5 +58,5 @@ func (gen *IntGenerator) Reinitialize() {
 	n := int(common.IntCountPerPage >> 1)
 	gen.index = 0
 	gen.increment = uint(rng.Intn(n))<<1 + 1
-	rng.Read(reinterpret.IntSliceAsByteSlice(gen.numbers))
+	rng.Read(reinterpret.UintSliceAsByteSlice(gen.numbers))
 }

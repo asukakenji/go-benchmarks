@@ -3,7 +3,7 @@ package onescount
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/common/random"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 )
 
@@ -48,7 +48,7 @@ func TestOnesCount32All(t *testing.T) {
 				t.Errorf("%s(0x%08x) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
-		gen := random.NewUint32Generator()
+		gen := randomsupplier.NewUint32()
 		for i := 0; i < 512; i++ {
 			x := gen.Next()
 			expected := naive.OnesCount32(x)

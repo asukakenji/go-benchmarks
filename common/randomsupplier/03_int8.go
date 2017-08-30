@@ -1,4 +1,4 @@
-package random
+package randomsupplier
 
 import (
 	"math/rand"
@@ -8,33 +8,30 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
-// Int32Generator is a type for generating reproducible random numbers
+// Int8 is a type for generating reproducible random numbers
 // used in test cases or benchmarks.
 //
-// ID: RNG-5
-type Int32Generator struct {
+// ID: RNG-3
+type Int8 struct {
 	index     uint
 	increment uint
-	count     uint
-	numbers   []int32
+	numbers   []int8
 }
 
-// NewInt32Generator allocates and returns a new Int32Generator.
-func NewInt32Generator() *Int32Generator {
-	count := common.PageSizeInBytes >> 2
-	gen := &Int32Generator{
-		count:   count,
-		numbers: make([]int32, count),
+// NewInt8 allocates and returns a new Int8.
+func NewInt8() *Int8 {
+	gen := &Int8{
+		numbers: make([]int8, common.PageSizeInBytes),
 	}
 	gen.Reinitialize()
 	return gen
 }
 
 // Next returns the next random number.
-func (gen *Int32Generator) Next() int32 {
+func (gen *Int8) Next() int8 {
 	gen.index += gen.increment
-	if gen.index >= gen.count {
-		gen.index -= gen.count
+	if gen.index >= common.PageSizeInBytes {
+		gen.index -= common.PageSizeInBytes
 	}
 	return gen.numbers[gen.index]
 }
@@ -43,18 +40,18 @@ func (gen *Int32Generator) Next() int32 {
 // before Next() is called for the first time.
 // It should be called every time when a new benchmark starts,
 // before Next() is called for the first time.
-func (gen *Int32Generator) Reset() {
+func (gen *Int8) Reset() {
 	gen.index = 0
 }
 
 // Reinitialize generates a new set of random numbers in gen.
-func (gen *Int32Generator) Reinitialize() {
+func (gen *Int8) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)
 	rng := rand.New(src)
 
-	n := int(gen.count >> 1)
+	n := int(common.PageSizeInBytes >> 1)
 	gen.index = 0
 	gen.increment = uint(rng.Intn(n))<<1 + 1
-	rng.Read(reinterpret.Int32SliceAsByteSlice(gen.numbers))
+	rng.Read(reinterpret.Int8SliceAsByteSlice(gen.numbers))
 }

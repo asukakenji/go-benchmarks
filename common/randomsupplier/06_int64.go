@@ -1,4 +1,4 @@
-package random
+package randomsupplier
 
 import (
 	"math/rand"
@@ -8,30 +8,30 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
-// Uint32Generator is a type for generating reproducible random numbers
+// Int64 is a type for generating reproducible random numbers
 // used in test cases or benchmarks.
 //
-// ID: RNG-10
-type Uint32Generator struct {
+// ID: RNG-6
+type Int64 struct {
 	index     uint
 	increment uint
 	count     uint
-	numbers   []uint32
+	numbers   []int64
 }
 
-// NewUint32Generator allocates and returns a new Uint32Generator.
-func NewUint32Generator() *Uint32Generator {
-	count := common.PageSizeInBytes >> 2
-	gen := &Uint32Generator{
+// NewInt64 allocates and returns a new Int64.
+func NewInt64() *Int64 {
+	count := common.PageSizeInBytes >> 3
+	gen := &Int64{
 		count:   count,
-		numbers: make([]uint32, count),
+		numbers: make([]int64, count),
 	}
 	gen.Reinitialize()
 	return gen
 }
 
 // Next returns the next random number.
-func (gen *Uint32Generator) Next() uint32 {
+func (gen *Int64) Next() int64 {
 	gen.index += gen.increment
 	if gen.index >= gen.count {
 		gen.index -= gen.count
@@ -43,12 +43,12 @@ func (gen *Uint32Generator) Next() uint32 {
 // before Next() is called for the first time.
 // It should be called every time when a new benchmark starts,
 // before Next() is called for the first time.
-func (gen *Uint32Generator) Reset() {
+func (gen *Int64) Reset() {
 	gen.index = 0
 }
 
 // Reinitialize generates a new set of random numbers in gen.
-func (gen *Uint32Generator) Reinitialize() {
+func (gen *Int64) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)
 	rng := rand.New(src)
@@ -56,5 +56,5 @@ func (gen *Uint32Generator) Reinitialize() {
 	n := int(gen.count >> 1)
 	gen.index = 0
 	gen.increment = uint(rng.Intn(n))<<1 + 1
-	rng.Read(reinterpret.Uint32SliceAsByteSlice(gen.numbers))
+	rng.Read(reinterpret.Int64SliceAsByteSlice(gen.numbers))
 }

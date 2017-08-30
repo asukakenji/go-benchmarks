@@ -3,7 +3,7 @@ package onescount
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/common/random"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
@@ -48,7 +48,7 @@ func TestBitCount64All(t *testing.T) {
 				t.Errorf("%s(0x%016x) = %d, expected %d", impl.name, x, got, expected)
 			}
 		}
-		gen := random.NewUint64Generator()
+		gen := randomsupplier.NewUint64()
 		for i := 0; i < 512; i++ {
 			x := gen.Next()
 			expected := naive.OnesCount64(x)

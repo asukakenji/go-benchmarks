@@ -1,4 +1,4 @@
-package random
+package randomsupplier
 
 import (
 	"math/rand"
@@ -8,30 +8,33 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/reinterpret"
 )
 
-// Int8Generator is a type for generating reproducible random numbers
+// Uint64 is a type for generating reproducible random numbers
 // used in test cases or benchmarks.
 //
-// ID: RNG-3
-type Int8Generator struct {
+// ID: RNG-11
+type Uint64 struct {
 	index     uint
 	increment uint
-	numbers   []int8
+	count     uint
+	numbers   []uint64
 }
 
-// NewInt8Generator allocates and returns a new Int8Generator.
-func NewInt8Generator() *Int8Generator {
-	gen := &Int8Generator{
-		numbers: make([]int8, common.PageSizeInBytes),
+// NewUint64 allocates and returns a new Uint64.
+func NewUint64() *Uint64 {
+	count := common.PageSizeInBytes >> 3
+	gen := &Uint64{
+		count:   count,
+		numbers: make([]uint64, count),
 	}
 	gen.Reinitialize()
 	return gen
 }
 
 // Next returns the next random number.
-func (gen *Int8Generator) Next() int8 {
+func (gen *Uint64) Next() uint64 {
 	gen.index += gen.increment
-	if gen.index >= common.PageSizeInBytes {
-		gen.index -= common.PageSizeInBytes
+	if gen.index >= gen.count {
+		gen.index -= gen.count
 	}
 	return gen.numbers[gen.index]
 }
@@ -40,18 +43,18 @@ func (gen *Int8Generator) Next() int8 {
 // before Next() is called for the first time.
 // It should be called every time when a new benchmark starts,
 // before Next() is called for the first time.
-func (gen *Int8Generator) Reset() {
+func (gen *Uint64) Reset() {
 	gen.index = 0
 }
 
 // Reinitialize generates a new set of random numbers in gen.
-func (gen *Int8Generator) Reinitialize() {
+func (gen *Uint64) Reinitialize() {
 	seed := time.Now().UTC().UnixNano()
 	src := rand.NewSource(seed)
 	rng := rand.New(src)
 
-	n := int(common.PageSizeInBytes >> 1)
+	n := int(gen.count >> 1)
 	gen.index = 0
 	gen.increment = uint(rng.Intn(n))<<1 + 1
-	rng.Read(reinterpret.Int8SliceAsByteSlice(gen.numbers))
+	rng.Read(reinterpret.Uint64SliceAsByteSlice(gen.numbers))
 }

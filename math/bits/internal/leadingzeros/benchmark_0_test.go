@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/stdlib"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/table"
@@ -14,18 +15,27 @@ import (
 // BenchmarkLeadingZeros0Table-8       	300000000	         5.41 ns/op <- Best
 // BenchmarkLeadingZeros0Stdlib-8      	300000000	         5.61 ns/op
 
-func BenchmarkLeadingZeros0Calibrate(b *testing.B) {
-	benchmark.CalibrateAnyFuncUintWithRandom(b)
+var uintSupplier = randomsupplier.NewUint()
+
+func BenchmarkLeadingZeros0CalibrateSupplier(b *testing.B) {
+	benchmark.UintSupplier(b, uintSupplier.Next)
+}
+
+func BenchmarkLeadingZeros0CalibrateBenchmarker(b *testing.B) {
+	benchmark.CalibrateUintToIntFunc(b, uintSupplier.Next)
 }
 
 func BenchmarkLeadingZeros0Naive(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, naive.LeadingZeros)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, naive.LeadingZeros)
 }
 
 func BenchmarkLeadingZeros0Table(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, table.LeadingZerosConcept)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, table.LeadingZerosConcept)
 }
 
 func BenchmarkLeadingZeros0Stdlib(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, stdlib.LeadingZeros)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, stdlib.LeadingZeros)
 }

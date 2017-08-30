@@ -10,6 +10,62 @@ const (
 // UintSize is the size of a uint in bits.
 const UintSize = uintSize
 
+// --- LeadingZeros ---
+
+// LeadingZeros returns the number of leading zero bits in x; the result is UintSize for x == 0.
+func LeadingZeros(x uint) int {
+	return 0
+}
+
+// LeadingZeros8 returns the number of leading zero bits in x; the result is 8 for x == 0.
+func LeadingZeros8(x uint8) int {
+	return 0
+}
+
+// LeadingZeros16 returns the number of leading zero bits in x; the result is 16 for x == 0.
+func LeadingZeros16(x uint16) int {
+	return 0
+}
+
+// LeadingZeros32 returns the number of leading zero bits in x; the result is 32 for x == 0.
+func LeadingZeros32(x uint32) int {
+	return 0
+}
+
+// LeadingZeros64 returns the number of leading zero bits in x; the result is 64 for x == 0.
+func LeadingZeros64(x uint64) int {
+	return 0
+}
+
+// --- TrailingZeros ---
+
+// TrailingZeros returns the number of trailing zero bits in x; the result is UintSize for x == 0.
+func TrailingZeros(x uint) int {
+	return 0
+}
+
+// TrailingZeros8 returns the number of trailing zero bits in x; the result is 8 for x == 0.
+func TrailingZeros8(x uint8) int {
+	return 0
+}
+
+// TrailingZeros16 returns the number of trailing zero bits in x; the result is 16 for x == 0.
+func TrailingZeros16(x uint16) int {
+	return 0
+}
+
+// TrailingZeros32 returns the number of trailing zero bits in x; the result is 32 for x == 0.
+func TrailingZeros32(x uint32) int {
+	return 0
+}
+
+// TrailingZeros64 returns the number of trailing zero bits in x; the result is 64 for x == 0.
+func TrailingZeros64(x uint) int {
+	return 0
+}
+
+// --- OnesCount ---
+
 // OnesCount returns the number of one bits ("population count") in x.
 func OnesCount(x uint) int {
 	if is32Bit {

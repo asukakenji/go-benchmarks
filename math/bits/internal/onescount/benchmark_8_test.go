@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
@@ -24,38 +25,52 @@ import (
 // BenchmarkOnesCount8Reset-8       	100000000	        13.8 ns/op
 // BenchmarkOnesCount8Subtract-8    	100000000	        12.9 ns/op
 
-func BenchmarkOnesCount8Calibrate(b *testing.B) {
-	benchmark.CalibrateAnyFuncUint8WithRandom(b)
+var uint8Supplier = randomsupplier.NewUint8()
+
+func BenchmarkLeadingZeros8CalibrateSupplier(b *testing.B) {
+	benchmark.Uint8Supplier(b, uint8Supplier.Next)
+}
+
+func BenchmarkLeadingZeros8CalibrateBenchmarker(b *testing.B) {
+	benchmark.CalibrateUint8ToIntFunc(b, uint8Supplier.Next)
 }
 
 func BenchmarkOnesCount8Naive(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, naive.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, naive.OnesCount8)
 }
 
 func BenchmarkOnesCount8Table(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, table.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, table.OnesCount8)
 }
 
 func BenchmarkOnesCount8Stdlib(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, stdlib.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, stdlib.OnesCount8)
 }
 
 func BenchmarkOnesCount8Pop0(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, pop0.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, pop0.OnesCount8)
 }
 
 func BenchmarkOnesCount8Pop1(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, pop1.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, pop1.OnesCount8)
 }
 
 func BenchmarkOnesCount8Pop1A(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, pop1a.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, pop1a.OnesCount8)
 }
 
 func BenchmarkOnesCount8Reset(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, reset.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, reset.OnesCount8)
 }
 
 func BenchmarkOnesCount8Subtract(b *testing.B) {
-	benchmark.IntFuncUint8WithRandom(b, subtract.OnesCount8)
+	uint8Supplier.Reset()
+	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, subtract.OnesCount8)
 }

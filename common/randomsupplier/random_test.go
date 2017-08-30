@@ -1,14 +1,14 @@
-package random_test
+package randomsupplier_test
 
 import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common"
-	"github.com/asukakenji/go-benchmarks/common/random"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 )
 
-func TestIntGenerator(t *testing.T) {
-	gen := random.NewIntGenerator()
+func TestInt(t *testing.T) {
+	gen := randomsupplier.NewInt()
 Outer:
 	for {
 		for i := uint(0); i < common.IntCountPerPage; i++ {
@@ -19,7 +19,7 @@ Outer:
 		}
 		gen.Reinitialize()
 	}
-	t.Log("IntGenerator can generate an int < 0")
+	t.Log("Int can generate an int < 0")
 
 	gen.Reset()
 	saved := []int{}
@@ -34,8 +34,8 @@ Outer:
 	}
 }
 
-func TestUintGenerator(t *testing.T) {
-	gen := random.NewUintGenerator()
+func TestUint(t *testing.T) {
+	gen := randomsupplier.NewUint()
 Outer:
 	for {
 		for i := uint(0); i < common.IntCountPerPage; i++ {
@@ -46,7 +46,7 @@ Outer:
 		}
 		gen.Reinitialize()
 	}
-	t.Log("UintGenerator can generate an uint >= 0x8000000000000000")
+	t.Log("Uint can generate an uint >= 0x8000000000000000")
 
 	gen.Reset()
 	saved := []uint{}
@@ -61,8 +61,8 @@ Outer:
 	}
 }
 
-func TestUint32Generator(t *testing.T) {
-	gen := random.NewUint32Generator()
+func TestUint32(t *testing.T) {
+	gen := randomsupplier.NewUint32()
 Outer:
 	for {
 		for i, count := uint(0), common.PageSizeInBytes>>2; i < count; i++ {
@@ -73,7 +73,7 @@ Outer:
 		}
 		gen.Reinitialize()
 	}
-	t.Log("Uint32Generator can generate an uint32 >= 0x80000000")
+	t.Log("Uint32 can generate an uint32 >= 0x80000000")
 
 	gen.Reset()
 	saved := []uint32{}
@@ -88,8 +88,8 @@ Outer:
 	}
 }
 
-func TestUint64Generator(t *testing.T) {
-	gen := random.NewUint64Generator()
+func TestUint64(t *testing.T) {
+	gen := randomsupplier.NewUint64()
 Outer:
 	for {
 		for i, count := uint(0), common.PageSizeInBytes>>3; i < count; i++ {
@@ -100,7 +100,7 @@ Outer:
 		}
 		gen.Reinitialize()
 	}
-	t.Log("Uint64Generator can generate an uint64 >= 0x8000000000000000")
+	t.Log("Uint64 can generate an uint64 >= 0x8000000000000000")
 
 	gen.Reset()
 	saved := []uint64{}
@@ -115,8 +115,8 @@ Outer:
 	}
 }
 
-func TestUintSliceGenerator(t *testing.T) {
-	gen := random.NewUintSliceGenerator()
+func TestUintSlice(t *testing.T) {
+	gen := randomsupplier.NewUintSlice()
 	for i, count := uint(0), uint(1024); i < count; i++ {
 		for j, count := uint(0), uint(1024); j < count; j++ {
 			gen.Next()

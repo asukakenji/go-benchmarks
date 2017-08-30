@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/forward"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
@@ -25,46 +26,62 @@ import (
 // BenchmarkOnesCount0SwitchConstUint-8   	300000000	         5.75 ns/op <- Best
 // BenchmarkOnesCount0FuncPointer-8       	200000000	         7.71 ns/op
 
-func BenchmarkOnesCount0Calibrate(b *testing.B) {
-	benchmark.CalibrateAnyFuncUintWithRandom(b)
+var uintSupplier = randomsupplier.NewUint()
+
+func BenchmarkLeadingZeros0CalibrateSupplier(b *testing.B) {
+	benchmark.UintSupplier(b, uintSupplier.Next)
+}
+
+func BenchmarkLeadingZeros0CalibrateBenchmarker(b *testing.B) {
+	benchmark.CalibrateUintToIntFunc(b, uintSupplier.Next)
 }
 
 func BenchmarkOnesCount0Naive(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, naive.OnesCount)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, naive.OnesCount)
 }
 
 func BenchmarkOnesCount0Table(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, table.OnesCountConcept)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, table.OnesCountConcept)
 }
 
 func BenchmarkOnesCount0Stdlib(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, stdlib.OnesCount)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, stdlib.OnesCount)
 }
 
 func BenchmarkOnesCount0Pop1A(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, pop1a.OnesCount)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, pop1a.OnesCount)
 }
 
 func BenchmarkOnesCount0Reset(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, reset.OnesCount)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, reset.OnesCount)
 }
 
 func BenchmarkOnesCount0Subtract(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, subtract.OnesCount)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, subtract.OnesCount)
 }
 
 func BenchmarkOnesCount0IfConstBool(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, forward.OnesCountIfConstBool)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, forward.OnesCountIfConstBool)
 }
 
 func BenchmarkOnesCount0IfConstUint(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, forward.OnesCountIfConstUint)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, forward.OnesCountIfConstUint)
 }
 
 func BenchmarkOnesCount0SwitchConstUint(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, forward.OnesCountSwitchConstUint)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, forward.OnesCountSwitchConstUint)
 }
 
 func BenchmarkOnesCount0FuncPointer(b *testing.B) {
-	benchmark.IntFuncUintWithRandom(b, forward.OnesCountFuncPointer)
+	uintSupplier.Reset()
+	benchmark.UintToIntFunc(b, uintSupplier.Next, forward.OnesCountFuncPointer)
 }

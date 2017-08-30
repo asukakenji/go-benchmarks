@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
+	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
@@ -32,66 +33,87 @@ import (
 // BenchmarkOnesCount32Hakmem-8           	200000000	         6.68 ns/op
 // BenchmarkOnesCount32HakmemUnrolled-8   	200000000	         6.80 ns/op
 
-func BenchmarkOnesCount32Calibrate(b *testing.B) {
-	benchmark.CalibrateAnyFuncUint32WithRandom(b)
+var uint32Supplier = randomsupplier.NewUint32()
+
+func BenchmarkLeadingZeros32CalibrateSupplier(b *testing.B) {
+	benchmark.Uint32Supplier(b, uint32Supplier.Next)
+}
+
+func BenchmarkLeadingZeros32CalibrateBenchmarker(b *testing.B) {
+	benchmark.CalibrateUint32ToIntFunc(b, uint32Supplier.Next)
 }
 
 func BenchmarkOnesCount32Naive(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, naive.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, naive.OnesCount32)
 }
 
 func BenchmarkOnesCount32Table(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, table.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, table.OnesCount32)
 }
 
 func BenchmarkOnesCount32Stdlib(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, stdlib.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, stdlib.OnesCount32)
 }
 
 func BenchmarkOnesCount32Pop0(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, pop0.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, pop0.OnesCount32)
 }
 
 func BenchmarkOnesCount32Pop1(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, pop1.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, pop1.OnesCount32)
 }
 
 func BenchmarkOnesCount32Pop1A(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, pop1a.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, pop1a.OnesCount32)
 }
 
 func BenchmarkOnesCount32Reset(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, reset.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, reset.OnesCount32)
 }
 
 func BenchmarkOnesCount32Subtract(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, subtract.OnesCount32)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, subtract.OnesCount32)
 }
 
 func BenchmarkOnesCount32CallGCC(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, onescount.OnesCount32CallGCC)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32CallGCC)
 }
 
 func BenchmarkOnesCount32Pop2(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, onescount.OnesCount32Pop2)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop2)
 }
 
 func BenchmarkOnesCount32Pop2Alt(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, onescount.OnesCount32Pop2Alt)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop2Alt)
 }
 
 func BenchmarkOnesCount32Pop3(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, onescount.OnesCount32Pop3)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop3)
 }
 
 func BenchmarkOnesCount32Pop5(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, onescount.OnesCount32Pop5)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop5)
 }
 
 func BenchmarkOnesCount32Hakmem(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, onescount.OnesCount32Hakmem)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Hakmem)
 }
 
 func BenchmarkOnesCount32HakmemUnrolled(b *testing.B) {
-	benchmark.IntFuncUint32WithRandom(b, onescount.OnesCount32HakmemUnrolled)
+	uint32Supplier.Reset()
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32HakmemUnrolled)
 }

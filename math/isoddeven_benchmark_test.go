@@ -12,15 +12,18 @@ import (
 // BenchmarkIsOdd1-8                  	300000000	         4.20 ns/op
 
 func BenchmarkIsOddNaive(b *testing.B) {
-	benchmark.BoolFuncIntWithRandom(b, math.IsOddNaive)
+	intSupplier.Reset()
+	benchmark.IntPredicate(b, intSupplier.Next, math.IsOddNaive)
 }
 
 func BenchmarkIsOdd0(b *testing.B) {
-	benchmark.BoolFuncIntWithRandom(b, math.IsOdd0)
+	intSupplier.Reset()
+	benchmark.IntPredicate(b, intSupplier.Next, math.IsOdd0)
 }
 
 func BenchmarkIsOdd1(b *testing.B) {
-	benchmark.BoolFuncIntWithRandom(b, math.IsOdd1)
+	intSupplier.Reset()
+	benchmark.IntPredicate(b, intSupplier.Next, math.IsOdd1)
 }
 
 // BenchmarkIsEvenNaive-8             	300000000	         4.48 ns/op
@@ -28,13 +31,16 @@ func BenchmarkIsOdd1(b *testing.B) {
 // BenchmarkIsEven1-8                 	300000000	         4.19 ns/op
 
 func BenchmarkIsEvenNaive(b *testing.B) {
-	benchmark.BoolFuncIntWithRandom(b, math.IsEvenNaive)
+	intSupplier.Reset()
+	benchmark.IntPredicate(b, intSupplier.Next, math.IsEvenNaive)
 }
 
 func BenchmarkIsEven0(b *testing.B) {
-	benchmark.BoolFuncIntWithRandom(b, math.IsEven0)
+	intSupplier.Reset()
+	benchmark.IntPredicate(b, intSupplier.Next, math.IsEven0)
 }
 
 func BenchmarkIsEven1(b *testing.B) {
-	benchmark.BoolFuncIntWithRandom(b, math.IsEven1)
+	intSupplier.Reset()
+	benchmark.IntPredicate(b, intSupplier.Next, math.IsEven1)
 }

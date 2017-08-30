@@ -67,7 +67,7 @@ func UintToInt16Func(b *testing.B, supplier func() uint, toInt16Func func(uint) 
 
 // Uint8ToInt16Func benchmarks a function with the signature:
 //     func(uint8) int16
-// ID: B-4-16
+// ID: B-4-8
 func Uint8ToInt16Func(b *testing.B, supplier func() uint8, toInt16Func func(uint8) int16) {
 	for i, count := 0, b.N; i < count; i++ {
 		toInt16Func(supplier())

@@ -2,15 +2,6 @@ package benchmark
 
 import "testing"
 
-// Consumer benchmarks a function with the signature:
-//     func()
-// ID: B-0-0
-func Consumer(b *testing.B, f func()) {
-	for i, count := 0, b.N; i < count; i++ {
-		f()
-	}
-}
-
 // BoolConsumer benchmarks a function with the signature:
 //     func(bool)
 // ID: B-0-1

@@ -15,23 +15,24 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount16Calibrate-8   	1000000000	         2.32 ns/op
-// BenchmarkOnesCount16Naive-8       	30000000	        55.6 ns/op
-// BenchmarkOnesCount16Table-8       	300000000	         4.69 ns/op <- Best
-// BenchmarkOnesCount16Stdlib-8      	300000000	         4.75 ns/op <- Best
-// BenchmarkOnesCount16Pop0-8        	200000000	         5.92 ns/op
-// BenchmarkOnesCount16Pop1-8        	300000000	         5.55 ns/op
-// BenchmarkOnesCount16Pop1A-8       	300000000	         5.59 ns/op
-// BenchmarkOnesCount16Reset-8       	100000000	        17.3 ns/op
-// BenchmarkOnesCount16Subtract-8    	100000000	        17.2 ns/op
+// BenchmarkOnesCount16CalibrateSupplier-8               	500000000	         3.52 ns/op
+// BenchmarkOnesCount16CalibrateBenchmarker-8            	300000000	         4.71 ns/op
+// BenchmarkOnesCount16Naive-8                           	30000000	        56.0 ns/op
+// BenchmarkOnesCount16Table-8                           	300000000	         5.86 ns/op <- Best
+// BenchmarkOnesCount16Stdlib-8                          	200000000	         6.06 ns/op <- Best
+// BenchmarkOnesCount16Pop0-8                            	200000000	         7.33 ns/op
+// BenchmarkOnesCount16Pop1-8                            	200000000	         6.92 ns/op
+// BenchmarkOnesCount16Pop1A-8                           	200000000	         6.78 ns/op
+// BenchmarkOnesCount16Reset-8                           	100000000	        19.9 ns/op
+// BenchmarkOnesCount16Subtract-8                        	100000000	        19.2 ns/op
 
 var uint16Supplier = randomsupplier.NewUint16()
 
-func BenchmarkLeadingZeros16CalibrateSupplier(b *testing.B) {
+func BenchmarkOnesCount16CalibrateSupplier(b *testing.B) {
 	benchmark.Uint16Supplier(b, uint16Supplier.Next)
 }
 
-func BenchmarkLeadingZeros16CalibrateBenchmarker(b *testing.B) {
+func BenchmarkOnesCount16CalibrateBenchmarker(b *testing.B) {
 	benchmark.CalibrateUint16ToIntFunc(b, uint16Supplier.Next)
 }
 

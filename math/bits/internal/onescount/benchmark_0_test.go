@@ -14,25 +14,26 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount0Calibrate-8         	1000000000	         2.56 ns/op
-// BenchmarkOnesCount0Naive-8             	10000000	       192 ns/op
-// BenchmarkOnesCount0Table-8             	200000000	         9.35 ns/op
-// BenchmarkOnesCount0Stdlib-8            	200000000	         6.74 ns/op
-// BenchmarkOnesCount0Pop1A-8             	200000000	         6.41 ns/op
-// BenchmarkOnesCount0Reset-8             	50000000	        31.9 ns/op
-// BenchmarkOnesCount0Subtract-8          	30000000	        44.7 ns/op
-// BenchmarkOnesCount0IfConstBool-8       	300000000	         5.75 ns/op <- Best
-// BenchmarkOnesCount0IfConstUint-8       	300000000	         5.78 ns/op <- Best
-// BenchmarkOnesCount0SwitchConstUint-8   	300000000	         5.75 ns/op <- Best
-// BenchmarkOnesCount0FuncPointer-8       	200000000	         7.71 ns/op
+// BenchmarkOnesCount0CalibrateSupplier-8               	300000000	         4.13 ns/op
+// BenchmarkOnesCount0CalibrateBenchmarker-8            	300000000	         5.05 ns/op
+// BenchmarkOnesCount0Naive-8                           	10000000	       183 ns/op
+// BenchmarkOnesCount0Table-8                           	100000000	        10.8 ns/op
+// BenchmarkOnesCount0Stdlib-8                          	200000000	         8.00 ns/op
+// BenchmarkOnesCount0Pop1A-8                           	200000000	         7.67 ns/op
+// BenchmarkOnesCount0Reset-8                           	50000000	        34.8 ns/op
+// BenchmarkOnesCount0Subtract-8                        	30000000	        45.2 ns/op
+// BenchmarkOnesCount0IfConstBool-8                     	200000000	         6.91 ns/op <- Best
+// BenchmarkOnesCount0IfConstUint-8                     	200000000	         6.91 ns/op <- Best
+// BenchmarkOnesCount0SwitchConstUint-8                 	200000000	         6.93 ns/op <- Best
+// BenchmarkOnesCount0FuncPointer-8                     	200000000	         9.48 ns/op
 
 var uintSupplier = randomsupplier.NewUint()
 
-func BenchmarkLeadingZeros0CalibrateSupplier(b *testing.B) {
+func BenchmarkOnesCount0CalibrateSupplier(b *testing.B) {
 	benchmark.UintSupplier(b, uintSupplier.Next)
 }
 
-func BenchmarkLeadingZeros0CalibrateBenchmarker(b *testing.B) {
+func BenchmarkOnesCount0CalibrateBenchmarker(b *testing.B) {
 	benchmark.CalibrateUintToIntFunc(b, uintSupplier.Next)
 }
 

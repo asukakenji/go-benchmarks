@@ -6,27 +6,7 @@ http://www.hackersdelight.org/hdcodetxt/pop.c.txt
 http://www.dalkescientific.com/writings/diary/archive/2008/07/03/hakmem_and_other_popcounts.html
 */
 
-// // These functions calls the built-ins in GCC / clang.
-//
-// static inline int popcount(unsigned int x) {
-//     return __builtin_popcount(x);
-// }
-//
-// static inline int popcountl(unsigned long x) {
-//     return __builtin_popcountl(x);
-// }
-//
-// static inline int popcountll(unsigned long long x) {
-//     return __builtin_popcountll(x);
-// }
-import "C"
-
 import "github.com/asukakenji/go-benchmarks/common/reinterpret"
-
-// OnesCount64CallGCC returns the number of one bits ("population count") in x.
-func OnesCount64CallGCC(x uint64) int {
-	return int(C.popcountll(C.ulonglong(x)))
-}
 
 /* Does NOT work! */
 func onesCount64Pop2(x uint64) int {

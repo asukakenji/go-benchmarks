@@ -6,6 +6,7 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/common/constantsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/gccbuiltin"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
@@ -86,7 +87,7 @@ func BenchmarkOnesCount32WorstCaseSubtract(b *testing.B) {
 
 func BenchmarkOnesCount32WorstCaseCallGCC(b *testing.B) {
 	uint32Supplier.Reset()
-	benchmark.Uint32ToIntFunc(b, uint32SupplierWorstCase.Next, onescount.OnesCount32CallGCC)
+	benchmark.Uint32ToIntFunc(b, uint32SupplierWorstCase.Next, gccbuiltin.OnesCount32)
 }
 
 func BenchmarkOnesCount32WorstCasePop2(b *testing.B) {

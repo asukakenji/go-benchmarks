@@ -13,7 +13,6 @@ func TestBitCount64All(t *testing.T) {
 		name string
 		f    func(uint64) int
 	}{
-		{"OnesCount64CallGCC", OnesCount64CallGCC},
 		{"OnesCount64Pop3", OnesCount64Pop3},
 		{"OnesCount64Pop5", OnesCount64Pop5},
 		{"OnesCount64Pop6", table.OnesCount64},

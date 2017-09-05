@@ -6,6 +6,7 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/gccbuiltin"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
@@ -84,7 +85,7 @@ func BenchmarkOnesCount64Subtract(b *testing.B) {
 
 func BenchmarkOnesCount64CallGCC(b *testing.B) {
 	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, onescount.OnesCount64CallGCC)
+	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, gccbuiltin.OnesCount64)
 }
 
 func BenchmarkOnesCount64Pop3(b *testing.B) {

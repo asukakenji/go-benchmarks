@@ -5,117 +5,92 @@ import (
 	"testing"
 )
 
-var (
-	_isBoolToUint32FuncCalibrated   = map[uintptr]struct{}{}
-	_isIntToUint32FuncCalibrated    = map[uintptr]struct{}{}
-	_isInt8ToUint32FuncCalibrated   = map[uintptr]struct{}{}
-	_isInt16ToUint32FuncCalibrated  = map[uintptr]struct{}{}
-	_isInt32ToUint32FuncCalibrated  = map[uintptr]struct{}{}
-	_isInt64ToUint32FuncCalibrated  = map[uintptr]struct{}{}
-	_isUintToUint32FuncCalibrated   = map[uintptr]struct{}{}
-	_isUint8ToUint32FuncCalibrated  = map[uintptr]struct{}{}
-	_isUint16ToUint32FuncCalibrated = map[uintptr]struct{}{}
-	_isUint32ToUint32FuncCalibrated = map[uintptr]struct{}{}
-	_isUint64ToUint32FuncCalibrated = map[uintptr]struct{}{}
-)
-
 func isBoolToUint32FuncCalibrated(supplier func() bool) bool {
-	_, ok := _isBoolToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Bool, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isIntToUint32FuncCalibrated(supplier func() int) bool {
-	_, ok := _isIntToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Int, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isInt8ToUint32FuncCalibrated(supplier func() int8) bool {
-	_, ok := _isInt8ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Int8, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isInt16ToUint32FuncCalibrated(supplier func() int16) bool {
-	_, ok := _isInt16ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Int16, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isInt32ToUint32FuncCalibrated(supplier func() int32) bool {
-	_, ok := _isInt32ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Int32, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isInt64ToUint32FuncCalibrated(supplier func() int64) bool {
-	_, ok := _isInt64ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Int64, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isUintToUint32FuncCalibrated(supplier func() uint) bool {
-	_, ok := _isUintToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Uint, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isUint8ToUint32FuncCalibrated(supplier func() uint8) bool {
-	_, ok := _isUint8ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Uint8, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isUint16ToUint32FuncCalibrated(supplier func() uint16) bool {
-	_, ok := _isUint16ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Uint16, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isUint32ToUint32FuncCalibrated(supplier func() uint32) bool {
-	_, ok := _isUint32ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Uint32, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func isUint64ToUint32FuncCalibrated(supplier func() uint64) bool {
-	_, ok := _isUint64ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()]
-	return ok
+	return isCalibrated(reflect.Uint64, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setBoolToUint32FuncCalibrated(supplier func() bool) {
-	_isBoolToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Bool, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setIntToUint32FuncCalibrated(supplier func() int) {
-	_isIntToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Int, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setInt8ToUint32FuncCalibrated(supplier func() int8) {
-	_isInt8ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Int8, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setInt16ToUint32FuncCalibrated(supplier func() int16) {
-	_isInt16ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Int16, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setInt32ToUint32FuncCalibrated(supplier func() int32) {
-	_isInt32ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Int32, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setInt64ToUint32FuncCalibrated(supplier func() int64) {
-	_isInt64ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Int64, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setUintToUint32FuncCalibrated(supplier func() uint) {
-	_isUintToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Uint, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setUint8ToUint32FuncCalibrated(supplier func() uint8) {
-	_isUint8ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Uint8, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setUint16ToUint32FuncCalibrated(supplier func() uint16) {
-	_isUint16ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Uint16, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setUint32ToUint32FuncCalibrated(supplier func() uint32) {
-	_isUint32ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Uint32, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 func setUint64ToUint32FuncCalibrated(supplier func() uint64) {
-	_isUint64ToUint32FuncCalibrated[reflect.ValueOf(supplier).Pointer()] = struct{}{}
+	setCalibrated(reflect.Uint64, reflect.Uint32, reflect.ValueOf(supplier).Pointer())
 }
 
 // BoolToUint32Func benchmarks a function with the signature:

@@ -12,11 +12,11 @@ func OnesCount32(x uint32) int {
 }
 
 /* Does NOT work! */
-func onesCount64(x uint64) int {
-	n := (x >> 1) & 01333333333333333333333 // Count bits in
-	x = x - n                               // each 3-bit
-	n = (n >> 1) & 01333333333333333333333  // field.
-	x = x - n
-	x = (x + (x >> 3)) & 00707070707070707070707             // 6-bit sums.
-	return int(((x * 000404040404040404) >> 58) + (x >> 62)) // Add 6-bit sums.
-}
+// func onesCount64(x uint64) int {
+// 	n := (x >> 1) & 01333333333333333333333 // Count bits in
+// 	x = x - n                               // each 3-bit
+// 	n = (n >> 1) & 01333333333333333333333  // field.
+// 	x = x - n
+// 	x = (x + (x >> 3)) & 00707070707070707070707             // 6-bit sums.
+// 	return int(((x * 000404040404040404) >> 58) + (x >> 62)) // Add 6-bit sums.
+// }

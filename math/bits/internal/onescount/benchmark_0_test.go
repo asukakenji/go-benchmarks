@@ -14,18 +14,18 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount0CalibrateSupplier-8               	300000000	         4.13 ns/op
-// BenchmarkOnesCount0CalibrateBenchmarker-8            	300000000	         5.05 ns/op
-// BenchmarkOnesCount0Naive-8                           	10000000	       183 ns/op
+// BenchmarkOnesCount0CalibrateSupplier-8               	500000000	         3.64 ns/op
+// BenchmarkOnesCount0CalibrateBenchmarker-8            	300000000	         4.82 ns/op
+// BenchmarkOnesCount0Naive-8                           	10000000	       179 ns/op
 // BenchmarkOnesCount0Table-8                           	100000000	        10.8 ns/op
-// BenchmarkOnesCount0Stdlib-8                          	200000000	         8.00 ns/op
-// BenchmarkOnesCount0Pop1A-8                           	200000000	         7.67 ns/op
-// BenchmarkOnesCount0Reset-8                           	50000000	        34.8 ns/op
-// BenchmarkOnesCount0Subtract-8                        	30000000	        45.2 ns/op
-// BenchmarkOnesCount0IfConstBool-8                     	200000000	         6.91 ns/op <- Best
-// BenchmarkOnesCount0IfConstUint-8                     	200000000	         6.91 ns/op <- Best
-// BenchmarkOnesCount0SwitchConstUint-8                 	200000000	         6.93 ns/op <- Best
-// BenchmarkOnesCount0FuncPointer-8                     	200000000	         9.48 ns/op
+// BenchmarkOnesCount0Stdlib-8                          	200000000	         7.63 ns/op
+// BenchmarkOnesCount0Pop1A-8                           	200000000	         7.25 ns/op
+// BenchmarkOnesCount0Reset-8                           	50000000	        34.5 ns/op
+// BenchmarkOnesCount0Subtract-8                        	50000000	        37.2 ns/op
+// BenchmarkOnesCount0IfConstBool-8                     	200000000	         6.70 ns/op <- Best
+// BenchmarkOnesCount0IfConstUint-8                     	200000000	         6.68 ns/op <- Best
+// BenchmarkOnesCount0SwitchConstUint-8                 	200000000	         6.67 ns/op <- Best
+// BenchmarkOnesCount0FuncPointer-8                     	200000000	         8.95 ns/op
 
 var uintSupplier = randomsupplier.NewUint()
 

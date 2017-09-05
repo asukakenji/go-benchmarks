@@ -12,7 +12,7 @@ func TestOnesCountAllNaive(t *testing.T) {
 	// onescount.NaiveTest8(t, pop2.OnesCount8)
 	// onescount.NaiveTest16(t, pop2.OnesCount16)
 	onescount.NaiveTest32(t, pop2.OnesCount32)
-	// onescount.NaiveTest64(t, pop2.OnesCount64)
+	onescount.NaiveTest64(t, pop2.OnesCount64)
 }
 
 func TestOnesCountAllTable(t *testing.T) {
@@ -21,11 +21,11 @@ func TestOnesCountAllTable(t *testing.T) {
 		Uint8:  nil, // pop2.OnesCount8,
 		Uint16: nil, // pop2.OnesCount16,
 		Uint32: pop2.OnesCount32,
-		Uint64: nil, // pop2.OnesCount64,
+		Uint64: pop2.OnesCount64,
 	})
 	// onescount.TableTest(t, pop2.OnesCount)
 	// onescount.TableTest8(t, pop2.OnesCount8)
 	// onescount.TableTest16(t, pop2.OnesCount16)
 	onescount.TableTest32(t, pop2.OnesCount32)
-	// onescount.TableTest64(t, pop2.OnesCount64)
+	onescount.TableTest64(t, pop2.OnesCount64)
 }

@@ -21,23 +21,23 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount32CalibrateSupplier-8               	500000000	         3.27 ns/op
-// BenchmarkOnesCount32CalibrateBenchmarker-8            	300000000	         4.73 ns/op
-// BenchmarkOnesCount32Naive-8                           	20000000	        98.9 ns/op
-// BenchmarkOnesCount32Table-8                           	200000000	         7.02 ns/op
-// BenchmarkOnesCount32Stdlib-8                          	200000000	         7.18 ns/op
-// BenchmarkOnesCount32Pop0-8                            	200000000	         8.03 ns/op
-// BenchmarkOnesCount32Pop1-8                            	200000000	         7.22 ns/op
-// BenchmarkOnesCount32Pop1A-8                           	200000000	         6.72 ns/op <- Best
-// BenchmarkOnesCount32Reset-8                           	50000000	        23.7 ns/op
-// BenchmarkOnesCount32Subtract-8                        	50000000	        30.6 ns/op
-// BenchmarkOnesCount32CallGCC-8                         	20000000	        64.2 ns/op
-// BenchmarkOnesCount32Pop2-8                            	200000000	         7.88 ns/op
-// BenchmarkOnesCount32Pop2Alt-8                         	200000000	         7.05 ns/op
-// BenchmarkOnesCount32Pop3-8                            	200000000	         6.98 ns/op <- Best
-// BenchmarkOnesCount32Pop5-8                            	10000000	       155 ns/op
-// BenchmarkOnesCount32Hakmem-8                          	200000000	         8.39 ns/op
-// BenchmarkOnesCount32HakmemUnrolled-8                  	200000000	         8.24 ns/op
+// BenchmarkOnesCount32CalibrateSupplier-8               	500000000	         3.28 ns/op
+// BenchmarkOnesCount32CalibrateBenchmarker-8            	300000000	         4.76 ns/op
+// BenchmarkOnesCount32Naive-8                           	20000000	        95.1 ns/op
+// BenchmarkOnesCount32Table-8                           	200000000	         6.72 ns/op <- Best
+// BenchmarkOnesCount32Stdlib-8                          	200000000	         6.85 ns/op
+// BenchmarkOnesCount32Pop0-8                            	200000000	         7.70 ns/op
+// BenchmarkOnesCount32Pop1-8                            	200000000	         6.84 ns/op
+// BenchmarkOnesCount32Pop1A-8                           	200000000	         6.42 ns/op <- Best
+// BenchmarkOnesCount32Reset-8                           	100000000	        23.7 ns/op
+// BenchmarkOnesCount32Subtract-8                        	50000000	        24.0 ns/op
+// BenchmarkOnesCount32CallGCC-8                         	20000000	        65.7 ns/op
+// BenchmarkOnesCount32Pop2-8                            	200000000	         7.59 ns/op
+// BenchmarkOnesCount32Pop2Alt-8                         	200000000	         6.70 ns/op <- Best
+// BenchmarkOnesCount32Pop3-8                            	200000000	         6.66 ns/op <- Best
+// BenchmarkOnesCount32Pop5-8                            	10000000	       151 ns/op
+// BenchmarkOnesCount32Hakmem-8                          	200000000	         8.27 ns/op
+// BenchmarkOnesCount32HakmemUnrolled-8                  	200000000	         8.04 ns/op
 
 var uint32Supplier = randomsupplier.NewUint32()
 

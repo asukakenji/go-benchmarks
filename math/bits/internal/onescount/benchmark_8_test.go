@@ -15,16 +15,16 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount8CalibrateSupplier-8               	500000000	         3.86 ns/op
-// BenchmarkOnesCount8CalibrateBenchmarker-8            	300000000	         4.87 ns/op
-// BenchmarkOnesCount8Naive-8                           	50000000	        32.2 ns/op
-// BenchmarkOnesCount8Table-8                           	300000000	         5.29 ns/op <- Best
-// BenchmarkOnesCount8Stdlib-8                          	300000000	         5.31 ns/op <- Best
-// BenchmarkOnesCount8Pop0-8                            	200000000	         6.74 ns/op
-// BenchmarkOnesCount8Pop1-8                            	200000000	         6.30 ns/op
-// BenchmarkOnesCount8Pop1A-8                           	200000000	         6.29 ns/op
-// BenchmarkOnesCount8Reset-8                           	100000000	        15.9 ns/op
-// BenchmarkOnesCount8Subtract-8                        	100000000	        14.2 ns/op
+// BenchmarkOnesCount8CalibrateSupplier-8               	500000000	         3.56 ns/op
+// BenchmarkOnesCount8CalibrateBenchmarker-8            	300000000	         5.02 ns/op
+// BenchmarkOnesCount8Naive-8                           	50000000	        31.7 ns/op
+// BenchmarkOnesCount8Table-8                           	300000000	         5.42 ns/op <- Best
+// BenchmarkOnesCount8Stdlib-8                          	300000000	         5.41 ns/op <- Best
+// BenchmarkOnesCount8Pop0-8                            	200000000	         6.84 ns/op
+// BenchmarkOnesCount8Pop1-8                            	200000000	         6.32 ns/op
+// BenchmarkOnesCount8Pop1A-8                           	200000000	         6.33 ns/op
+// BenchmarkOnesCount8Reset-8                           	100000000	        15.4 ns/op
+// BenchmarkOnesCount8Subtract-8                        	100000000	        13.4 ns/op
 
 var uint8Supplier = randomsupplier.NewUint8()
 

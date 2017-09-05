@@ -77,6 +77,82 @@ func BasicTableTest(t *testing.T, onesCountFuncs *OnesCountFuncs) {
 				t.Errorf("OnesCount64(0x%016x) = %d, expected %d", x, got, expected)
 			}
 		}
+		cases := []struct {
+			x        uint64
+			expected int
+		}{
+			{0xfffffffffffffff7, 63},
+			{0xfffffffffffffffb, 63},
+			{0xfffffffffffffffd, 63},
+			{0xfffffffffffffffe, 63},
+			{0xffffffffffffff7f, 63},
+			{0xffffffffffffffbf, 63},
+			{0xffffffffffffffdf, 63},
+			{0xffffffffffffffef, 63},
+			{0xfffffffffffff7ff, 63},
+			{0xfffffffffffffbff, 63},
+			{0xfffffffffffffdff, 63},
+			{0xfffffffffffffeff, 63},
+			{0xffffffffffff7fff, 63},
+			{0xffffffffffffbfff, 63},
+			{0xffffffffffffdfff, 63},
+			{0xffffffffffffefff, 63},
+			{0xfffffffffff7ffff, 63},
+			{0xfffffffffffbffff, 63},
+			{0xfffffffffffdffff, 63},
+			{0xfffffffffffeffff, 63},
+			{0xffffffffff7fffff, 63},
+			{0xffffffffffbfffff, 63},
+			{0xffffffffffdfffff, 63},
+			{0xffffffffffefffff, 63},
+			{0xfffffffff7ffffff, 63},
+			{0xfffffffffbffffff, 63},
+			{0xfffffffffdffffff, 63},
+			{0xfffffffffeffffff, 63},
+			{0xffffffff7fffffff, 63},
+			{0xffffffffbfffffff, 63},
+			{0xffffffffdfffffff, 63},
+			{0xffffffffefffffff, 63},
+			{0xfffffff7ffffffff, 63},
+			{0xfffffffbffffffff, 63},
+			{0xfffffffdffffffff, 63},
+			{0xfffffffeffffffff, 63},
+			{0xffffff7fffffffff, 63},
+			{0xffffffbfffffffff, 63},
+			{0xffffffdfffffffff, 63},
+			{0xffffffefffffffff, 63},
+			{0xfffff7ffffffffff, 63},
+			{0xfffffbffffffffff, 63},
+			{0xfffffdffffffffff, 63},
+			{0xfffffeffffffffff, 63},
+			{0xffff7fffffffffff, 63},
+			{0xffffbfffffffffff, 63},
+			{0xffffdfffffffffff, 63},
+			{0xffffefffffffffff, 63},
+			{0xfff7ffffffffffff, 63},
+			{0xfffbffffffffffff, 63},
+			{0xfffdffffffffffff, 63},
+			{0xfffeffffffffffff, 63},
+			{0xff7fffffffffffff, 63},
+			{0xffbfffffffffffff, 63},
+			{0xffdfffffffffffff, 63},
+			{0xffefffffffffffff, 63},
+			{0xf7ffffffffffffff, 63},
+			{0xfbffffffffffffff, 63},
+			{0xfdffffffffffffff, 63},
+			{0xfeffffffffffffff, 63},
+			{0x7fffffffffffffff, 63},
+			{0xbfffffffffffffff, 63},
+			{0xdfffffffffffffff, 63},
+			{0xefffffffffffffff, 63},
+			{0xffffffffffffffff, 64},
+		}
+		for _, c := range cases {
+			got := onesCountFuncs.Uint64(c.x)
+			if got != c.expected {
+				t.Errorf("OnesCount64(0x%016x) = %d, expected %d", c.x, got, c.expected)
+			}
+		}
 	}
 }
 

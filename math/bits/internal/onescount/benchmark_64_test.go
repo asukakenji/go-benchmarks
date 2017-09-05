@@ -5,13 +5,14 @@ import (
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/asm"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/gccbuiltin"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/hakmem"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop2"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop3"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop5"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
@@ -20,21 +21,22 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount64CalibrateSupplier-8               	500000000	         3.58 ns/op
-// BenchmarkOnesCount64CalibrateBenchmarker-8            	300000000	         4.84 ns/op
-// BenchmarkOnesCount64Naive-8                           	10000000	       186 ns/op
-// BenchmarkOnesCount64Table-8                           	200000000	         9.51 ns/op
-// BenchmarkOnesCount64Stdlib-8                          	200000000	         7.85 ns/op
-// BenchmarkOnesCount64Pop0-8                            	200000000	         8.72 ns/op
-// BenchmarkOnesCount64Pop1-8                            	200000000	         7.81 ns/op
-// BenchmarkOnesCount64Pop1Alt-8                         	200000000	         6.89 ns/op <- Best
-// BenchmarkOnesCount64Reset-8                           	50000000	        34.9 ns/op
-// BenchmarkOnesCount64Subtract-8                        	30000000	        45.9 ns/op
-// BenchmarkOnesCount64CallGCC-8                         	20000000	        66.5 ns/op
-// BenchmarkOnesCount64Pop3-8                            	200000000	         7.19 ns/op <- Best
-// BenchmarkOnesCount64Pop5-8                            	 5000000	       315 ns/op
-// BenchmarkOnesCount64Hakmem-8                          	200000000	         8.08 ns/op
-// BenchmarkOnesCount64Asm-8                             	200000000	         7.07 ns/op <- Best
+// BenchmarkOnesCount64CalibrateSupplier-8               	500000000	         3.34 ns/op
+// BenchmarkOnesCount64CalibrateBenchmarker-8            	300000000	         4.41 ns/op
+// BenchmarkOnesCount64Naive-8                           	10000000	       179 ns/op
+// BenchmarkOnesCount64Table-8                           	200000000	         9.07 ns/op
+// BenchmarkOnesCount64Stdlib-8                          	200000000	         7.38 ns/op
+// BenchmarkOnesCount64Pop0-8                            	200000000	         8.16 ns/op
+// BenchmarkOnesCount64Pop1-8                            	200000000	         7.23 ns/op
+// BenchmarkOnesCount64Pop1Alt-8                         	200000000	         6.49 ns/op <- Best
+// BenchmarkOnesCount64Reset-8                           	50000000	        32.5 ns/op
+// BenchmarkOnesCount64Subtract-8                        	50000000	        36.1 ns/op
+// BenchmarkOnesCount64CallGCC-8                         	20000000	        63.2 ns/op
+// BenchmarkOnesCount64Pop2-8                            	200000000	         7.95 ns/op
+// BenchmarkOnesCount64Pop3-8                            	200000000	         6.75 ns/op <- Best
+// BenchmarkOnesCount64Pop5-8                            	 5000000	       305 ns/op
+// BenchmarkOnesCount64Hakmem-8                          	200000000	         7.38 ns/op
+// BenchmarkOnesCount64Asm-8                             	200000000	         6.59 ns/op <- Best
 
 var uint64Supplier = randomsupplier.NewUint64()
 
@@ -91,6 +93,11 @@ func BenchmarkOnesCount64CallGCC(b *testing.B) {
 	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, gccbuiltin.OnesCount64)
 }
 
+func BenchmarkOnesCount64Pop2(b *testing.B) {
+	uint64Supplier.Reset()
+	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, pop2.OnesCount64)
+}
+
 func BenchmarkOnesCount64Pop3(b *testing.B) {
 	uint64Supplier.Reset()
 	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, pop3.OnesCount64)
@@ -108,5 +115,5 @@ func BenchmarkOnesCount64Hakmem(b *testing.B) {
 
 func BenchmarkOnesCount64Asm(b *testing.B) {
 	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, onescount.OnesCount64Asm)
+	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, asm.OnesCount64)
 }

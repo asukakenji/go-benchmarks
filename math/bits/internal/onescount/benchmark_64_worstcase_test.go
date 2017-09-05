@@ -7,10 +7,13 @@ import (
 	"github.com/asukakenji/go-benchmarks/common/constantsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/gccbuiltin"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/hakmem"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop3"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop5"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/stdlib"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/subtract"
@@ -90,17 +93,17 @@ func BenchmarkOnesCount64WorstCaseCallGCC(b *testing.B) {
 
 func BenchmarkOnesCount64WorstCasePop3(b *testing.B) {
 	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64SupplierWorstCase.Next, onescount.OnesCount64Pop3)
+	benchmark.Uint64ToIntFunc(b, uint64SupplierWorstCase.Next, pop3.OnesCount64)
 }
 
 func BenchmarkOnesCount64WorstCasePop5(b *testing.B) {
 	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64SupplierWorstCase.Next, onescount.OnesCount64Pop5)
+	benchmark.Uint64ToIntFunc(b, uint64SupplierWorstCase.Next, pop5.OnesCount64)
 }
 
 func BenchmarkOnesCount64WorstCaseHakmem(b *testing.B) {
 	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64SupplierWorstCase.Next, onescount.OnesCount64Hakmem)
+	benchmark.Uint64ToIntFunc(b, uint64SupplierWorstCase.Next, hakmem.OnesCount64)
 }
 
 func BenchmarkOnesCount64WorstCaseAsm(b *testing.B) {

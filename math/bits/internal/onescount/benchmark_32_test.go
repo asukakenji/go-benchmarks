@@ -5,12 +5,16 @@ import (
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/gccbuiltin"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/hakmem"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop2"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop2a"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop3"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop5"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/stdlib"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/subtract"
@@ -92,30 +96,30 @@ func BenchmarkOnesCount32CallGCC(b *testing.B) {
 
 func BenchmarkOnesCount32Pop2(b *testing.B) {
 	uint32Supplier.Reset()
-	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop2)
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, pop2.OnesCount32)
 }
 
 func BenchmarkOnesCount32Pop2Alt(b *testing.B) {
 	uint32Supplier.Reset()
-	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop2Alt)
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, pop2a.OnesCount32)
 }
 
 func BenchmarkOnesCount32Pop3(b *testing.B) {
 	uint32Supplier.Reset()
-	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop3)
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, pop3.OnesCount32)
 }
 
 func BenchmarkOnesCount32Pop5(b *testing.B) {
 	uint32Supplier.Reset()
-	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Pop5)
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, pop5.OnesCount32)
 }
 
 func BenchmarkOnesCount32Hakmem(b *testing.B) {
 	uint32Supplier.Reset()
-	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32Hakmem)
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, hakmem.OnesCount32)
 }
 
 func BenchmarkOnesCount32HakmemUnrolled(b *testing.B) {
 	uint32Supplier.Reset()
-	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, onescount.OnesCount32HakmemUnrolled)
+	benchmark.Uint32ToIntFunc(b, uint32Supplier.Next, hakmem.OnesCount32Unrolled)
 }

@@ -9,22 +9,33 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop7"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop8"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop9"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/stdlib"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/subtract"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount8WorstCaseCalibrateSupplier-8      	2000000000	         1.82 ns/op
-// BenchmarkOnesCount8WorstCaseCalibrateBenchmarker-8   	500000000	         3.13 ns/op
-// BenchmarkOnesCount8WorstCaseNaive-8                  	200000000	         8.87 ns/op
-// BenchmarkOnesCount8WorstCaseTable-8                  	500000000	         3.13 ns/op <- Best
-// BenchmarkOnesCount8WorstCaseStdlib-8                 	500000000	         3.16 ns/op <- Best
-// BenchmarkOnesCount8WorstCasePop0-8                   	300000000	         4.27 ns/op
-// BenchmarkOnesCount8WorstCasePop1-8                   	500000000	         3.93 ns/op
-// BenchmarkOnesCount8WorstCasePop1A-8                  	500000000	         3.93 ns/op
-// BenchmarkOnesCount8WorstCaseReset-8                  	200000000	         6.79 ns/op
-// BenchmarkOnesCount8WorstCaseSubtract-8               	200000000	         6.79 ns/op
+// BenchmarkOnesCount8WorstCaseCalibrateSupplier-8      	2000000000	         1.86 ns/op
+// BenchmarkOnesCount8WorstCaseCalibrateBenchmarker-8   	500000000	         3.23 ns/op
+// BenchmarkOnesCount8WorstCaseNaive-8                  	200000000	         9.02 ns/op
+// BenchmarkOnesCount8WorstCaseTable-8                  	500000000	         3.18 ns/op <- Best
+// BenchmarkOnesCount8WorstCaseStdlib-8                 	500000000	         3.21 ns/op <- Best
+// BenchmarkOnesCount8WorstCasePop0-8                   	300000000	         4.39 ns/op
+// BenchmarkOnesCount8WorstCasePop1-8                   	300000000	         4.02 ns/op
+// BenchmarkOnesCount8WorstCasePop1A-8                  	500000000	         4.03 ns/op
+// BenchmarkOnesCount8WorstCaseReset-8                  	200000000	         6.95 ns/op
+// BenchmarkOnesCount8WorstCaseSubtract-8               	200000000	         7.02 ns/op
+// BenchmarkOnesCount8WorstCasePop7-8                   	500000000	         3.54 ns/op
+// BenchmarkOnesCount8WorstCasePop7Unrolled-8           	500000000	         3.56 ns/op
+// BenchmarkOnesCount7WorstCasePop8-8                   	500000000	         3.47 ns/op <- Best (7)
+// BenchmarkOnesCount7WorstCasePop8Unrolled-8           	500000000	         3.46 ns/op <- Best (7)
+// BenchmarkOnesCount8WorstCasePop8-8                   	500000000	         3.88 ns/op
+// BenchmarkOnesCount8WorstCasePop8Unrolled-8           	500000000	         3.84 ns/op
+// BenchmarkOnesCount8WorstCasePop9-8                   	500000000	         3.74 ns/op
+// BenchmarkOnesCount8WorstCasePop9Unrolled-8           	500000000	         3.74 ns/op
 
 var uint8SupplierWorstCase = constantsupplier.NewUint8(^uint8(0))
 
@@ -66,4 +77,36 @@ func BenchmarkOnesCount8WorstCaseReset(b *testing.B) {
 
 func BenchmarkOnesCount8WorstCaseSubtract(b *testing.B) {
 	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, subtract.OnesCount8)
+}
+
+func BenchmarkOnesCount8WorstCasePop7(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop7.OnesCount8)
+}
+
+func BenchmarkOnesCount8WorstCasePop7Unrolled(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop7.OnesCount8Unrolled)
+}
+
+func BenchmarkOnesCount7WorstCasePop8(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop8.OnesCount7)
+}
+
+func BenchmarkOnesCount7WorstCasePop8Unrolled(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop8.OnesCount7Unrolled)
+}
+
+func BenchmarkOnesCount8WorstCasePop8(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop8.OnesCount8)
+}
+
+func BenchmarkOnesCount8WorstCasePop8Unrolled(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop8.OnesCount8Unrolled)
+}
+
+func BenchmarkOnesCount8WorstCasePop9(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop9.OnesCount8)
+}
+
+func BenchmarkOnesCount8WorstCasePop9Unrolled(b *testing.B) {
+	benchmark.Uint8ToIntFunc(b, uint8SupplierWorstCase.Next, pop9.OnesCount8Unrolled)
 }

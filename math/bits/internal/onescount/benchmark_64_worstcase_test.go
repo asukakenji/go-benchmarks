@@ -21,22 +21,22 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount64WorstCaseCalibrateSupplier-8      	2000000000	         1.83 ns/op
-// BenchmarkOnesCount64WorstCaseCalibrateBenchmarker-8   	1000000000	         2.87 ns/op
-// BenchmarkOnesCount64WorstCaseNaive-8                  	30000000	        46.0 ns/op
-// BenchmarkOnesCount64WorstCaseTable-8                  	200000000	         6.43 ns/op
-// BenchmarkOnesCount64WorstCaseStdlib-8                 	300000000	         4.97 ns/op
-// BenchmarkOnesCount64WorstCasePop0-8                   	300000000	         5.83 ns/op
-// BenchmarkOnesCount64WorstCasePop1-8                   	300000000	         4.81 ns/op
-// BenchmarkOnesCount64WorstCasePop1Alt-8                	300000000	         4.29 ns/op <- Best
-// BenchmarkOnesCount64WorstCaseReset-8                  	30000000	        45.9 ns/op
-// BenchmarkOnesCount64WorstCaseSubtract-8               	50000000	        35.6 ns/op
-// BenchmarkOnesCount64WorstCaseCallGCC-8                	30000000	        59.3 ns/op
-// BenchmarkOnesCount64WorstCasePop2-8                   	500000000	         3.39 ns/op <- Best
-// BenchmarkOnesCount64WorstCasePop3-8                   	300000000	         4.47 ns/op
-// BenchmarkOnesCount64WorstCasePop5-8                   	 5000000	       300 ns/op
-// BenchmarkOnesCount64WorstCaseHakmem-8                 	300000000	         5.00 ns/op
-// BenchmarkOnesCount64WorstCaseAsm-8                    	300000000	         4.36 ns/op <- Best
+// BenchmarkOnesCount64WorstCaseCalibrateSupplier-8      	2000000000	         1.86 ns/op
+// BenchmarkOnesCount64WorstCaseCalibrateBenchmarker-8   	1000000000	         2.92 ns/op
+// BenchmarkOnesCount64WorstCaseNaive-8                  	30000000	        46.8 ns/op
+// BenchmarkOnesCount64WorstCaseTable-8                  	200000000	         6.56 ns/op
+// BenchmarkOnesCount64WorstCaseStdlib-8                 	300000000	         5.16 ns/op
+// BenchmarkOnesCount64WorstCasePop0-8                   	200000000	         6.09 ns/op
+// BenchmarkOnesCount64WorstCasePop1-8                   	300000000	         5.00 ns/op
+// BenchmarkOnesCount64WorstCasePop1Alt-8                	300000000	         4.42 ns/op <- Best
+// BenchmarkOnesCount64WorstCaseReset-8                  	30000000	        47.1 ns/op
+// BenchmarkOnesCount64WorstCaseSubtract-8               	50000000	        36.6 ns/op
+// BenchmarkOnesCount64WorstCaseCallGCC-8                	20000000	        65.1 ns/op
+// BenchmarkOnesCount64WorstCasePop2-8                   	500000000	         3.51 ns/op <- Best
+// BenchmarkOnesCount64WorstCasePop3-8                   	300000000	         4.62 ns/op
+// BenchmarkOnesCount64WorstCasePop5-8                   	 5000000	       291 ns/op
+// BenchmarkOnesCount64WorstCaseHakmem-8                 	300000000	         5.16 ns/op
+// BenchmarkOnesCount64WorstCaseAsm-8                    	300000000	         4.59 ns/op <- Best
 
 var uint64SupplierWorstCase = constantsupplier.NewUint64(^uint64(0))
 

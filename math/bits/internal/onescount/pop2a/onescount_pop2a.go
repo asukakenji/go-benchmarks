@@ -20,3 +20,9 @@ func OnesCount32(x uint32) int {
 // 	x = (x + (x >> 3)) & 00707070707070707070707             // 6-bit sums.
 // 	return int(((x * 000404040404040404) >> 58) + (x >> 62)) // Add 6-bit sums.
 // }
+
+/*
+Pending:
+https://tekpool.wordpress.com/2006/09/25/bit-count-parallel-counting-mit-hakmem/
+https://www.c-plusplus.net/forum/116415-full
+*/

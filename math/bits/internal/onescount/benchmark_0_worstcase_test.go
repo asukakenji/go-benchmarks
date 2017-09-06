@@ -14,18 +14,18 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount0WorstCaseCalibrateSupplier-8      	2000000000	         1.82 ns/op
-// BenchmarkOnesCount0WorstCaseCalibrateBenchmarker-8   	1000000000	         2.87 ns/op
-// BenchmarkOnesCount0WorstCaseNaive-8                  	30000000	        46.1 ns/op
-// BenchmarkOnesCount0WorstCaseTable-8                  	200000000	         8.62 ns/op
-// BenchmarkOnesCount0WorstCaseStdlib-8                 	300000000	         5.03 ns/op
-// BenchmarkOnesCount0WorstCasePop1A-8                  	300000000	         4.84 ns/op
-// BenchmarkOnesCount0WorstCaseReset-8                  	30000000	        49.8 ns/op
-// BenchmarkOnesCount0WorstCaseSubtract-8               	50000000	        35.6 ns/op
-// BenchmarkOnesCount0WorstCaseIfConstBool-8            	300000000	         4.28 ns/op <- Best
-// BenchmarkOnesCount0WorstCaseIfConstUint-8            	300000000	         4.28 ns/op <- Best
-// BenchmarkOnesCount0WorstCaseSwitchConstUint-8        	300000000	         4.28 ns/op <- Best
-// BenchmarkOnesCount0WorstCaseFuncPointer-8            	200000000	         6.37 ns/op
+// BenchmarkOnesCount0WorstCaseCalibrateSupplier-8      	2000000000	         1.88 ns/op
+// BenchmarkOnesCount0WorstCaseCalibrateBenchmarker-8   	1000000000	         2.96 ns/op
+// BenchmarkOnesCount0WorstCaseNaive-8                  	30000000	        47.6 ns/op
+// BenchmarkOnesCount0WorstCaseTable-8                  	200000000	         9.15 ns/op
+// BenchmarkOnesCount0WorstCaseStdlib-8                 	300000000	         5.29 ns/op
+// BenchmarkOnesCount0WorstCasePop1A-8                  	300000000	         5.05 ns/op
+// BenchmarkOnesCount0WorstCaseReset-8                  	30000000	        50.8 ns/op
+// BenchmarkOnesCount0WorstCaseSubtract-8               	50000000	        36.2 ns/op
+// BenchmarkOnesCount0WorstCaseIfConstBool-8            	300000000	         4.36 ns/op <- Best
+// BenchmarkOnesCount0WorstCaseIfConstUint-8            	300000000	         4.36 ns/op <- Best
+// BenchmarkOnesCount0WorstCaseSwitchConstUint-8        	300000000	         4.46 ns/op <- Best
+// BenchmarkOnesCount0WorstCaseFuncPointer-8            	200000000	         6.56 ns/op
 
 var uintSupplierWorstCase = constantsupplier.NewUint(^uint(0))
 

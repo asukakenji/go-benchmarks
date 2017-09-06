@@ -76,12 +76,12 @@ func OnesCount(x uint) int {
 
 // OnesCount8 returns the number of one bits ("population count") in x.
 func OnesCount8(x uint8) int {
-	return int(pop8tab[x&0xff])
+	return int(((((uint32(x) * 0x08040201) >> 3) & 0x11111111) * 0x11111111) >> 28)
 }
 
 // OnesCount16 returns the number of one bits ("population count") in x.
 func OnesCount16(x uint16) int {
-	return int(pop8tab[x&0xff] + pop8tab[x>>8])
+	return int((((uint64(x&0x7fff)*0x0002000400080010)&0x1111111111111111)*0x1111111111111111)>>60) + int((x>>15)&0x1)
 }
 
 // OnesCount32 returns the number of one bits ("population count") in x.

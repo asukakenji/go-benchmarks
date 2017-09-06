@@ -18,6 +18,23 @@ func NaiveTest(t *testing.T, onesCountFunc func(uint) int) {
 	}
 }
 
+func NaiveTest7(t *testing.T, onesCount7Func func(uint8) int) {
+	for i := 0; i < 256; i++ {
+		var x uint8
+		for {
+			x = uint8(rand.Uint64())
+			if x <= 0x7f {
+				break
+			}
+		}
+		expected := naive.OnesCount8(x)
+		got := onesCount7Func(x)
+		if got != expected {
+			t.Errorf("OnesCount7(0x%02x) = %d, expected %d", x, got, expected)
+		}
+	}
+}
+
 func NaiveTest8(t *testing.T, onesCount8Func func(uint8) int) {
 	for i := 0; i < 256; i++ {
 		x := uint8(rand.Uint64())
@@ -25,6 +42,23 @@ func NaiveTest8(t *testing.T, onesCount8Func func(uint8) int) {
 		got := onesCount8Func(x)
 		if got != expected {
 			t.Errorf("OnesCount8(0x%02x) = %d, expected %d", x, got, expected)
+		}
+	}
+}
+
+func NaiveTest15(t *testing.T, onesCount15Func func(uint16) int) {
+	for i := 0; i < 256; i++ {
+		var x uint16
+		for {
+			x = uint16(rand.Uint64())
+			if x <= 0x7fff {
+				break
+			}
+		}
+		expected := naive.OnesCount16(x)
+		got := onesCount15Func(x)
+		if got != expected {
+			t.Errorf("OnesCount15(0x%04x) = %d, expected %d", x, got, expected)
 		}
 	}
 }

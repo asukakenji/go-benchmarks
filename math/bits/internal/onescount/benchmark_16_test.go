@@ -9,22 +9,27 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
+	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop9"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/stdlib"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/subtract"
 	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
 )
 
-// BenchmarkOnesCount16CalibrateSupplier-8               	500000000	         3.42 ns/op
-// BenchmarkOnesCount16CalibrateBenchmarker-8            	300000000	         4.52 ns/op
-// BenchmarkOnesCount16Naive-8                           	30000000	        57.2 ns/op
-// BenchmarkOnesCount16Table-8                           	300000000	         5.58 ns/op <- Best
-// BenchmarkOnesCount16Stdlib-8                          	300000000	         5.75 ns/op <- Best
-// BenchmarkOnesCount16Pop0-8                            	200000000	         7.07 ns/op
-// BenchmarkOnesCount16Pop1-8                            	200000000	         6.63 ns/op
-// BenchmarkOnesCount16Pop1A-8                           	200000000	         6.53 ns/op
-// BenchmarkOnesCount16Reset-8                           	100000000	        17.8 ns/op
-// BenchmarkOnesCount16Subtract-8                        	100000000	        17.4 ns/op
+// BenchmarkOnesCount16CalibrateSupplier-8               	500000000	         3.46 ns/op
+// BenchmarkOnesCount16CalibrateBenchmarker-8            	300000000	         4.57 ns/op
+// BenchmarkOnesCount16Naive-8                           	30000000	        59.1 ns/op
+// BenchmarkOnesCount16Table-8                           	300000000	         5.73 ns/op <- Best
+// BenchmarkOnesCount16Stdlib-8                          	300000000	         6.00 ns/op
+// BenchmarkOnesCount16Pop0-8                            	200000000	         7.21 ns/op
+// BenchmarkOnesCount16Pop1-8                            	200000000	         6.88 ns/op
+// BenchmarkOnesCount16Pop1A-8                           	200000000	         6.80 ns/op
+// BenchmarkOnesCount16Reset-8                           	100000000	        19.2 ns/op
+// BenchmarkOnesCount16Subtract-8                        	100000000	        18.4 ns/op
+// BenchmarkOnesCount15Pop9-8                            	300000000	         5.59 ns/op <- Best (15)
+// BenchmarkOnesCount15Pop9Unrolled-8                    	300000000	         5.57 ns/op <- Best (15)
+// BenchmarkOnesCount16Pop9-8                            	200000000	         6.04 ns/op
+// BenchmarkOnesCount16Pop9Unrolled-8                    	200000000	         6.05 ns/op
 
 var uint16Supplier = randomsupplier.NewUint16()
 
@@ -74,4 +79,24 @@ func BenchmarkOnesCount16Reset(b *testing.B) {
 func BenchmarkOnesCount16Subtract(b *testing.B) {
 	uint16Supplier.Reset()
 	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, subtract.OnesCount16)
+}
+
+func BenchmarkOnesCount15Pop9(b *testing.B) {
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, pop9.OnesCount15)
+}
+
+func BenchmarkOnesCount15Pop9Unrolled(b *testing.B) {
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, pop9.OnesCount15Unrolled)
+}
+
+func BenchmarkOnesCount16Pop9(b *testing.B) {
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, pop9.OnesCount16)
+}
+
+func BenchmarkOnesCount16Pop9Unrolled(b *testing.B) {
+	uint16Supplier.Reset()
+	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, pop9.OnesCount16Unrolled)
 }

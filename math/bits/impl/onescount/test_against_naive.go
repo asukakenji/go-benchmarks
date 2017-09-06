@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/naive"
 )
 
 func NaiveTest(t *testing.T, onesCountFunc func(uint) int) {

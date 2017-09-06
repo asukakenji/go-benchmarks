@@ -3,8 +3,8 @@ package naive_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/naive"
 )
 
 const (

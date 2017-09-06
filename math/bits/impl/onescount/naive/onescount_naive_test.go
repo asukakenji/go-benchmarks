@@ -3,8 +3,8 @@ package naive_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/naive"
 )
 
 func TestOnesCountAllTable(t *testing.T) {

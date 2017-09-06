@@ -3,8 +3,8 @@ package nlz5_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/nlz5"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz5"
 )
 
 func TestLeadingZerosAllNaive(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/table"
 )
 
 var pop8tab = [256]uint8{

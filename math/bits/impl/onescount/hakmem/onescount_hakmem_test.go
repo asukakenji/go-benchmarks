@@ -3,8 +3,8 @@ package hakmem_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/hakmem"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/hakmem"
 )
 
 func TestOnesCountAllNaive(t *testing.T) {
@@ -18,9 +18,9 @@ func TestOnesCountAllNaive(t *testing.T) {
 
 func TestOnesCountAllTable(t *testing.T) {
 	onescount.BasicTableTest(t, &onescount.OnesCountFuncs{
-		Uint:   nil, // hakmem.OnesCount,
-		Uint8:  nil, // hakmem.OnesCount8,
-		Uint16: nil, // hakmem.OnesCount16,
+		// Uint:   hakmem.OnesCount,
+		// Uint8:  hakmem.OnesCount8,
+		// Uint16: hakmem.OnesCount16,
 		Uint32: hakmem.OnesCount32,
 		Uint64: hakmem.OnesCount64,
 	})

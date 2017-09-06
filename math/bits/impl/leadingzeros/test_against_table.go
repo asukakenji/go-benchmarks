@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/table"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/table"
 )
 
 const (

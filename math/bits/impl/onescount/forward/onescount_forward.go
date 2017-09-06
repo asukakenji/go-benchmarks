@@ -1,6 +1,6 @@
 package forward
 
-import "github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
+import "github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop1a"
 
 const (
 	uintSize = 32 << (^uint(0) >> 32 & 1) // 32 or 64

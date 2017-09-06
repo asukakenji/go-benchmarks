@@ -5,17 +5,17 @@ import (
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/common/constantsupplier"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/naive"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop0"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop1a"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop7"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop8"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop9"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/reset"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/stdlib"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/subtract"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/table"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop0"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop1"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop1a"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop7"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop8"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop9"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/reset"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/stdlib"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/subtract"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/table"
 )
 
 // BenchmarkOnesCount8WorstCaseCalibrateSupplier-8      	2000000000	         1.86 ns/op

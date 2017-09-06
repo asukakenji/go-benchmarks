@@ -5,8 +5,8 @@ import (
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/trailingzeros/naive"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/trailingzeros/stdlib"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/trailingzeros/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/trailingzeros/stdlib"
 )
 
 var uintSupplier = randomsupplier.NewUint()

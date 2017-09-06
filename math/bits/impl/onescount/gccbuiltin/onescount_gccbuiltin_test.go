@@ -3,8 +3,8 @@ package gccbuiltin_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/gccbuiltin"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/gccbuiltin"
 )
 
 func TestOnesCountAllNaive(t *testing.T) {
@@ -17,9 +17,9 @@ func TestOnesCountAllNaive(t *testing.T) {
 
 func TestOnesCountAllTable(t *testing.T) {
 	onescount.BasicTableTest(t, &onescount.OnesCountFuncs{
-		Uint:   nil, // gccbuiltin.OnesCount,
-		Uint8:  nil, // gccbuiltin.OnesCount8,
-		Uint16: nil, // gccbuiltin.OnesCount16,
+		// Uint:   gccbuiltin.OnesCount,
+		// Uint8:  gccbuiltin.OnesCount8,
+		// Uint16: gccbuiltin.OnesCount16,
 		Uint32: gccbuiltin.OnesCount32,
 		Uint64: gccbuiltin.OnesCount64,
 	})

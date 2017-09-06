@@ -5,15 +5,15 @@ import (
 
 	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/naive"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/nlz1"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/nlz1a"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/nlz2"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/nlz2a"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/nlz3"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/nlz5"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/stdlib"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/table"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1a"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz2"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz2a"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz3"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz5"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/stdlib"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/table"
 )
 
 // BenchmarkLeadingZeros16CalibrateSupplier-8      	500000000	         3.46 ns/op

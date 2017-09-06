@@ -3,8 +3,8 @@ package asm_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/asm"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/asm"
 )
 
 func TestOnesCountAllNaive(t *testing.T) {
@@ -17,10 +17,10 @@ func TestOnesCountAllNaive(t *testing.T) {
 
 func TestOnesCountAllTable(t *testing.T) {
 	onescount.BasicTableTest(t, &onescount.OnesCountFuncs{
-		Uint:   nil, // asm.OnesCount,
-		Uint8:  nil, // asm.OnesCount8,
-		Uint16: nil, // asm.OnesCount16,
-		Uint32: nil, // asm.OnesCount32,
+		// Uint:   asm.OnesCount,
+		// Uint8:  asm.OnesCount8,
+		// Uint16: asm.OnesCount16,
+		// Uint32: asm.OnesCount32,
 		Uint64: asm.OnesCount64,
 	})
 	// onescount.TableTest(t, asm.OnesCount)

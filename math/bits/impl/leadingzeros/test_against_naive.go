@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/leadingzeros/naive"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/naive"
 )
 
 func NaiveTest(t *testing.T, leadingZerosFunc func(uint) int) {

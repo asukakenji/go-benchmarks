@@ -3,8 +3,8 @@ package pop5_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount"
-	"github.com/asukakenji/go-benchmarks/math/bits/internal/onescount/pop5"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/onescount/pop5"
 )
 
 func TestOnesCountAllNaive(t *testing.T) {
@@ -17,9 +17,9 @@ func TestOnesCountAllNaive(t *testing.T) {
 
 func TestOnesCountAllTable(t *testing.T) {
 	onescount.BasicTableTest(t, &onescount.OnesCountFuncs{
-		Uint:   nil, // pop5.OnesCount,
-		Uint8:  nil, // pop5.OnesCount8,
-		Uint16: nil, // pop5.OnesCount16,
+		// Uint:   pop5.OnesCount,
+		// Uint8:  pop5.OnesCount8,
+		// Uint16: pop5.OnesCount16,
 		Uint32: pop5.OnesCount32,
 		Uint64: pop5.OnesCount64,
 	})

@@ -146,7 +146,7 @@ func benchmarkMakeLenAndFillRandomByAssignmentWithForRange2(count, length int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {
 		s := make([]int, length)
-		for j, _ := range s {
+		for j := range s {
 			x := gen()
 			s[j] = x
 		}

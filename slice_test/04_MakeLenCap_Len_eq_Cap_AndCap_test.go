@@ -8,6 +8,10 @@ import (
 // Benchmarks //
 ////////////////
 
+// func BenchmarkMakeLenCap_0_0_AndCap(b *testing.B) {
+// 	benchmarkMakeLenCapAndCap(b.N, 0, 0)
+// }
+
 func BenchmarkMakeLenCap_1_1_AndCap(b *testing.B) {
 	benchmarkMakeLenCapAndCap(b.N, 1, 1)
 }

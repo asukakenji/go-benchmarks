@@ -57,13 +57,13 @@ func BenchmarkMakeLenCap_0_1024(b *testing.B) {
 }
 
 func BenchmarkMakeLenCap_0_2048(b *testing.B) {
-	benchmarkMakeLenCap(b.N, 0, 1024)
+	benchmarkMakeLenCap(b.N, 0, 2048)
 }
 
 func BenchmarkMakeLenCap_0_4096(b *testing.B) {
-	benchmarkMakeLenCap(b.N, 0, 1024)
+	benchmarkMakeLenCap(b.N, 0, 4096)
 }
 
 func BenchmarkMakeLenCap_0_8192(b *testing.B) {
-	benchmarkMakeLenCap(b.N, 0, 1024)
+	benchmarkMakeLenCap(b.N, 0, 8192)
 }

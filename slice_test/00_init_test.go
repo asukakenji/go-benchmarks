@@ -41,6 +41,8 @@ var (
 
 func init() {
 	pageSizeInBytes = uint(os.Getpagesize()) // Usually 4096
+	// On 32-bit platforms: usually 1024
+	// On 64-bit platforms: usually 512
 	intsPerPage = pageSizeInBytes / sizeOfUintInBytes
 }
 

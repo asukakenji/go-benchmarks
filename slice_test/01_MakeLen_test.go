@@ -9,61 +9,61 @@ import (
 ////////////////
 
 func BenchmarkMakeLen_0(b *testing.B) {
-	benchmarkMakeLen(b.N, 0)
+	benchmarkMakeLen(b, 0)
 }
 
 func BenchmarkMakeLen_1(b *testing.B) {
-	benchmarkMakeLen(b.N, 1)
+	benchmarkMakeLen(b, 1)
 }
 
 func BenchmarkMakeLen_2(b *testing.B) {
-	benchmarkMakeLen(b.N, 2)
+	benchmarkMakeLen(b, 2)
 }
 
 func BenchmarkMakeLen_4(b *testing.B) {
-	benchmarkMakeLen(b.N, 4)
+	benchmarkMakeLen(b, 4)
 }
 
 func BenchmarkMakeLen_8(b *testing.B) {
-	benchmarkMakeLen(b.N, 8)
+	benchmarkMakeLen(b, 8)
 }
 
 func BenchmarkMakeLen_16(b *testing.B) {
-	benchmarkMakeLen(b.N, 16)
+	benchmarkMakeLen(b, 16)
 }
 
 func BenchmarkMakeLen_32(b *testing.B) {
-	benchmarkMakeLen(b.N, 32)
+	benchmarkMakeLen(b, 32)
 }
 
 func BenchmarkMakeLen_64(b *testing.B) {
-	benchmarkMakeLen(b.N, 64)
+	benchmarkMakeLen(b, 64)
 }
 
 func BenchmarkMakeLen_128(b *testing.B) {
-	benchmarkMakeLen(b.N, 128)
+	benchmarkMakeLen(b, 128)
 }
 
 func BenchmarkMakeLen_256(b *testing.B) {
-	benchmarkMakeLen(b.N, 256)
+	benchmarkMakeLen(b, 256)
 }
 
 func BenchmarkMakeLen_512(b *testing.B) {
-	benchmarkMakeLen(b.N, 512)
+	benchmarkMakeLen(b, 512)
 }
 
 func BenchmarkMakeLen_1024(b *testing.B) {
-	benchmarkMakeLen(b.N, 1024)
+	benchmarkMakeLen(b, 1024)
 }
 
 func BenchmarkMakeLen_2048(b *testing.B) {
-	benchmarkMakeLen(b.N, 2048)
+	benchmarkMakeLen(b, 2048)
 }
 
 func BenchmarkMakeLen_4096(b *testing.B) {
-	benchmarkMakeLen(b.N, 4096)
+	benchmarkMakeLen(b, 4096)
 }
 
 func BenchmarkMakeLen_8192(b *testing.B) {
-	benchmarkMakeLen(b.N, 8192)
+	benchmarkMakeLen(b, 8192)
 }

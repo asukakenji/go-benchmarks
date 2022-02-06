@@ -1,31 +1,35 @@
 package slice_test
 
+import "testing"
+
 ////////////////
 // Benchmarks //
 ////////////////
 
-func benchmarkMakeLen(count, length int) {
-	for i := 0; i < count; i++ {
+func benchmarkMakeLen(b *testing.B, length int) {
+	for i := 0; i < b.N; i++ {
 		_ = make([]int, length)
 	}
 }
 
-func benchmarkMakeLenCap(count, length, capacity int) {
-	for i := 0; i < count; i++ {
+func benchmarkMakeLenCap(b *testing.B, length, capacity int) {
+	for i := 0; i < b.N; i++ {
 		_ = make([]int, length, capacity)
 	}
 }
 
-func benchmarkMakeLenCapAndLen(count, length, capacity int) {
-	for i := 0; i < count; i++ {
-		s := make([]int, length, capacity)
+func benchmarkLen(b *testing.B, length, capacity int) {
+	s := make([]int, length, capacity)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
 		_ = len(s)
 	}
 }
 
-func benchmarkMakeLenCapAndCap(count, length, capacity int) {
-	for i := 0; i < count; i++ {
-		s := make([]int, length, capacity)
+func benchmarkCap(b *testing.B, length, capacity int) {
+	s := make([]int, length, capacity)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
 		_ = cap(s)
 	}
 }
@@ -142,6 +146,7 @@ func benchmarkMakeLenAndFillRandomByAssignmentWithForRange1(count, length int) {
 	}
 }
 
+// TODO: What's the difference?
 func benchmarkMakeLenAndFillRandomByAssignmentWithForRange2(count, length int) {
 	gen := randomIntsInTheFirstPage()
 	for i := 0; i < count; i++ {

@@ -1,37 +1,75 @@
 package slice_test
 
-import "testing"
-
 ////////////////
 // Benchmarks //
 ////////////////
 
-func benchmarkMakeLen(b *testing.B, length int) {
-	for i := 0; i < b.N; i++ {
-		_ = make([]int, length)
+func benchmarkMakeLen(count int, length int) []int {
+	var s []int
+	for i := 0; i < count; i++ {
+		s = make([]int, length)
 	}
+	return s
 }
 
-func benchmarkMakeLenCap(b *testing.B, length, capacity int) {
-	for i := 0; i < b.N; i++ {
-		_ = make([]int, length, capacity)
+func benchmarkMakeLenCap(count int, length, capacity int) []int {
+	var s []int
+	for i := 0; i < count; i++ {
+		s = make([]int, length, capacity)
 	}
+	return s
 }
 
-func benchmarkLen(b *testing.B, length, capacity int) {
-	s := make([]int, length, capacity)
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_ = len(s)
+func benchmarkLen(count int, slice []int) int {
+	var n int
+	for i := 0; i < count; i++ {
+		n += len(slice)
 	}
+	return n
 }
 
-func benchmarkCap(b *testing.B, length, capacity int) {
-	s := make([]int, length, capacity)
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_ = cap(s)
+func benchmarkCap(count int, slice []int) int {
+	var m int
+	for i := 0; i < count; i++ {
+		m += cap(slice)
 	}
+	return m
+}
+
+func benchmarkIndexSequencialAccessCalibrate(count int, slice []int) int {
+	var n, index int
+	for i := 0; i < count; i++ {
+		n += index
+		index = (index + 1) % len(slice)
+	}
+	return n
+}
+
+func benchmarkIndexRandomAccessCalibrate(count, increment int, slice []int) int {
+	var n, index int
+	for i := 0; i < count; i++ {
+		n += index
+		index = (index + increment) % len(slice)
+	}
+	return n
+}
+
+func benchmarkIndexSequencialAccess(count int, slice []int) int {
+	var n, index int
+	for i := 0; i < count; i++ {
+		n += slice[index]
+		index = (index + 1) % len(slice)
+	}
+	return n
+}
+
+func benchmarkIndexRandomAccess(count, increment int, slice []int) int {
+	var n, index int
+	for i := 0; i < count; i++ {
+		n += slice[index]
+		index = (index + increment) % len(slice)
+	}
+	return n
 }
 
 func benchmarkMakeCapAndAppend1(count, capacity int) {
@@ -158,31 +196,36 @@ func benchmarkMakeLenAndFillRandomByAssignmentWithForRange2(count, length int) {
 	}
 }
 
-func benchmarkCloneCommon(count int, clone func([]int) []int, slice []int) {
+func benchmarkCloneCommon(count int, clone func([]int) []int, slice []int) []int {
+	var s []int
 	for i := 0; i < count; i++ {
-		_ = clone(slice)
+		s = clone(slice)
 	}
+	return s
+}
+
+func cloneByAppendToNil(s []int) []int {
+	return append([]int(nil), s...)
 }
 
 func benchmarkCloneByAppendNToNil(count, length int) {
-	clone := func(s []int) []int {
-		return append([]int(nil), s...)
-	}
-	benchmarkCloneCommon(count, clone, numbers[0:length])
+	benchmarkCloneCommon(count, cloneByAppendToNil, numbers[:length])
 }
 
-func benchmarkCloneByMakeCapAndAppendN(count, capacity int) {
-	clone := func(s []int) []int {
-		return append(make([]int, 0, capacity), s...)
-	}
-	benchmarkCloneCommon(count, clone, numbers[0:capacity])
+func cloneByMakeAndAppend(s []int) []int {
+	return append(make([]int, 0, len(s)), s...)
+}
+
+func benchmarkCloneByMakeCapAndAppendN(count, length int) {
+	benchmarkCloneCommon(count, cloneByMakeAndAppend, numbers[:length])
+}
+
+func cloneByMakeAndCopy(s []int) []int {
+	s2 := make([]int, len(s))
+	copy(s2, s)
+	return s2
 }
 
 func benchmarkCloneByMakeLenAndCopy(count, length int) {
-	clone := func(s []int) []int {
-		s2 := make([]int, length)
-		copy(s2, s)
-		return s2
-	}
-	benchmarkCloneCommon(count, clone, numbers[0:length])
+	benchmarkCloneCommon(count, cloneByMakeAndCopy, numbers[:length])
 }

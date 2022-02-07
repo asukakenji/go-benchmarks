@@ -13,57 +13,57 @@ import (
 // }
 
 func BenchmarkMakeLenCap_1_1(b *testing.B) {
-	benchmarkMakeLenCap(b, 1, 1)
+	benchmarkMakeLenCap(b.N, 1, 1)
 }
 
 func BenchmarkMakeLenCap_2_2(b *testing.B) {
-	benchmarkMakeLenCap(b, 2, 2)
+	benchmarkMakeLenCap(b.N, 2, 2)
 }
 
 func BenchmarkMakeLenCap_4_4(b *testing.B) {
-	benchmarkMakeLenCap(b, 4, 4)
+	benchmarkMakeLenCap(b.N, 4, 4)
 }
 
 func BenchmarkMakeLenCap_8_8(b *testing.B) {
-	benchmarkMakeLenCap(b, 8, 8)
+	benchmarkMakeLenCap(b.N, 8, 8)
 }
 
 func BenchmarkMakeLenCap_16_16(b *testing.B) {
-	benchmarkMakeLenCap(b, 16, 16)
+	benchmarkMakeLenCap(b.N, 16, 16)
 }
 
 func BenchmarkMakeLenCap_32_32(b *testing.B) {
-	benchmarkMakeLenCap(b, 32, 32)
+	benchmarkMakeLenCap(b.N, 32, 32)
 }
 
 func BenchmarkMakeLenCap_64_64(b *testing.B) {
-	benchmarkMakeLenCap(b, 64, 64)
+	benchmarkMakeLenCap(b.N, 64, 64)
 }
 
 func BenchmarkMakeLenCap_128_128(b *testing.B) {
-	benchmarkMakeLenCap(b, 128, 128)
+	benchmarkMakeLenCap(b.N, 128, 128)
 }
 
 func BenchmarkMakeLenCap_256_256(b *testing.B) {
-	benchmarkMakeLenCap(b, 256, 256)
+	benchmarkMakeLenCap(b.N, 256, 256)
 }
 
 func BenchmarkMakeLenCap_512_512(b *testing.B) {
-	benchmarkMakeLenCap(b, 512, 512)
+	benchmarkMakeLenCap(b.N, 512, 512)
 }
 
 func BenchmarkMakeLenCap_1024_1024(b *testing.B) {
-	benchmarkMakeLenCap(b, 1024, 1024)
+	benchmarkMakeLenCap(b.N, 1024, 1024)
 }
 
 func BenchmarkMakeLenCap_2048_2048(b *testing.B) {
-	benchmarkMakeLenCap(b, 2048, 2048)
+	benchmarkMakeLenCap(b.N, 2048, 2048)
 }
 
 func BenchmarkMakeLenCap_4096_4096(b *testing.B) {
-	benchmarkMakeLenCap(b, 4096, 4096)
+	benchmarkMakeLenCap(b.N, 4096, 4096)
 }
 
 func BenchmarkMakeLenCap_8192_8192(b *testing.B) {
-	benchmarkMakeLenCap(b, 8192, 8192)
+	benchmarkMakeLenCap(b.N, 8192, 8192)
 }

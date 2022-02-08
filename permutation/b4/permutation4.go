@@ -1,8 +1,3 @@
-// Package b4 is different from b1 in the sense that
-// the recursion is done backwards,
-// and therefore the variables compare with 0 instead of len(s).
-// This makes b4 about 1~2% faster than b1.
-// However, the code looks much cleaner with fewer len(s) calls.
 package b4
 
 // permutation4ParamOrder0 is the recurive function called by

@@ -1,8 +1,3 @@
-// Package b0a is different from b0 in the sense that
-// len(s) is cached in a variable common to both branches.
-// No significant speed up or slow down is observed.
-// This may due to the fact that the Go compiler does a good job in static analysis.
-// This result agrees with the comparison between packages b1a and b1.
 package b0a
 
 // permutation0ParamOrder0 is the recurive function called by

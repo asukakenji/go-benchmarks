@@ -1,6 +1,3 @@
-// Package b3 is different from b1a in the sense that
-// closure is used, and len(s) is cached in a variable.
-// This makes b3 about 15% slower than b1a due to the overhead of closure.
 package b3
 
 // Permutation3ParamOrder0 generates all permutations of s,

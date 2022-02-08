@@ -1,6 +1,3 @@
-// Package b1 is different from b0 in the sense that
-// an index, instead of a sub-slice, is passed as a parameter in the recursion.
-// This makes b1 about 10% faster than b0.
 package b1
 
 // permutation1ParamOrder0 is the recurive function called by

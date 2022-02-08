@@ -1,6 +1,3 @@
-// Package b2 is different from b1 in the sense that
-// n = len(s) is passed as a parameter.
-// This is actually slower than b1 according to the benchmark results.
 package b2
 
 // permutation2ParamOrder00 is the recurive function called by

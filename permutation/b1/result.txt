@@ -1,0 +1,24 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/asukakenji/go-benchmarks/permutation/b1
+cpu: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz
+BenchmarkPermutation1Order0_8-36     	    4900	    246996 ns/op
+BenchmarkPermutation1Order1_8-36     	    4881	    248584 ns/op
+BenchmarkPermutation1Order2_8-36     	    4825	    253493 ns/op
+BenchmarkPermutation1Order3_8-36     	    4854	    249881 ns/op
+BenchmarkPermutation1Order4_8-36     	    4833	    245056 ns/op
+BenchmarkPermutation1Order5_8-36     	    4878	    243794 ns/op
+BenchmarkPermutation1Order0_9-36     	     542	   2198410 ns/op
+BenchmarkPermutation1Order1_9-36     	     547	   2196350 ns/op
+BenchmarkPermutation1Order2_9-36     	     544	   2197085 ns/op
+BenchmarkPermutation1Order3_9-36     	     548	   2183405 ns/op
+BenchmarkPermutation1Order4_9-36     	     543	   2201377 ns/op
+BenchmarkPermutation1Order5_9-36     	     546	   2193276 ns/op
+BenchmarkPermutation1Order0_10-36    	      54	  22002639 ns/op
+BenchmarkPermutation1Order1_10-36    	      54	  21823512 ns/op
+BenchmarkPermutation1Order2_10-36    	      54	  21968246 ns/op
+BenchmarkPermutation1Order3_10-36    	      54	  21872240 ns/op
+BenchmarkPermutation1Order4_10-36    	      54	  22029164 ns/op
+BenchmarkPermutation1Order5_10-36    	      54	  21972194 ns/op
+PASS
+ok  	github.com/asukakenji/go-benchmarks/permutation/b1	23.515s

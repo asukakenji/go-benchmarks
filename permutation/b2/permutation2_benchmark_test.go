@@ -3,157 +3,298 @@ package b2_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/permutation/b2"
 	"github.com/asukakenji/go-benchmarks/permutation/bcommon"
 )
 
-func BenchmarkUintSliceGenerator(b *testing.B) {
-	bcommon.Reset()
-	benchmark.CalibrateUintSliceGenerator(b, bcommon.NextSlice)
+func BenchmarkPermutation2Order00_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder00[uint], 8)
 }
 
-// BenchmarkPermutation2Order00-8   	    3000	    474921 ns/op
-// BenchmarkPermutation2Order01-8   	    3000	    473356 ns/op
-// BenchmarkPermutation2Order02-8   	    3000	    473300 ns/op
-// BenchmarkPermutation2Order03-8   	    3000	    471203 ns/op
-// BenchmarkPermutation2Order10-8   	    3000	    481466 ns/op
-// BenchmarkPermutation2Order11-8   	    3000	    480505 ns/op
-// BenchmarkPermutation2Order12-8   	    3000	    480422 ns/op
-// BenchmarkPermutation2Order13-8   	    3000	    478294 ns/op
-// BenchmarkPermutation2Order20-8   	    3000	    471569 ns/op
-// BenchmarkPermutation2Order21-8   	    3000	    471121 ns/op
-// BenchmarkPermutation2Order22-8   	    3000	    470105 ns/op <- Best
-// BenchmarkPermutation2Order23-8   	    3000	    469445 ns/op <- Best
-// BenchmarkPermutation2Order30-8   	    3000	    468119 ns/op <- Best
-// BenchmarkPermutation2Order31-8   	    3000	    471351 ns/op
-// BenchmarkPermutation2Order32-8   	    3000	    472648 ns/op
-// BenchmarkPermutation2Order33-8   	    3000	    472168 ns/op
-// BenchmarkPermutation2Order40-8   	    3000	    484693 ns/op
-// BenchmarkPermutation2Order41-8   	    3000	    484239 ns/op
-// BenchmarkPermutation2Order42-8   	    3000	    483294 ns/op
-// BenchmarkPermutation2Order43-8   	    3000	    477214 ns/op
-// BenchmarkPermutation2Order50-8   	    3000	    472588 ns/op
-// BenchmarkPermutation2Order51-8   	    3000	    470523 ns/op
-// BenchmarkPermutation2Order52-8   	    3000	    473463 ns/op
-// BenchmarkPermutation2Order53-8   	    3000	    470456 ns/op
-
-func BenchmarkPermutation2Order00(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder00[uint])
+func BenchmarkPermutation2Order01_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder01[uint], 8)
 }
 
-func BenchmarkPermutation2Order01(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder01[uint])
+func BenchmarkPermutation2Order02_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder02[uint], 8)
 }
 
-func BenchmarkPermutation2Order02(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder02[uint])
+func BenchmarkPermutation2Order03_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder03[uint], 8)
 }
 
-func BenchmarkPermutation2Order03(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder03[uint])
+func BenchmarkPermutation2Order10_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder10[uint], 8)
 }
 
-func BenchmarkPermutation2Order10(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder10[uint])
+func BenchmarkPermutation2Order11_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder11[uint], 8)
 }
 
-func BenchmarkPermutation2Order11(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder11[uint])
+func BenchmarkPermutation2Order12_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder12[uint], 8)
 }
 
-func BenchmarkPermutation2Order12(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder12[uint])
+func BenchmarkPermutation2Order13_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder13[uint], 8)
 }
 
-func BenchmarkPermutation2Order13(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder13[uint])
+func BenchmarkPermutation2Order20_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder20[uint], 8)
 }
 
-func BenchmarkPermutation2Order20(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder20[uint])
+func BenchmarkPermutation2Order21_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder21[uint], 8)
 }
 
-func BenchmarkPermutation2Order21(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder21[uint])
+func BenchmarkPermutation2Order22_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder22[uint], 8)
 }
 
-func BenchmarkPermutation2Order22(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder22[uint])
+func BenchmarkPermutation2Order23_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder23[uint], 8)
 }
 
-func BenchmarkPermutation2Order23(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder23[uint])
+func BenchmarkPermutation2Order30_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder30[uint], 8)
 }
 
-func BenchmarkPermutation2Order30(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder30[uint])
+func BenchmarkPermutation2Order31_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder31[uint], 8)
 }
 
-func BenchmarkPermutation2Order31(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder31[uint])
+func BenchmarkPermutation2Order32_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder32[uint], 8)
 }
 
-func BenchmarkPermutation2Order32(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder32[uint])
+func BenchmarkPermutation2Order33_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder33[uint], 8)
 }
 
-func BenchmarkPermutation2Order33(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder33[uint])
+func BenchmarkPermutation2Order40_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder40[uint], 8)
 }
 
-func BenchmarkPermutation2Order40(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder40[uint])
+func BenchmarkPermutation2Order41_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder41[uint], 8)
 }
 
-func BenchmarkPermutation2Order41(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder41[uint])
+func BenchmarkPermutation2Order42_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder42[uint], 8)
 }
 
-func BenchmarkPermutation2Order42(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder42[uint])
+func BenchmarkPermutation2Order43_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder43[uint], 8)
 }
 
-func BenchmarkPermutation2Order43(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder43[uint])
+func BenchmarkPermutation2Order50_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder50[uint], 8)
 }
 
-func BenchmarkPermutation2Order50(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder50[uint])
+func BenchmarkPermutation2Order51_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder51[uint], 8)
 }
 
-func BenchmarkPermutation2Order51(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder51[uint])
+func BenchmarkPermutation2Order52_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder52[uint], 8)
 }
 
-func BenchmarkPermutation2Order52(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder52[uint])
+func BenchmarkPermutation2Order53_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder53[uint], 8)
 }
 
-func BenchmarkPermutation2Order53(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b2.Permutation2ParamOrder53[uint])
+// ---
+
+func BenchmarkPermutation2Order00_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder00[uint], 9)
+}
+
+func BenchmarkPermutation2Order01_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder01[uint], 9)
+}
+
+func BenchmarkPermutation2Order02_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder02[uint], 9)
+}
+
+func BenchmarkPermutation2Order03_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder03[uint], 9)
+}
+
+func BenchmarkPermutation2Order10_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder10[uint], 9)
+}
+
+func BenchmarkPermutation2Order11_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder11[uint], 9)
+}
+
+func BenchmarkPermutation2Order12_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder12[uint], 9)
+}
+
+func BenchmarkPermutation2Order13_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder13[uint], 9)
+}
+
+func BenchmarkPermutation2Order20_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder20[uint], 9)
+}
+
+func BenchmarkPermutation2Order21_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder21[uint], 9)
+}
+
+func BenchmarkPermutation2Order22_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder22[uint], 9)
+}
+
+func BenchmarkPermutation2Order23_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder23[uint], 9)
+}
+
+func BenchmarkPermutation2Order30_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder30[uint], 9)
+}
+
+func BenchmarkPermutation2Order31_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder31[uint], 9)
+}
+
+func BenchmarkPermutation2Order32_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder32[uint], 9)
+}
+
+func BenchmarkPermutation2Order33_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder33[uint], 9)
+}
+
+func BenchmarkPermutation2Order40_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder40[uint], 9)
+}
+
+func BenchmarkPermutation2Order41_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder41[uint], 9)
+}
+
+func BenchmarkPermutation2Order42_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder42[uint], 9)
+}
+
+func BenchmarkPermutation2Order43_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder43[uint], 9)
+}
+
+func BenchmarkPermutation2Order50_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder50[uint], 9)
+}
+
+func BenchmarkPermutation2Order51_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder51[uint], 9)
+}
+
+func BenchmarkPermutation2Order52_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder52[uint], 9)
+}
+
+func BenchmarkPermutation2Order53_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder53[uint], 9)
+}
+
+// ---
+
+func BenchmarkPermutation2Order00_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder00[uint], 10)
+}
+
+func BenchmarkPermutation2Order01_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder01[uint], 10)
+}
+
+func BenchmarkPermutation2Order02_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder02[uint], 10)
+}
+
+func BenchmarkPermutation2Order03_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder03[uint], 10)
+}
+
+func BenchmarkPermutation2Order10_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder10[uint], 10)
+}
+
+func BenchmarkPermutation2Order11_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder11[uint], 10)
+}
+
+func BenchmarkPermutation2Order12_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder12[uint], 10)
+}
+
+func BenchmarkPermutation2Order13_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder13[uint], 10)
+}
+
+func BenchmarkPermutation2Order20_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder20[uint], 10)
+}
+
+func BenchmarkPermutation2Order21_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder21[uint], 10)
+}
+
+func BenchmarkPermutation2Order22_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder22[uint], 10)
+}
+
+func BenchmarkPermutation2Order23_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder23[uint], 10)
+}
+
+func BenchmarkPermutation2Order30_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder30[uint], 10)
+}
+
+func BenchmarkPermutation2Order31_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder31[uint], 10)
+}
+
+func BenchmarkPermutation2Order32_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder32[uint], 10)
+}
+
+func BenchmarkPermutation2Order33_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder33[uint], 10)
+}
+
+func BenchmarkPermutation2Order40_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder40[uint], 10)
+}
+
+func BenchmarkPermutation2Order41_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder41[uint], 10)
+}
+
+func BenchmarkPermutation2Order42_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder42[uint], 10)
+}
+
+func BenchmarkPermutation2Order43_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder43[uint], 10)
+}
+
+func BenchmarkPermutation2Order50_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder50[uint], 10)
+}
+
+func BenchmarkPermutation2Order51_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder51[uint], 10)
+}
+
+func BenchmarkPermutation2Order52_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder52[uint], 10)
+}
+
+func BenchmarkPermutation2Order53_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b2.Permutation2ParamOrder53[uint], 10)
 }

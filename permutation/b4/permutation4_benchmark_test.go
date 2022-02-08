@@ -3,49 +3,82 @@ package b4_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/common/benchmark"
 	"github.com/asukakenji/go-benchmarks/permutation/b4"
 	"github.com/asukakenji/go-benchmarks/permutation/bcommon"
 )
 
-func BenchmarkUintSliceGenerator(b *testing.B) {
-	bcommon.Reset()
-	benchmark.CalibrateUintSliceGenerator(b, bcommon.NextSlice)
+func BenchmarkPermutation4Order0_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder0[uint], 8)
 }
 
-// BenchmarkPermutation4Order0-8   	    3000	    437654 ns/op
-// BenchmarkPermutation4Order1-8   	    3000	    443764 ns/op
-// BenchmarkPermutation4Order2-8   	    3000	    431026 ns/op <- Best
-// BenchmarkPermutation4Order3-8   	    3000	    434179 ns/op <- Best
-// BenchmarkPermutation4Order4-8   	    3000	    442334 ns/op
-// BenchmarkPermutation4Order5-8   	    3000	    430472 ns/op <- Best
-
-func BenchmarkPermutation4Order0(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder0[uint])
+func BenchmarkPermutation4Order1_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder1[uint], 8)
 }
 
-func BenchmarkPermutation4Order1(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder1[uint])
+func BenchmarkPermutation4Order2_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder2[uint], 8)
 }
 
-func BenchmarkPermutation4Order2(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder2[uint])
+func BenchmarkPermutation4Order3_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder3[uint], 8)
 }
 
-func BenchmarkPermutation4Order3(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder3[uint])
+func BenchmarkPermutation4Order4_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder4[uint], 8)
 }
 
-func BenchmarkPermutation4Order4(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder4[uint])
+func BenchmarkPermutation4Order5_8(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder5[uint], 8)
 }
 
-func BenchmarkPermutation4Order5(b *testing.B) {
-	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder5[uint])
+// ---
+
+func BenchmarkPermutation4Order0_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder0[uint], 9)
+}
+
+func BenchmarkPermutation4Order1_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder1[uint], 9)
+}
+
+func BenchmarkPermutation4Order2_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder2[uint], 9)
+}
+
+func BenchmarkPermutation4Order3_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder3[uint], 9)
+}
+
+func BenchmarkPermutation4Order4_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder4[uint], 9)
+}
+
+func BenchmarkPermutation4Order5_9(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder5[uint], 9)
+}
+
+// ---
+
+func BenchmarkPermutation4Order0_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder0[uint], 10)
+}
+
+func BenchmarkPermutation4Order1_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder1[uint], 10)
+}
+
+func BenchmarkPermutation4Order2_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder2[uint], 10)
+}
+
+func BenchmarkPermutation4Order3_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder3[uint], 10)
+}
+
+func BenchmarkPermutation4Order4_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder4[uint], 10)
+}
+
+func BenchmarkPermutation4Order5_10(b *testing.B) {
+	bcommon.BenchmarkPermutation(b, b4.Permutation4ParamOrder5[uint], 10)
 }

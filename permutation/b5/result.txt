@@ -1,0 +1,9 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/asukakenji/go-benchmarks/permutation/b5
+cpu: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz
+BenchmarkPermutation5Inc_8-36     	    3949	    301633 ns/op
+BenchmarkPermutation5Inc_9-36     	     442	   2708227 ns/op
+BenchmarkPermutation5Inc_10-36    	      43	  26978710 ns/op
+PASS
+ok  	github.com/asukakenji/go-benchmarks/permutation/b5	4.239s

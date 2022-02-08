@@ -2,7 +2,7 @@ package b5
 
 // Permutation5Inc generates all permutations of s,
 // and apply f to each of them.
-func Permutation5Inc(s []uint, f func([]uint)) {
+func Permutation5Inc[T any](s []T, f func([]T)) {
 	n := len(s)
 	if n == 0 {
 		f(s)

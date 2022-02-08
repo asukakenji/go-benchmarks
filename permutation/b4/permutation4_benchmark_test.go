@@ -22,30 +22,30 @@ func BenchmarkUintSliceGenerator(b *testing.B) {
 
 func BenchmarkPermutation4Order0(b *testing.B) {
 	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder0)
+	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder0[uint])
 }
 
 func BenchmarkPermutation4Order1(b *testing.B) {
 	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder1)
+	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder1[uint])
 }
 
 func BenchmarkPermutation4Order2(b *testing.B) {
 	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder2)
+	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder2[uint])
 }
 
 func BenchmarkPermutation4Order3(b *testing.B) {
 	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder3)
+	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder3[uint])
 }
 
 func BenchmarkPermutation4Order4(b *testing.B) {
 	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder4)
+	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder4[uint])
 }
 
 func BenchmarkPermutation4Order5(b *testing.B) {
 	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder5)
+	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b4.Permutation4ParamOrder5[uint])
 }

@@ -15,7 +15,7 @@ func adaptor(x func(func([]uint), []uint)) func([]uint, func([]uint)) {
 
 func TestPermutation(t *testing.T) {
 	implementations := []tcommon.Implementation{
-		{"permutation.Permutation5Inc", adaptor(permutation.Permutation)},
+		{Name: "permutation.Permutation5Inc", F: adaptor(permutation.Permutation[uint])},
 	}
 	for _, impl := range implementations {
 		tcommon.TestPermutation(t, impl)

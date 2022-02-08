@@ -2,7 +2,7 @@ package b1a
 
 // permutation1ParamOrder0 is the recurive function called by
 // Permutation1ParamOrder0 to handle generic cases.
-func permutation1ParamOrder0(s []uint, d int, f func([]uint)) {
+func permutation1ParamOrder0[T any](s []T, d int, f func([]T)) {
 	count := len(s)
 	if d == count-1 {
 		f(s)
@@ -18,7 +18,7 @@ func permutation1ParamOrder0(s []uint, d int, f func([]uint)) {
 // Permutation1ParamOrder0 generates all permutations of s,
 // and apply f to each of them.
 // Order: sdf
-func Permutation1ParamOrder0(s []uint, f func([]uint)) {
+func Permutation1ParamOrder0[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -28,7 +28,7 @@ func Permutation1ParamOrder0(s []uint, f func([]uint)) {
 
 // permutation1ParamOrder1 is the recurive function called by
 // Permutation1ParamOrder1 to handle generic cases.
-func permutation1ParamOrder1(s []uint, f func([]uint), d int) {
+func permutation1ParamOrder1[T any](s []T, f func([]T), d int) {
 	count := len(s)
 	if d == count-1 {
 		f(s)
@@ -44,7 +44,7 @@ func permutation1ParamOrder1(s []uint, f func([]uint), d int) {
 // Permutation1ParamOrder1 generates all permutations of s,
 // and apply f to each of them.
 // Order: sfd
-func Permutation1ParamOrder1(s []uint, f func([]uint)) {
+func Permutation1ParamOrder1[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -54,7 +54,7 @@ func Permutation1ParamOrder1(s []uint, f func([]uint)) {
 
 // permutation1ParamOrder2 is the recurive function called by
 // Permutation1ParamOrder2 to handle generic cases.
-func permutation1ParamOrder2(d int, s []uint, f func([]uint)) {
+func permutation1ParamOrder2[T any](d int, s []T, f func([]T)) {
 	count := len(s)
 	if d == count-1 {
 		f(s)
@@ -70,7 +70,7 @@ func permutation1ParamOrder2(d int, s []uint, f func([]uint)) {
 // Permutation1ParamOrder2 generates all permutations of s,
 // and apply f to each of them.
 // Order: dsf
-func Permutation1ParamOrder2(s []uint, f func([]uint)) {
+func Permutation1ParamOrder2[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -80,7 +80,7 @@ func Permutation1ParamOrder2(s []uint, f func([]uint)) {
 
 // permutation1ParamOrder3 is the recurive function called by
 // Permutation1ParamOrder3 to handle generic cases.
-func permutation1ParamOrder3(d int, f func([]uint), s []uint) {
+func permutation1ParamOrder3[T any](d int, f func([]T), s []T) {
 	count := len(s)
 	if d == count-1 {
 		f(s)
@@ -96,7 +96,7 @@ func permutation1ParamOrder3(d int, f func([]uint), s []uint) {
 // Permutation1ParamOrder3 generates all permutations of s,
 // and apply f to each of them.
 // Order: dfs
-func Permutation1ParamOrder3(s []uint, f func([]uint)) {
+func Permutation1ParamOrder3[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -106,7 +106,7 @@ func Permutation1ParamOrder3(s []uint, f func([]uint)) {
 
 // permutation1ParamOrder4 is the recurive function called by
 // Permutation1ParamOrder4 to handle generic cases.
-func permutation1ParamOrder4(f func([]uint), s []uint, d int) {
+func permutation1ParamOrder4[T any](f func([]T), s []T, d int) {
 	count := len(s)
 	if d == count-1 {
 		f(s)
@@ -122,7 +122,7 @@ func permutation1ParamOrder4(f func([]uint), s []uint, d int) {
 // Permutation1ParamOrder4 generates all permutations of s,
 // and apply f to each of them.
 // Order: fsd
-func Permutation1ParamOrder4(s []uint, f func([]uint)) {
+func Permutation1ParamOrder4[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -132,7 +132,7 @@ func Permutation1ParamOrder4(s []uint, f func([]uint)) {
 
 // permutation1ParamOrder5 is the recurive function called by
 // Permutation1ParamOrder5 to handle generic cases.
-func permutation1ParamOrder5(f func([]uint), d int, s []uint) {
+func permutation1ParamOrder5[T any](f func([]T), d int, s []T) {
 	count := len(s)
 	if d == count-1 {
 		f(s)
@@ -148,7 +148,7 @@ func permutation1ParamOrder5(f func([]uint), d int, s []uint) {
 // Permutation1ParamOrder5 generates all permutations of s,
 // and apply f to each of them.
 // Order: fds
-func Permutation1ParamOrder5(s []uint, f func([]uint)) {
+func Permutation1ParamOrder5[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {

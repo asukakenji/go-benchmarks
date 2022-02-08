@@ -9,7 +9,7 @@ import (
 
 func TestPermutation(t *testing.T) {
 	implementations := []tcommon.Implementation{
-		{Name: "b5.Permutation5Inc", F: b5.Permutation5Inc},
+		{Name: "b5.Permutation5Inc", F: b5.Permutation5Inc[uint]},
 	}
 	for _, impl := range implementations {
 		tcommon.TestPermutation(t, impl)

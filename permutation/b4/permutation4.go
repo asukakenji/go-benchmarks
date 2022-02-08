@@ -2,7 +2,7 @@ package b4
 
 // permutation4ParamOrder0 is the recurive function called by
 // Permutation4ParamOrder0 to handle generic cases.
-func permutation4ParamOrder0(s []uint, d int, f func([]uint)) {
+func permutation4ParamOrder0[T any](s []T, d int, f func([]T)) {
 	if d == 0 {
 		f(s)
 	} else {
@@ -17,7 +17,7 @@ func permutation4ParamOrder0(s []uint, d int, f func([]uint)) {
 // Permutation4ParamOrder0 generates all permutations of s,
 // and apply f to each of them.
 // Order: sdf
-func Permutation4ParamOrder0(s []uint, f func([]uint)) {
+func Permutation4ParamOrder0[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -27,7 +27,7 @@ func Permutation4ParamOrder0(s []uint, f func([]uint)) {
 
 // permutation4ParamOrder1 is the recurive function called by
 // Permutation4ParamOrder1 to handle generic cases.
-func permutation4ParamOrder1(s []uint, f func([]uint), d int) {
+func permutation4ParamOrder1[T any](s []T, f func([]T), d int) {
 	if d == 0 {
 		f(s)
 	} else {
@@ -42,7 +42,7 @@ func permutation4ParamOrder1(s []uint, f func([]uint), d int) {
 // Permutation4ParamOrder1 generates all permutations of s,
 // and apply f to each of them.
 // Order: sfd
-func Permutation4ParamOrder1(s []uint, f func([]uint)) {
+func Permutation4ParamOrder1[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -52,7 +52,7 @@ func Permutation4ParamOrder1(s []uint, f func([]uint)) {
 
 // permutation4ParamOrder2 is the recurive function called by
 // Permutation4ParamOrder2 to handle generic cases.
-func permutation4ParamOrder2(d int, s []uint, f func([]uint)) {
+func permutation4ParamOrder2[T any](d int, s []T, f func([]T)) {
 	if d == 0 {
 		f(s)
 	} else {
@@ -67,7 +67,7 @@ func permutation4ParamOrder2(d int, s []uint, f func([]uint)) {
 // Permutation4ParamOrder2 generates all permutations of s,
 // and apply f to each of them.
 // Order: dsf
-func Permutation4ParamOrder2(s []uint, f func([]uint)) {
+func Permutation4ParamOrder2[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -77,7 +77,7 @@ func Permutation4ParamOrder2(s []uint, f func([]uint)) {
 
 // permutation4ParamOrder3 is the recurive function called by
 // Permutation4ParamOrder3 to handle generic cases.
-func permutation4ParamOrder3(d int, f func([]uint), s []uint) {
+func permutation4ParamOrder3[T any](d int, f func([]T), s []T) {
 	if d == 0 {
 		f(s)
 	} else {
@@ -92,7 +92,7 @@ func permutation4ParamOrder3(d int, f func([]uint), s []uint) {
 // Permutation4ParamOrder3 generates all permutations of s,
 // and apply f to each of them.
 // Order: dfs
-func Permutation4ParamOrder3(s []uint, f func([]uint)) {
+func Permutation4ParamOrder3[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -102,7 +102,7 @@ func Permutation4ParamOrder3(s []uint, f func([]uint)) {
 
 // permutation4ParamOrder4 is the recurive function called by
 // Permutation4ParamOrder4 to handle generic cases.
-func permutation4ParamOrder4(f func([]uint), s []uint, d int) {
+func permutation4ParamOrder4[T any](f func([]T), s []T, d int) {
 	if d == 0 {
 		f(s)
 	} else {
@@ -117,7 +117,7 @@ func permutation4ParamOrder4(f func([]uint), s []uint, d int) {
 // Permutation4ParamOrder4 generates all permutations of s,
 // and apply f to each of them.
 // Order: fsd
-func Permutation4ParamOrder4(s []uint, f func([]uint)) {
+func Permutation4ParamOrder4[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {
@@ -127,7 +127,7 @@ func Permutation4ParamOrder4(s []uint, f func([]uint)) {
 
 // permutation4ParamOrder5 is the recurive function called by
 // Permutation4ParamOrder5 to handle generic cases.
-func permutation4ParamOrder5(f func([]uint), d int, s []uint) {
+func permutation4ParamOrder5[T any](f func([]T), d int, s []T) {
 	if d == 0 {
 		f(s)
 	} else {
@@ -142,7 +142,7 @@ func permutation4ParamOrder5(f func([]uint), d int, s []uint) {
 // Permutation4ParamOrder5 generates all permutations of s,
 // and apply f to each of them.
 // Order: fds
-func Permutation4ParamOrder5(s []uint, f func([]uint)) {
+func Permutation4ParamOrder5[T any](s []T, f func([]T)) {
 	if len(s) == 0 {
 		f(s)
 	} else {

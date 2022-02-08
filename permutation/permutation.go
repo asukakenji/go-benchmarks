@@ -2,7 +2,7 @@ package permutation
 
 // permutation is the recurive function called by
 // Permutation to handle generic cases.
-func permutation(f func([]uint), d int, s []uint) {
+func permutation[T any](f func([]T), d int, s []T) {
 	if d == 0 {
 		f(s)
 	} else {
@@ -18,7 +18,7 @@ func permutation(f func([]uint), d int, s []uint) {
 // This implementation is essentially the same as
 // b4.Permutation4ParamOrder5 (the best implementation),
 // with a different parameter order in the exported function.
-func Permutation(f func([]uint), s []uint) {
+func Permutation[T any](f func([]T), s []T) {
 	if len(s) == 0 {
 		f(s)
 	} else {

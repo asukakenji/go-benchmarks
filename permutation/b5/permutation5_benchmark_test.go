@@ -17,5 +17,5 @@ func BenchmarkUintSliceGenerator(b *testing.B) {
 
 func BenchmarkPermutation5Inc(b *testing.B) {
 	bcommon.Reset()
-	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b5.Permutation5Inc)
+	benchmark.UintSliceGenerator(b, bcommon.NextSlice, b5.Permutation5Inc[uint])
 }

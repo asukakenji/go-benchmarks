@@ -9,12 +9,12 @@ import (
 
 func TestPermutation(t *testing.T) {
 	implementations := []tcommon.Implementation{
-		{Name: "b4.Permutation4ParamOrder0", F: b4.Permutation4ParamOrder0},
-		{Name: "b4.Permutation4ParamOrder1", F: b4.Permutation4ParamOrder1},
-		{Name: "b4.Permutation4ParamOrder2", F: b4.Permutation4ParamOrder2},
-		{Name: "b4.Permutation4ParamOrder3", F: b4.Permutation4ParamOrder3},
-		{Name: "b4.Permutation4ParamOrder4", F: b4.Permutation4ParamOrder4},
-		{Name: "b4.Permutation4ParamOrder5", F: b4.Permutation4ParamOrder5},
+		{Name: "b4.Permutation4ParamOrder0", F: b4.Permutation4ParamOrder0[uint]},
+		{Name: "b4.Permutation4ParamOrder1", F: b4.Permutation4ParamOrder1[uint]},
+		{Name: "b4.Permutation4ParamOrder2", F: b4.Permutation4ParamOrder2[uint]},
+		{Name: "b4.Permutation4ParamOrder3", F: b4.Permutation4ParamOrder3[uint]},
+		{Name: "b4.Permutation4ParamOrder4", F: b4.Permutation4ParamOrder4[uint]},
+		{Name: "b4.Permutation4ParamOrder5", F: b4.Permutation4ParamOrder5[uint]},
 	}
 	for _, impl := range implementations {
 		tcommon.TestPermutation(t, impl)

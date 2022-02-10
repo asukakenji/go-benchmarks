@@ -17,7 +17,17 @@ func TestLeadingZerosAllBasic(t *testing.T) {
 	// tcommon.TestBasicPtr(t, nlz10b.LeadingZerosPtr)
 }
 
-func TestLeadingZerosAllNaive(t *testing.T) {
+func TestLeadingZerosAgainstStdlib(t *testing.T) {
+	// tcommon.TestAgainstStdlibImplementation(t, nlz10b.LeadingZeros)
+	// tcommon.TestAgainstStdlibImplementation8(t, nlz10b.LeadingZeros8)
+	// tcommon.TestAgainstStdlibImplementation16(t, nlz10b.LeadingZeros16)
+	tcommon.TestAgainstStdlibImplementation32(t, nlz10b.LeadingZeros32)
+	tcommon.TestAgainstStdlibImplementation32(t, nlz10b.LeadingZeros32NoMultiply)
+	// tcommon.TestAgainstStdlibImplementation64(t, nlz10b.LeadingZeros64)
+	// tcommon.TestAgainstStdlibImplementationPtr(t, nlz10b.LeadingZerosPtr)
+}
+
+func TestLeadingZerosAgainstNaive(t *testing.T) {
 	// tcommon.TestAgainstNaiveImplementation(t, nlz10b.LeadingZeros)
 	// tcommon.TestAgainstNaiveImplementation8(t, nlz10b.LeadingZeros8)
 	// tcommon.TestAgainstNaiveImplementation16(t, nlz10b.LeadingZeros16)
@@ -27,7 +37,7 @@ func TestLeadingZerosAllNaive(t *testing.T) {
 	// tcommon.TestAgainstNaiveImplementationPtr(t, nlz10b.LeadingZerosPtr)
 }
 
-func TestLeadingZerosAllTable(t *testing.T) {
+func TestLeadingZerosAgainstTable(t *testing.T) {
 	// tcommon.TestAgainstTableImplementation(t, nlz10b.LeadingZeros)
 	// tcommon.TestAgainstTableImplementation8(t, nlz10b.LeadingZeros8)
 	// tcommon.TestAgainstTableImplementation16(t, nlz10b.LeadingZeros16)

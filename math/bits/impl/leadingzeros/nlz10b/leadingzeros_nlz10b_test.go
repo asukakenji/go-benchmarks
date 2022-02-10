@@ -3,31 +3,36 @@ package nlz10b_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz10b"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/tcommon"
 )
 
+func TestLeadingZerosAllBasic(t *testing.T) {
+	// tcommon.TestBasic(t, nlz10b.LeadingZeros)
+	// tcommon.TestBasic8(t, nlz10b.LeadingZeros8)
+	// tcommon.TestBasic16(t, nlz10b.LeadingZeros16)
+	tcommon.TestBasic32(t, nlz10b.LeadingZeros32)
+	tcommon.TestBasic32(t, nlz10b.LeadingZeros32NoMultiply)
+	// tcommon.TestBasic64(t, nlz10b.LeadingZeros64)
+	// tcommon.TestBasicPtr(t, nlz10b.LeadingZerosPtr)
+}
+
 func TestLeadingZerosAllNaive(t *testing.T) {
-	// leadingzeros.NaiveTest(t, nlz10b.LeadingZeros)
-	// leadingzeros.NaiveTest8(t, nlz10b.LeadingZeros8)
-	// leadingzeros.NaiveTest16(t, nlz10b.LeadingZeros16)
-	leadingzeros.NaiveTest32(t, nlz10b.LeadingZeros32)
-	leadingzeros.NaiveTest32(t, nlz10b.LeadingZeros32NoMultiply)
-	// leadingzeros.NaiveTest64(t, nlz10b.LeadingZeros64)
+	// tcommon.TestAgainstNaiveImplementation(t, nlz10b.LeadingZeros)
+	// tcommon.TestAgainstNaiveImplementation8(t, nlz10b.LeadingZeros8)
+	// tcommon.TestAgainstNaiveImplementation16(t, nlz10b.LeadingZeros16)
+	tcommon.TestAgainstNaiveImplementation32(t, nlz10b.LeadingZeros32)
+	tcommon.TestAgainstNaiveImplementation32(t, nlz10b.LeadingZeros32NoMultiply)
+	// tcommon.TestAgainstNaiveImplementation64(t, nlz10b.LeadingZeros64)
+	// tcommon.TestAgainstNaiveImplementationPtr(t, nlz10b.LeadingZerosPtr)
 }
 
 func TestLeadingZerosAllTable(t *testing.T) {
-	leadingzeros.BasicTableTest(t, &leadingzeros.LeadingZerosFuncs{
-		// Uint:   nlz10b.LeadingZeros,
-		// Uint8:  nlz10b.LeadingZeros8,
-		// Uint16: nlz10b.LeadingZeros16,
-		Uint32: nlz10b.LeadingZeros32,
-		// Uint64: nlz10b.LeadingZeros64,
-	})
-	// leadingzeros.TableTest(t, nlz10b.LeadingZeros)
-	// leadingzeros.TableTest8(t, nlz10b.LeadingZeros8)
-	// leadingzeros.TableTest16(t, nlz10b.LeadingZeros16)
-	leadingzeros.TableTest32(t, nlz10b.LeadingZeros32)
-	leadingzeros.TableTest32(t, nlz10b.LeadingZeros32NoMultiply)
-	// leadingzeros.TableTest64(t, nlz10b.LeadingZeros64)
+	// tcommon.TestAgainstTableImplementation(t, nlz10b.LeadingZeros)
+	// tcommon.TestAgainstTableImplementation8(t, nlz10b.LeadingZeros8)
+	// tcommon.TestAgainstTableImplementation16(t, nlz10b.LeadingZeros16)
+	tcommon.TestAgainstTableImplementation32(t, nlz10b.LeadingZeros32)
+	tcommon.TestAgainstTableImplementation32(t, nlz10b.LeadingZeros32NoMultiply)
+	// tcommon.TestAgainstTableImplementation64(t, nlz10b.LeadingZeros64)
+	// tcommon.TestAgainstTableImplementationPtr(t, nlz10b.LeadingZerosPtr)
 }

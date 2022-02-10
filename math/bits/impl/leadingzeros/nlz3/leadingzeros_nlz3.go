@@ -1,10 +1,8 @@
 package nlz3
 
-const (
-	uintSize = 32 << (^uint(0) >> 32 & 1) // 32 or 64
-)
+import "github.com/asukakenji/go-benchmarks"
 
-// LeadingZeros returns the number of leading zero bits in x; the result is UintSize for x == 0.
+// LeadingZeros returns the number of leading zero bits in x; the result is the size of uint in bits for x == 0.
 func LeadingZeros(x uint) int {
 	_x := int(x)
 	n := int(0)
@@ -14,7 +12,7 @@ L:
 		return n
 	}
 	if y == 0 {
-		return uintSize - n
+		return benchmarks.SizeOfUintInBits - n
 	}
 	n = n + 1
 	x = x << 1
@@ -87,6 +85,24 @@ L:
 	}
 	if y == 0 {
 		return int(64 - n)
+	}
+	n = n + 1
+	x = x << 1
+	y = y >> 1
+	goto L
+}
+
+// LeadingZerosPtr returns the number of leading zero bits in x; the result is the size of uintptr in bits for x == 0.
+func LeadingZerosPtr(x uintptr) int {
+	_x := int(x)
+	n := int(0)
+	y := _x
+L:
+	if _x < 0 {
+		return n
+	}
+	if y == 0 {
+		return benchmarks.SizeOfUintInBits - n
 	}
 	n = n + 1
 	x = x << 1

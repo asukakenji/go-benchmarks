@@ -1,4 +1,4 @@
-package leadingzeros_test
+package bcommon
 
 import (
 	"testing"

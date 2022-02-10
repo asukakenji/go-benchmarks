@@ -1,12 +1,10 @@
 package nlz2a
 
-const (
-	uintSize = 32 << (^uint(0) >> 32 & 1) // 32 or 64
-)
+import "github.com/asukakenji/go-benchmarks"
 
-// LeadingZeros returns the number of leading zero bits in x; the result is UintSize for x == 0.
+// LeadingZeros returns the number of leading zero bits in x; the result is the size of uint in bits for x == 0.
 func LeadingZeros(x uint) int {
-	n := uint(uintSize)
+	n := uint(benchmarks.SizeOfUintInBits)
 	c := n >> 1
 	for {
 		y := x >> c
@@ -80,6 +78,24 @@ func LeadingZeros32(x uint32) int {
 func LeadingZeros64(x uint64) int {
 	n := uint64(64)
 	c := uint64(32)
+	for {
+		y := x >> c
+		if y != 0 {
+			n = n - c
+			x = y
+		}
+		c = c >> 1
+		if c == 0 {
+			break
+		}
+	}
+	return int(n - x)
+}
+
+// LeadingZerosPtr returns the number of leading zero bits in x; the result is the size of uintptr in bits for x == 0.
+func LeadingZerosPtr(x uintptr) int {
+	n := uintptr(benchmarks.SizeOfUintInBits)
+	c := n >> 1
 	for {
 		y := x >> c
 		if y != 0 {

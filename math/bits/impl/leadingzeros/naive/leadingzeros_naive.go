@@ -1,12 +1,24 @@
 package naive
 
-const (
-	uintSize = 32 << (^uint(0) >> 32 & 1) // 32 or 64
+import (
+	"constraints"
+
+	"github.com/asukakenji/go-benchmarks"
 )
 
-// LeadingZeros returns the number of leading zero bits in x; the result is UintSize for x == 0.
+// LeadingZerosGeneric returns the number of leading zero bits in x; the result is the size of T in bits for x == 0.
+func LeadingZerosGeneric[T constraints.Unsigned](x T) int {
+	n := benchmarks.SizeOf[T]()
+	for x != 0 {
+		x >>= 1
+		n--
+	}
+	return n
+}
+
+// LeadingZeros returns the number of leading zero bits in x; the result is the size of uint in bits for x == 0.
 func LeadingZeros(x uint) int {
-	n := uintSize
+	n := benchmarks.SizeOfUintInBits
 	for x != 0 {
 		x >>= 1
 		n--
@@ -62,6 +74,16 @@ func LeadingZeros64(x uint64) int {
 	for x&0x8000000000000000 == 0 {
 		x <<= 1
 		n++
+	}
+	return n
+}
+
+// LeadingZerosPtr returns the number of leading zero bits in x; the result is the size of uintptr in bits for x == 0.
+func LeadingZerosPtr(x uintptr) int {
+	n := benchmarks.SizeOf[uintptr]()
+	for x != 0 {
+		x >>= 1
+		n--
 	}
 	return n
 }

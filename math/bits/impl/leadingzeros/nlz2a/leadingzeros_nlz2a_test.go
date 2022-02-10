@@ -3,29 +3,33 @@ package nlz2a_test
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz2a"
+	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/tcommon"
 )
 
+func TestLeadingZerosAllBasic(t *testing.T) {
+	tcommon.TestBasic(t, nlz2a.LeadingZeros)
+	tcommon.TestBasic8(t, nlz2a.LeadingZeros8)
+	tcommon.TestBasic16(t, nlz2a.LeadingZeros16)
+	tcommon.TestBasic32(t, nlz2a.LeadingZeros32)
+	tcommon.TestBasic64(t, nlz2a.LeadingZeros64)
+	tcommon.TestBasicPtr(t, nlz2a.LeadingZerosPtr)
+}
+
 func TestLeadingZerosAllNaive(t *testing.T) {
-	leadingzeros.NaiveTest(t, nlz2a.LeadingZeros)
-	leadingzeros.NaiveTest8(t, nlz2a.LeadingZeros8)
-	leadingzeros.NaiveTest16(t, nlz2a.LeadingZeros16)
-	leadingzeros.NaiveTest32(t, nlz2a.LeadingZeros32)
-	leadingzeros.NaiveTest64(t, nlz2a.LeadingZeros64)
+	tcommon.TestAgainstNaiveImplementation(t, nlz2a.LeadingZeros)
+	tcommon.TestAgainstNaiveImplementation8(t, nlz2a.LeadingZeros8)
+	tcommon.TestAgainstNaiveImplementation16(t, nlz2a.LeadingZeros16)
+	tcommon.TestAgainstNaiveImplementation32(t, nlz2a.LeadingZeros32)
+	tcommon.TestAgainstNaiveImplementation64(t, nlz2a.LeadingZeros64)
+	tcommon.TestAgainstNaiveImplementationPtr(t, nlz2a.LeadingZerosPtr)
 }
 
 func TestLeadingZerosAllTable(t *testing.T) {
-	leadingzeros.BasicTableTest(t, &leadingzeros.LeadingZerosFuncs{
-		Uint:   nlz2a.LeadingZeros,
-		Uint8:  nlz2a.LeadingZeros8,
-		Uint16: nlz2a.LeadingZeros16,
-		Uint32: nlz2a.LeadingZeros32,
-		Uint64: nlz2a.LeadingZeros64,
-	})
-	leadingzeros.TableTest(t, nlz2a.LeadingZeros)
-	leadingzeros.TableTest8(t, nlz2a.LeadingZeros8)
-	leadingzeros.TableTest16(t, nlz2a.LeadingZeros16)
-	leadingzeros.TableTest32(t, nlz2a.LeadingZeros32)
-	leadingzeros.TableTest64(t, nlz2a.LeadingZeros64)
+	tcommon.TestAgainstTableImplementation(t, nlz2a.LeadingZeros)
+	tcommon.TestAgainstTableImplementation8(t, nlz2a.LeadingZeros8)
+	tcommon.TestAgainstTableImplementation16(t, nlz2a.LeadingZeros16)
+	tcommon.TestAgainstTableImplementation32(t, nlz2a.LeadingZeros32)
+	tcommon.TestAgainstTableImplementation64(t, nlz2a.LeadingZeros64)
+	tcommon.TestAgainstTableImplementationPtr(t, nlz2a.LeadingZerosPtr)
 }

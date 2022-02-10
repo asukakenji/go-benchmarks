@@ -26,7 +26,7 @@ var nlz8tab = [256]uint8{
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 }
 
-// LeadingZerosConcept returns the number of leading zero bits in x; the result is UintSize for x == 0.
+// LeadingZerosConcept returns the number of leading zero bits in x; the result is the size of uint in bits for x == 0.
 func LeadingZerosConcept(x uint) int {
 	if x == 0 {
 		return uintSize

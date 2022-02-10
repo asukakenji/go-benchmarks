@@ -7,7 +7,7 @@ import (
 )
 
 func TestAgainstTableImplementation(t *testing.T, leadingZeros func(uint) int) {
-	testAgainst(t, table.LeadingZerosConcept, leadingZeros)
+	testAgainst(t, table.LeadingZeros, leadingZeros)
 }
 
 func TestAgainstTableImplementation8(t *testing.T, leadingZeros func(uint8) int) {
@@ -27,6 +27,5 @@ func TestAgainstTableImplementation64(t *testing.T, leadingZeros func(uint64) in
 }
 
 func TestAgainstTableImplementationPtr(t *testing.T, leadingZeros func(uintptr) int) {
-	// TODO: Write this!
-	// testAgainstPtr(t, table.LeadingZerosPtr, leadingZeros)
+	testAgainstPtr(t, table.LeadingZerosPtr, leadingZeros)
 }

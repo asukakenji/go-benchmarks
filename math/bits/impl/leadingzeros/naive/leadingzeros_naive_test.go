@@ -39,7 +39,23 @@ func TestLeadingZerosAllCases(t *testing.T) {
 	tcommon.TestLeadingZerosPtr(t, naive.LeadingZerosGeneric[uintptr])
 }
 
-func TestLeadingZerosAllTable(t *testing.T) {
+func TestLeadingZerosAgainstStdlib(t *testing.T) {
+	tcommon.TestAgainstStdlibImplementation(t, naive.LeadingZeros)
+	tcommon.TestAgainstStdlibImplementation8(t, naive.LeadingZeros8)
+	tcommon.TestAgainstStdlibImplementation16(t, naive.LeadingZeros16)
+	tcommon.TestAgainstStdlibImplementation32(t, naive.LeadingZeros32)
+	tcommon.TestAgainstStdlibImplementation64(t, naive.LeadingZeros64)
+	tcommon.TestAgainstStdlibImplementationPtr(t, naive.LeadingZerosPtr)
+	// ---
+	tcommon.TestAgainstStdlibImplementation(t, naive.LeadingZerosGeneric[uint])
+	tcommon.TestAgainstStdlibImplementation8(t, naive.LeadingZerosGeneric[uint8])
+	tcommon.TestAgainstStdlibImplementation16(t, naive.LeadingZerosGeneric[uint16])
+	tcommon.TestAgainstStdlibImplementation32(t, naive.LeadingZerosGeneric[uint32])
+	tcommon.TestAgainstStdlibImplementation64(t, naive.LeadingZerosGeneric[uint64])
+	tcommon.TestAgainstStdlibImplementationPtr(t, naive.LeadingZerosGeneric[uintptr])
+}
+
+func TestLeadingZerosAgainstTable(t *testing.T) {
 	tcommon.TestAgainstTableImplementation(t, naive.LeadingZeros)
 	tcommon.TestAgainstTableImplementation8(t, naive.LeadingZeros8)
 	tcommon.TestAgainstTableImplementation16(t, naive.LeadingZeros16)

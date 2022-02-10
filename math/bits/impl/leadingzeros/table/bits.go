@@ -1,45 +1,21 @@
 package table
 
-const (
-	uintSize = 32 << (^uint(0) >> 32 & 1) // 32 or 64
-)
+import "github.com/asukakenji/go-benchmarks"
 
-var nlz8tab = [256]uint8{
-	8, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4,
-	3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-	2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-	2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-
-	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-}
-
-// LeadingZerosConcept returns the number of leading zero bits in x; the result is the size of uint in bits for x == 0.
-func LeadingZerosConcept(x uint) int {
+// LeadingZeros returns the number of leading zero bits in x; the result is the size of uint in bits for x == 0.
+func LeadingZeros(x uint) int {
 	if x == 0 {
-		return uintSize
+		return benchmarks.SizeOfUintInBits
 	}
 	n := uint8(0)
-	shift := uint(uintSize - 8)
-	nWhenAllZeros := uint8(8)
+	shift := benchmarks.SizeOfUintInBits - 8
+	nForZeroX := uint8(8)
 	for {
 		n += nlz8tab[(x>>shift)&0xff]
-		if n != nWhenAllZeros {
+		if n != nForZeroX {
 			return int(n)
 		}
-		nWhenAllZeros += 8
+		nForZeroX += 8
 		shift -= 8
 	}
 }
@@ -106,4 +82,22 @@ func LeadingZeros64(x uint64) int {
 		return int(n)
 	}
 	return int(n + nlz8tab[x&0xff])
+}
+
+// LeadingZerosPtr returns the number of leading zero bits in x; the result is the size of uintptr in bits for x == 0.
+func LeadingZerosPtr(x uintptr) int {
+	if x == 0 {
+		return benchmarks.SizeOf[uintptr]()
+	}
+	n := uint8(0)
+	shift := benchmarks.SizeOf[uintptr]() - 8
+	nForZeroX := uint8(8)
+	for {
+		n += nlz8tab[(x>>shift)&0xff]
+		if n != nForZeroX {
+			return int(n)
+		}
+		nForZeroX += 8
+		shift -= 8
+	}
 }

@@ -37,7 +37,7 @@ func BenchmarkLeadingZeros0Naive(b *testing.B) {
 
 func BenchmarkLeadingZeros0Table(b *testing.B) {
 	uintSupplier.Reset()
-	benchmark.UintToIntFunc(b, uintSupplier.Next, table.LeadingZerosConcept)
+	benchmark.UintToIntFunc(b, uintSupplier.Next, table.LeadingZeros)
 }
 
 func BenchmarkLeadingZeros0Stdlib(b *testing.B) {

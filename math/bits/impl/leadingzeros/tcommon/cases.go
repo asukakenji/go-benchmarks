@@ -53,7 +53,7 @@ func TestLeadingZeros(t *testing.T, leadingZeros func(uint) int) {
 	}
 }
 
-func TestLeadingZeros8(t *testing.T, leadingZeros func(uint8) int) {
+func TestLeadingZeros8(t *testing.T, leadingZeros8 func(uint8) int) {
 	cases := []struct {
 		x        uint8
 		expected int
@@ -72,14 +72,14 @@ func TestLeadingZeros8(t *testing.T, leadingZeros func(uint8) int) {
 		{1 << 4, 3}, {1 << 5, 2}, {1 << 6, 1}, {1 << 7, 0},
 	}
 	for _, c := range cases {
-		got := leadingZeros(c.x)
+		got := leadingZeros8(c.x)
 		if got != c.expected {
 			t.Errorf("LeadingZeros8(0x%02x) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
 
-func TestLeadingZeros16(t *testing.T, leadingZeros func(uint16) int) {
+func TestLeadingZeros16(t *testing.T, leadingZeros16 func(uint16) int) {
 	cases := []struct {
 		x        uint16
 		expected int
@@ -98,14 +98,14 @@ func TestLeadingZeros16(t *testing.T, leadingZeros func(uint16) int) {
 		{1 << 12, 3}, {1 << 13, 2}, {1 << 14, 1}, {1 << 15, 0},
 	}
 	for _, c := range cases {
-		got := leadingZeros(c.x)
+		got := leadingZeros16(c.x)
 		if got != c.expected {
 			t.Errorf("LeadingZeros16(0x%04x) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
 
-func TestLeadingZeros32(t *testing.T, leadingZeros func(uint32) int) {
+func TestLeadingZeros32(t *testing.T, leadingZeros32 func(uint32) int) {
 	cases := []struct {
 		x        uint32
 		expected int
@@ -129,14 +129,14 @@ func TestLeadingZeros32(t *testing.T, leadingZeros func(uint32) int) {
 		{1 << 28, 3}, {1 << 29, 2}, {1 << 30, 1}, {1 << 31, 0},
 	}
 	for _, c := range cases {
-		got := leadingZeros(c.x)
+		got := leadingZeros32(c.x)
 		if got != c.expected {
 			t.Errorf("LeadingZeros32(0x%08x) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
 
-func TestLeadingZeros64(t *testing.T, leadingZeros func(uint64) int) {
+func TestLeadingZeros64(t *testing.T, leadingZeros64 func(uint64) int) {
 	cases := []struct {
 		x        uint64
 		expected int
@@ -174,14 +174,14 @@ func TestLeadingZeros64(t *testing.T, leadingZeros func(uint64) int) {
 		{1 << 60, 3}, {1 << 61, 2}, {1 << 62, 1}, {1 << 63, 0},
 	}
 	for _, c := range cases {
-		got := leadingZeros(c.x)
+		got := leadingZeros64(c.x)
 		if got != c.expected {
 			t.Errorf("LeadingZeros64(0x%016x) = %d, expected %d", c.x, got, c.expected)
 		}
 	}
 }
 
-func TestLeadingZerosPtr(t *testing.T, leadingZeros func(uintptr) int) {
+func TestLeadingZerosPtr(t *testing.T, leadingZerosPtr func(uintptr) int) {
 	cases := []struct {
 		x        uintptr
 		expected int
@@ -221,7 +221,7 @@ func TestLeadingZerosPtr(t *testing.T, leadingZeros func(uintptr) int) {
 		{1 << 31, benchmarks.SizeOfUintInBits - 32},
 	}
 	for _, c := range cases {
-		got := leadingZeros(c.x)
+		got := leadingZerosPtr(c.x)
 		if got != c.expected {
 			t.Errorf("LeadingZerosPtr(0x%x) = %d, expected %d", c.x, got, c.expected)
 		}

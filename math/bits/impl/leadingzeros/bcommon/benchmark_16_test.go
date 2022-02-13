@@ -3,8 +3,6 @@ package bcommon
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/common/benchmark"
-	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1a"
@@ -16,69 +14,54 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/table"
 )
 
-// BenchmarkLeadingZeros16CalibrateSupplier-8      	500000000	         3.46 ns/op
-// BenchmarkLeadingZeros16CalibrateBenchmarker-8   	300000000	         4.87 ns/op
-// BenchmarkLeadingZeros16Naive-8                  	100000000	        13.0 ns/op
-// BenchmarkLeadingZeros16Table-8                  	300000000	         5.57 ns/op <- Best
-// BenchmarkLeadingZeros16Stdlib-8                 	200000000	         6.43 ns/op <- Best
-// BenchmarkLeadingZeros16Nlz1-8                   	100000000	        11.8 ns/op
-// BenchmarkLeadingZeros16Nlz1a-8                  	100000000	        11.0 ns/op
-// BenchmarkLeadingZeros16Nlz2-8                   	200000000	         8.62 ns/op
-// BenchmarkLeadingZeros16Nlz2a-8                  	100000000	        14.9 ns/op
-// BenchmarkLeadingZeros16Nlz3-8                   	100000000	        17.8 ns/op
-// BenchmarkLeadingZeros16Nlz5-8                   	200000000	         7.48 ns/op <- Best (Non-Table)
-
-var uint16Supplier = randomsupplier.NewUint16()
-
-func BenchmarkLeadingZeros16CalibrateSupplier(b *testing.B) {
-	benchmark.Uint16Supplier(b, uint16Supplier.Next)
-}
-
-func BenchmarkLeadingZeros16CalibrateBenchmarker(b *testing.B) {
-	benchmark.CalibrateUint16ToIntFunc(b, uint16Supplier.Next)
-}
+// goos: darwin
+// goarch: amd64
+// pkg: github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/bcommon
+// cpu: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz
+// BenchmarkLeadingZeros16Naive-36         285502256                4.246 ns/op
+// BenchmarkLeadingZeros16Table-36         634337701                1.882 ns/op <- Best
+// BenchmarkLeadingZeros16Stdlib-36        545357505                2.184 ns/op <- Best
+// BenchmarkLeadingZeros16Nlz1-36          362951762                3.294 ns/op
+// BenchmarkLeadingZeros16Nlz1a-36         402672145                2.959 ns/op
+// BenchmarkLeadingZeros16Nlz2-36          421391158                2.829 ns/op
+// BenchmarkLeadingZeros16Nlz2a-36         215555361                5.521 ns/op
+// BenchmarkLeadingZeros16Nlz3-36          298482657                4.003 ns/op
+// BenchmarkLeadingZeros16Nlz5-36          452581203                2.645 ns/op <- Best (Non-Table)
+// PASS
+// ok      github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/bcommon 14.031s
 
 func BenchmarkLeadingZeros16Naive(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, naive.LeadingZeros16)
+	benchmarkLeadingZeros16(b, naive.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Table(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, table.LeadingZeros16)
+	benchmarkLeadingZeros16(b, table.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Stdlib(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, stdlib.LeadingZeros16)
+	benchmarkLeadingZeros16(b, stdlib.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Nlz1(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, nlz1.LeadingZeros16)
+	benchmarkLeadingZeros16(b, nlz1.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Nlz1a(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, nlz1a.LeadingZeros16)
+	benchmarkLeadingZeros16(b, nlz1a.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Nlz2(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, nlz2.LeadingZeros16)
+	benchmarkLeadingZeros16(b, nlz2.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Nlz2a(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, nlz2a.LeadingZeros16)
+	benchmarkLeadingZeros16(b, nlz2a.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Nlz3(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, nlz3.LeadingZeros16)
+	benchmarkLeadingZeros16(b, nlz3.LeadingZeros16)
 }
 
 func BenchmarkLeadingZeros16Nlz5(b *testing.B) {
-	uint16Supplier.Reset()
-	benchmark.Uint16ToIntFunc(b, uint16Supplier.Next, nlz5.LeadingZeros16)
+	benchmarkLeadingZeros16(b, nlz5.LeadingZeros16)
 }

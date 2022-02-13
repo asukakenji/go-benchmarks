@@ -3,8 +3,6 @@ package bcommon
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/common/benchmark"
-	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1a"
@@ -16,69 +14,54 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/table"
 )
 
-// BenchmarkLeadingZeros8CalibrateSupplier-8      	500000000	         3.68 ns/op
-// BenchmarkLeadingZeros8CalibrateBenchmarker-8   	300000000	         4.96 ns/op
-// BenchmarkLeadingZeros8Naive-8                  	100000000	        12.3 ns/op
-// BenchmarkLeadingZeros8Table-8                  	300000000	         5.41 ns/op <- Best
-// BenchmarkLeadingZeros8Stdlib-8                 	300000000	         5.54 ns/op <- Best
-// BenchmarkLeadingZeros8Nlz1-8                   	100000000	        12.4 ns/op
-// BenchmarkLeadingZeros8Nlz1a-8                  	100000000	        12.7 ns/op
-// BenchmarkLeadingZeros8Nlz2-8                   	100000000	        11.3 ns/op
-// BenchmarkLeadingZeros8Nlz2a-8                  	100000000	        14.0 ns/op
-// BenchmarkLeadingZeros8Nlz3-8                   	100000000	        14.8 ns/op
-// BenchmarkLeadingZeros8Nlz5-8                   	200000000	         6.68 ns/op <- Best (Non-Table)
-
-var uint8Supplier = randomsupplier.NewUint8()
-
-func BenchmarkLeadingZeros8CalibrateSupplier(b *testing.B) {
-	benchmark.Uint8Supplier(b, uint8Supplier.Next)
-}
-
-func BenchmarkLeadingZeros8CalibrateBenchmarker(b *testing.B) {
-	benchmark.CalibrateUint8ToIntFunc(b, uint8Supplier.Next)
-}
+// goos: darwin
+// goarch: amd64
+// pkg: github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/bcommon
+// cpu: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz
+// BenchmarkLeadingZeros8Naive-36          375842836                3.180 ns/op
+// BenchmarkLeadingZeros8Table-36          837485616                1.417 ns/op <- Best
+// BenchmarkLeadingZeros8Stdlib-36         837043983                1.422 ns/op <- Best
+// BenchmarkLeadingZeros8Nlz1-36           559964184                2.123 ns/op <- Best (Non-Table)
+// BenchmarkLeadingZeros8Nlz1a-36          543472698                2.239 ns/op
+// BenchmarkLeadingZeros8Nlz2-36           456479832                2.597 ns/op
+// BenchmarkLeadingZeros8Nlz2a-36          298404591                3.987 ns/op
+// BenchmarkLeadingZeros8Nlz3-36           513300402                2.328 ns/op
+// BenchmarkLeadingZeros8Nlz5-36           559056831                2.129 ns/op <- Best (Non-Table)
+// PASS
+// ok      github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/bcommon 13.186s
 
 func BenchmarkLeadingZeros8Naive(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, naive.LeadingZeros8)
+	benchmarkLeadingZeros8(b, naive.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Table(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, table.LeadingZeros8)
+	benchmarkLeadingZeros8(b, table.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Stdlib(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, stdlib.LeadingZeros8)
+	benchmarkLeadingZeros8(b, stdlib.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Nlz1(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, nlz1.LeadingZeros8)
+	benchmarkLeadingZeros8(b, nlz1.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Nlz1a(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, nlz1a.LeadingZeros8)
+	benchmarkLeadingZeros8(b, nlz1a.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Nlz2(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, nlz2.LeadingZeros8)
+	benchmarkLeadingZeros8(b, nlz2.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Nlz2a(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, nlz2a.LeadingZeros8)
+	benchmarkLeadingZeros8(b, nlz2a.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Nlz3(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, nlz3.LeadingZeros8)
+	benchmarkLeadingZeros8(b, nlz3.LeadingZeros8)
 }
 
 func BenchmarkLeadingZeros8Nlz5(b *testing.B) {
-	uint8Supplier.Reset()
-	benchmark.Uint8ToIntFunc(b, uint8Supplier.Next, nlz5.LeadingZeros8)
+	benchmarkLeadingZeros8(b, nlz5.LeadingZeros8)
 }

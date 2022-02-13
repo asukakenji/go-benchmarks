@@ -3,8 +3,6 @@ package bcommon
 import (
 	"testing"
 
-	"github.com/asukakenji/go-benchmarks/common/benchmark"
-	"github.com/asukakenji/go-benchmarks/common/randomsupplier"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/naive"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1"
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/nlz1a"
@@ -16,69 +14,54 @@ import (
 	"github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/table"
 )
 
-// BenchmarkLeadingZeros64CalibrateSupplier-8      	500000000	         3.58 ns/op
-// BenchmarkLeadingZeros64CalibrateBenchmarker-8   	300000000	         4.71 ns/op
-// BenchmarkLeadingZeros64Naive-8                  	200000000	         6.41 ns/op <- Best (Non-Table)
-// BenchmarkLeadingZeros64Table-8                  	300000000	         5.61 ns/op <- Best
-// BenchmarkLeadingZeros64Stdlib-8                 	200000000	         7.13 ns/op
-// BenchmarkLeadingZeros64Nlz1-8                   	100000000	        10.3 ns/op
-// BenchmarkLeadingZeros64Nlz1a-8                  	200000000	         6.87 ns/op
-// BenchmarkLeadingZeros64Nlz2-8                   	200000000	         7.47 ns/op
-// BenchmarkLeadingZeros64Nlz2a-8                  	100000000	        13.6 ns/op
-// BenchmarkLeadingZeros64Nlz3-8                   	50000000	        33.1 ns/op
-// BenchmarkLeadingZeros64Nlz5-8                   	200000000	         9.19 ns/op
-
-var uint64Supplier = randomsupplier.NewUint64()
-
-func BenchmarkLeadingZeros64CalibrateSupplier(b *testing.B) {
-	benchmark.Uint64Supplier(b, uint64Supplier.Next)
-}
-
-func BenchmarkLeadingZeros64CalibrateBenchmarker(b *testing.B) {
-	benchmark.CalibrateUint64ToIntFunc(b, uint64Supplier.Next)
-}
+// goos: darwin
+// goarch: amd64
+// pkg: github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/bcommon
+// cpu: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz
+// BenchmarkLeadingZeros64Naive-36         60385888                19.08 ns/op
+// BenchmarkLeadingZeros64Table-36         403680799                2.968 ns/op <- Best
+// BenchmarkLeadingZeros64Stdlib-36        475226946                2.472 ns/op <- Best
+// BenchmarkLeadingZeros64Nlz1-36          264188792                4.554 ns/op
+// BenchmarkLeadingZeros64Nlz1a-36         305881768                3.908 ns/op
+// BenchmarkLeadingZeros64Nlz2-36          319975749                3.738 ns/op <- Best (Non-Table)
+// BenchmarkLeadingZeros64Nlz2a-36         164567097                7.278 ns/op
+// BenchmarkLeadingZeros64Nlz3-36          67108095                16.51 ns/op
+// BenchmarkLeadingZeros64Nlz5-36          316458127                3.776 ns/op <- Best (Non-Table)
+// PASS
+// ok      github.com/asukakenji/go-benchmarks/math/bits/impl/leadingzeros/bcommon 13.838s
 
 func BenchmarkLeadingZeros64Naive(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, naive.LeadingZeros64)
+	benchmarkLeadingZeros64(b, naive.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Table(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, table.LeadingZeros64)
+	benchmarkLeadingZeros64(b, table.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Stdlib(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, stdlib.LeadingZeros64)
+	benchmarkLeadingZeros64(b, stdlib.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Nlz1(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, nlz1.LeadingZeros64)
+	benchmarkLeadingZeros64(b, nlz1.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Nlz1a(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, nlz1a.LeadingZeros64)
+	benchmarkLeadingZeros64(b, nlz1a.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Nlz2(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, nlz2.LeadingZeros64)
+	benchmarkLeadingZeros64(b, nlz2.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Nlz2a(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, nlz2a.LeadingZeros64)
+	benchmarkLeadingZeros64(b, nlz2a.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Nlz3(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, nlz3.LeadingZeros64)
+	benchmarkLeadingZeros64(b, nlz3.LeadingZeros64)
 }
 
 func BenchmarkLeadingZeros64Nlz5(b *testing.B) {
-	uint64Supplier.Reset()
-	benchmark.Uint64ToIntFunc(b, uint64Supplier.Next, nlz5.LeadingZeros64)
+	benchmarkLeadingZeros64(b, nlz5.LeadingZeros64)
 }

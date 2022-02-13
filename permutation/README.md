@@ -61,6 +61,9 @@ backwards, and therefore loop variables compare to `0` instead of `len(s)`. This
 makes `b4` about `1~2%` faster than `b1`. However, the code looks much cleaner
 with fewer `len(s)` calls.
 
+Update: When tested with `go version go1.18beta2 darwin/amd64`, `b4` is
+significantly slower than `b1`.
+
 ## b5
 
 The package `b5` is different from all previous packages in the sense that it

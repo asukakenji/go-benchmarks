@@ -5,30 +5,13 @@ import (
 	"os"
 	"testing"
 	"time"
+
+	"github.com/asukakenji/go-benchmarks"
 )
 
 ////////////////
 // Benchmarks //
 ////////////////
-
-/////////////////
-// Size of int //
-/////////////////
-
-const (
-	// On 32-bit platforms: 0xFFFFFFFF
-	// On 64-bit platforms: 0xFFFFFFFFFFFFFFFF
-	maxUint = ^uint(0)
-	// On 32-bit platforms: 2
-	// On 64-bit platforms: 3
-	logSizeOfUintInBytes = maxUint>>8&1 + maxUint>>16&1 + maxUint>>32&1
-	// On 32-bit platforms: 4
-	// On 64-bit platforms: 8
-	sizeOfUintInBytes = 1 << logSizeOfUintInBytes
-	// On 32-bit platforms: 32
-	// On 64-bit platforms: 64
-	sizeOfUintInBits = sizeOfUintInBytes << 3
-)
 
 ///////////////
 // Page size //
@@ -43,7 +26,7 @@ func init() {
 	pageSizeInBytes = uint(os.Getpagesize()) // Usually 4096
 	// On 32-bit platforms: usually 1024
 	// On 64-bit platforms: usually 512
-	intsPerPage = pageSizeInBytes / sizeOfUintInBytes
+	intsPerPage = pageSizeInBytes / benchmarks.SizeOfUintInBytes
 }
 
 ////////////////////////////////////////////
@@ -87,7 +70,7 @@ var (
 func init() {
 	var n int
 	pagesPerSlice = memoryPerSliceInBytes / pageSizeInBytes
-	intsPerSlice = memoryPerSliceInBytes / sizeOfUintInBytes
+	intsPerSlice = memoryPerSliceInBytes / benchmarks.SizeOfUintInBytes
 
 	// If intsPerPage is 512, we would like to generate a random odd integer in
 	// the range [1, 511] as the increment, so that it always "generates" (in

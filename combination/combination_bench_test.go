@@ -49,39 +49,39 @@ func benchmarkCombination(b *testing.B, combination func([]int, int) [][]int, n 
 
 // ===
 
-// func BenchmarkCombination1_4(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination1[int], 4)
-// }
+func BenchmarkCombination1_4(b *testing.B) {
+	benchmarkCombination(b, combination.Combination1[int], 4)
+}
 
-// func BenchmarkCombination1_8(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination1[int], 8)
-// }
+func BenchmarkCombination1_8(b *testing.B) {
+	benchmarkCombination(b, combination.Combination1[int], 8)
+}
 
-// func BenchmarkCombination1_16(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination1[int], 16)
-// }
+func BenchmarkCombination1_16(b *testing.B) {
+	benchmarkCombination(b, combination.Combination1[int], 16)
+}
 
-// func BenchmarkCombination1_24(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination1[int], 24)
-// }
+func BenchmarkCombination1_24(b *testing.B) {
+	benchmarkCombination(b, combination.Combination1[int], 24)
+}
 
 // ---
 
-// func BenchmarkCombination2_4(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination2[int], 4)
-// }
+func BenchmarkCombination2_4(b *testing.B) {
+	benchmarkCombination(b, combination.Combination2[int], 4)
+}
 
-// func BenchmarkCombination2_8(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination2[int], 8)
-// }
+func BenchmarkCombination2_8(b *testing.B) {
+	benchmarkCombination(b, combination.Combination2[int], 8)
+}
 
-// func BenchmarkCombination2_16(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination2[int], 16)
-// }
+func BenchmarkCombination2_16(b *testing.B) {
+	benchmarkCombination(b, combination.Combination2[int], 16)
+}
 
-// func BenchmarkCombination2_24(b *testing.B) {
-// 	benchmarkCombination(b, combination.Combination2[int], 24)
-// }
+func BenchmarkCombination2_24(b *testing.B) {
+	benchmarkCombination(b, combination.Combination2[int], 24)
+}
 
 // ---
 

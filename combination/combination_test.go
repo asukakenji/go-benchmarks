@@ -13,20 +13,18 @@ func TestCombinationCount(t *testing.T) {
 		r        int
 		expected int
 	}{
-		{0, 0, 1},
-		{0, 1, 0},
-		{1, 0, 1},
-		{1, 1, 1},
-		{1, 2, 0},
-		{2, 0, 1},
-		{2, 1, 2},
-		{2, 2, 1},
-		{2, 3, 0},
-		{3, 0, 1},
-		{3, 1, 3},
-		{3, 2, 3},
-		{3, 3, 1},
-		{3, 4, 0},
+		{-2, -3, 0}, {-2, -2, 0}, {-2, -1, 0},
+		{-1, -2, 0}, {-1, -1, 0}, {-1, 0, 0},
+		{0, -1, 0}, {0, 0, 1}, {0, 1, 0},
+		{1, -1, 0}, {1, 0, 1}, {1, 1, 1}, {1, 2, 0},
+		{2, -1, 0}, {2, 0, 1}, {2, 1, 2}, {2, 2, 1}, {2, 3, 0},
+		{3, -1, 0}, {3, 0, 1}, {3, 1, 3}, {3, 2, 3}, {3, 3, 1}, {3, 4, 0},
+		{4, -1, 0}, {4, 0, 1}, {4, 1, 4}, {4, 2, 6}, {4, 3, 4}, {4, 4, 1}, {4, 5, 0},
+		{5, -1, 0}, {5, 0, 1}, {5, 1, 5}, {5, 2, 10}, {5, 3, 10}, {5, 4, 5}, {5, 5, 1}, {5, 6, 0},
+		{6, -1, 0}, {6, 0, 1}, {6, 1, 6}, {6, 2, 15}, {6, 3, 20}, {6, 4, 15}, {6, 5, 6}, {6, 6, 1}, {6, 7, 0},
+		{7, -1, 0}, {7, 0, 1}, {7, 1, 7}, {7, 2, 21}, {7, 3, 35}, {7, 4, 35}, {7, 5, 21}, {7, 6, 7}, {7, 7, 1}, {7, 8, 0},
+		{8, -1, 0}, {8, 0, 1}, {8, 1, 8}, {8, 2, 28}, {8, 3, 56}, {8, 4, 70}, {8, 5, 56}, {8, 6, 28}, {8, 7, 8}, {8, 8, 1}, {8, 9, 0},
+		{9, -1, 0}, {9, 0, 1}, {9, 1, 9}, {9, 2, 36}, {9, 3, 84}, {9, 4, 126}, {9, 5, 126}, {9, 6, 84}, {9, 7, 36}, {9, 8, 9}, {9, 9, 1}, {9, 10, 0},
 	}
 	for _, c := range cases {
 		got := combination.CombinationCount(c.n, c.r)
@@ -153,11 +151,3 @@ func TestCombination2a(t *testing.T) {
 	testCombinationNeq3(t, combination.Combination2a[int])
 	testCombinationNeq4(t, combination.Combination2a[int])
 }
-
-// func TestCombination3(t *testing.T) {
-// 	testCombinationNeq0(t, combination.Combination3[int])
-// 	testCombinationNeq1(t, combination.Combination3[int])
-// 	testCombinationNeq2(t, combination.Combination3[int])
-// 	testCombinationNeq3(t, combination.Combination3[int])
-// 	testCombinationNeq4(t, combination.Combination3[int])
-// }

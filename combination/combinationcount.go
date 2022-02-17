@@ -1,6 +1,9 @@
 package combination
 
 func CombinationCount(n, r int) int {
+	if n < 0 {
+		return 0
+	}
 	if r > n {
 		return 0
 	}
@@ -13,4 +16,8 @@ func CombinationCount(n, r int) int {
 		product = product * j / i
 	}
 	return int(product)
+}
+
+func CombinationWithRepetitionCount(n, r int) int {
+	return CombinationCount(n+r-1, r)
 }

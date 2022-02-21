@@ -50,11 +50,13 @@ func Combination0[T any](a []T, r int) [][]T {
 func Combination0R1[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 1)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n; i1++ {
-		result = append(result, []T{
+		result[i] = []T{
 			a[i1],
-		})
+		}
+		i++
 	}
 	return result
 }
@@ -62,12 +64,14 @@ func Combination0R1[T any](a []T) [][]T {
 func Combination0R2[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 2)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-1; i1++ {
 		for i2 := i1 + 1; i2 < n; i2++ {
-			result = append(result, []T{
+			result[i] = []T{
 				a[i1], a[i2],
-			})
+			}
+			i++
 		}
 	}
 	return result
@@ -76,13 +80,15 @@ func Combination0R2[T any](a []T) [][]T {
 func Combination0R3[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 3)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-2; i1++ {
 		for i2 := i1 + 1; i2 < n-1; i2++ {
 			for i3 := i2 + 1; i3 < n; i3++ {
-				result = append(result, []T{
+				result[i] = []T{
 					a[i1], a[i2], a[i3],
-				})
+				}
+				i++
 			}
 		}
 	}
@@ -92,14 +98,16 @@ func Combination0R3[T any](a []T) [][]T {
 func Combination0R4[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 4)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-3; i1++ {
 		for i2 := i1 + 1; i2 < n-2; i2++ {
 			for i3 := i2 + 1; i3 < n-1; i3++ {
 				for i4 := i3 + 1; i4 < n; i4++ {
-					result = append(result, []T{
+					result[i] = []T{
 						a[i1], a[i2], a[i3], a[i4],
-					})
+					}
+					i++
 				}
 			}
 		}
@@ -110,15 +118,17 @@ func Combination0R4[T any](a []T) [][]T {
 func Combination0R5[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 5)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-4; i1++ {
 		for i2 := i1 + 1; i2 < n-3; i2++ {
 			for i3 := i2 + 1; i3 < n-2; i3++ {
 				for i4 := i3 + 1; i4 < n-1; i4++ {
 					for i5 := i4 + 1; i5 < n; i5++ {
-						result = append(result, []T{
+						result[i] = []T{
 							a[i1], a[i2], a[i3], a[i4], a[i5],
-						})
+						}
+						i++
 					}
 				}
 			}
@@ -130,16 +140,18 @@ func Combination0R5[T any](a []T) [][]T {
 func Combination0R6[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 6)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-5; i1++ {
 		for i2 := i1 + 1; i2 < n-4; i2++ {
 			for i3 := i2 + 1; i3 < n-3; i3++ {
 				for i4 := i3 + 1; i4 < n-2; i4++ {
 					for i5 := i4 + 1; i5 < n-1; i5++ {
 						for i6 := i5 + 1; i6 < n; i6++ {
-							result = append(result, []T{
+							result[i] = []T{
 								a[i1], a[i2], a[i3], a[i4], a[i5], a[i6],
-							})
+							}
+							i++
 						}
 					}
 				}
@@ -152,7 +164,8 @@ func Combination0R6[T any](a []T) [][]T {
 func Combination0R7[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 7)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-6; i1++ {
 		for i2 := i1 + 1; i2 < n-5; i2++ {
 			for i3 := i2 + 1; i3 < n-4; i3++ {
@@ -160,10 +173,11 @@ func Combination0R7[T any](a []T) [][]T {
 					for i5 := i4 + 1; i5 < n-2; i5++ {
 						for i6 := i5 + 1; i6 < n-1; i6++ {
 							for i7 := i6 + 1; i7 < n; i7++ {
-								result = append(result, []T{
+								result[i] = []T{
 									a[i1], a[i2], a[i3], a[i4],
 									a[i5], a[i6], a[i7],
-								})
+								}
+								i++
 							}
 						}
 					}
@@ -177,7 +191,8 @@ func Combination0R7[T any](a []T) [][]T {
 func Combination0R8[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 8)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-7; i1++ {
 		for i2 := i1 + 1; i2 < n-6; i2++ {
 			for i3 := i2 + 1; i3 < n-5; i3++ {
@@ -186,10 +201,11 @@ func Combination0R8[T any](a []T) [][]T {
 						for i6 := i5 + 1; i6 < n-2; i6++ {
 							for i7 := i6 + 1; i7 < n-1; i7++ {
 								for i8 := i7 + 1; i8 < n; i8++ {
-									result = append(result, []T{
+									result[i] = []T{
 										a[i1], a[i2], a[i3], a[i4],
 										a[i5], a[i6], a[i7], a[i8],
-									})
+									}
+									i++
 								}
 							}
 						}
@@ -204,7 +220,8 @@ func Combination0R8[T any](a []T) [][]T {
 func Combination0R9[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 9)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-8; i1++ {
 		for i2 := i1 + 1; i2 < n-7; i2++ {
 			for i3 := i2 + 1; i3 < n-6; i3++ {
@@ -214,11 +231,12 @@ func Combination0R9[T any](a []T) [][]T {
 							for i7 := i6 + 1; i7 < n-2; i7++ {
 								for i8 := i7 + 1; i8 < n-1; i8++ {
 									for i9 := i8 + 1; i9 < n; i9++ {
-										result = append(result, []T{
+										result[i] = []T{
 											a[i1], a[i2], a[i3], a[i4],
 											a[i5], a[i6], a[i7], a[i8],
 											a[i9],
-										})
+										}
+										i++
 									}
 								}
 							}
@@ -234,7 +252,8 @@ func Combination0R9[T any](a []T) [][]T {
 func Combination0R10[T any](a []T) [][]T {
 	n := len(a)
 	count := combination.CombinationCount(n, 10)
-	result := make([][]T, 0, count)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-9; i1++ {
 		for i2 := i1 + 1; i2 < n-8; i2++ {
 			for i3 := i2 + 1; i3 < n-7; i3++ {
@@ -245,11 +264,12 @@ func Combination0R10[T any](a []T) [][]T {
 								for i8 := i7 + 1; i8 < n-2; i8++ {
 									for i9 := i8 + 1; i9 < n-1; i9++ {
 										for i10 := i9 + 1; i10 < n; i10++ {
-											result = append(result, []T{
+											result[i] = []T{
 												a[i1], a[i2], a[i3], a[i4],
 												a[i5], a[i6], a[i7], a[i8],
 												a[i9], a[i10],
-											})
+											}
+											i++
 										}
 									}
 								}
@@ -265,8 +285,9 @@ func Combination0R10[T any](a []T) [][]T {
 
 func Combination0R11[T any](a []T) [][]T {
 	n := len(a)
-	count := combination.CombinationCount(n, 10)
-	result := make([][]T, 0, count)
+	count := combination.CombinationCount(n, 11)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-10; i1++ {
 		for i2 := i1 + 1; i2 < n-9; i2++ {
 			for i3 := i2 + 1; i3 < n-8; i3++ {
@@ -278,11 +299,12 @@ func Combination0R11[T any](a []T) [][]T {
 									for i9 := i8 + 1; i9 < n-2; i9++ {
 										for i10 := i9 + 1; i10 < n-1; i10++ {
 											for i11 := i10 + 1; i11 < n; i11++ {
-												result = append(result, []T{
+												result[i] = []T{
 													a[i1], a[i2], a[i3], a[i4],
 													a[i5], a[i6], a[i7], a[i8],
 													a[i9], a[i10], a[i11],
-												})
+												}
+												i++
 											}
 										}
 									}
@@ -299,8 +321,9 @@ func Combination0R11[T any](a []T) [][]T {
 
 func Combination0R12[T any](a []T) [][]T {
 	n := len(a)
-	count := combination.CombinationCount(n, 10)
-	result := make([][]T, 0, count)
+	count := combination.CombinationCount(n, 12)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-11; i1++ {
 		for i2 := i1 + 1; i2 < n-10; i2++ {
 			for i3 := i2 + 1; i3 < n-9; i3++ {
@@ -313,11 +336,12 @@ func Combination0R12[T any](a []T) [][]T {
 										for i10 := i9 + 1; i10 < n-2; i10++ {
 											for i11 := i10 + 1; i11 < n-1; i11++ {
 												for i12 := i11 + 1; i12 < n; i12++ {
-													result = append(result, []T{
+													result[i] = []T{
 														a[i1], a[i2], a[i3], a[i4],
 														a[i5], a[i6], a[i7], a[i8],
 														a[i9], a[i10], a[i11], a[i12],
-													})
+													}
+													i++
 												}
 											}
 										}
@@ -335,8 +359,9 @@ func Combination0R12[T any](a []T) [][]T {
 
 func Combination0R13[T any](a []T) [][]T {
 	n := len(a)
-	count := combination.CombinationCount(n, 10)
-	result := make([][]T, 0, count)
+	count := combination.CombinationCount(n, 13)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-12; i1++ {
 		for i2 := i1 + 1; i2 < n-11; i2++ {
 			for i3 := i2 + 1; i3 < n-10; i3++ {
@@ -350,12 +375,13 @@ func Combination0R13[T any](a []T) [][]T {
 											for i11 := i10 + 1; i11 < n-2; i11++ {
 												for i12 := i11 + 1; i12 < n-1; i12++ {
 													for i13 := i12 + 1; i13 < n; i13++ {
-														result = append(result, []T{
+														result[i] = []T{
 															a[i1], a[i2], a[i3], a[i4],
 															a[i5], a[i6], a[i7], a[i8],
 															a[i9], a[i10], a[i11], a[i12],
 															a[i13],
-														})
+														}
+														i++
 													}
 												}
 											}
@@ -374,8 +400,9 @@ func Combination0R13[T any](a []T) [][]T {
 
 func Combination0R14[T any](a []T) [][]T {
 	n := len(a)
-	count := combination.CombinationCount(n, 10)
-	result := make([][]T, 0, count)
+	count := combination.CombinationCount(n, 14)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-13; i1++ {
 		for i2 := i1 + 1; i2 < n-12; i2++ {
 			for i3 := i2 + 1; i3 < n-11; i3++ {
@@ -390,12 +417,13 @@ func Combination0R14[T any](a []T) [][]T {
 												for i12 := i11 + 1; i12 < n-2; i12++ {
 													for i13 := i12 + 1; i13 < n-1; i13++ {
 														for i14 := i13 + 1; i14 < n; i14++ {
-															result = append(result, []T{
+															result[i] = []T{
 																a[i1], a[i2], a[i3], a[i4],
 																a[i5], a[i6], a[i7], a[i8],
 																a[i9], a[i10], a[i11], a[i12],
 																a[i13], a[i14],
-															})
+															}
+															i++
 														}
 													}
 												}
@@ -415,8 +443,9 @@ func Combination0R14[T any](a []T) [][]T {
 
 func Combination0R15[T any](a []T) [][]T {
 	n := len(a)
-	count := combination.CombinationCount(n, 10)
-	result := make([][]T, 0, count)
+	count := combination.CombinationCount(n, 15)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-14; i1++ {
 		for i2 := i1 + 1; i2 < n-13; i2++ {
 			for i3 := i2 + 1; i3 < n-12; i3++ {
@@ -432,12 +461,13 @@ func Combination0R15[T any](a []T) [][]T {
 													for i13 := i12 + 1; i13 < n-2; i13++ {
 														for i14 := i13 + 1; i14 < n-1; i14++ {
 															for i15 := i14 + 1; i15 < n; i15++ {
-																result = append(result, []T{
+																result[i] = []T{
 																	a[i1], a[i2], a[i3], a[i4],
 																	a[i5], a[i6], a[i7], a[i8],
 																	a[i9], a[i10], a[i11], a[i12],
 																	a[i13], a[i14], a[i15],
-																})
+																}
+																i++
 															}
 														}
 													}
@@ -458,8 +488,9 @@ func Combination0R15[T any](a []T) [][]T {
 
 func Combination0R16[T any](a []T) [][]T {
 	n := len(a)
-	count := combination.CombinationCount(n, 10)
-	result := make([][]T, 0, count)
+	count := combination.CombinationCount(n, 16)
+	result := make([][]T, count)
+	i := 0
 	for i1 := 0; i1 < n-15; i1++ {
 		for i2 := i1 + 1; i2 < n-14; i2++ {
 			for i3 := i2 + 1; i3 < n-13; i3++ {
@@ -476,12 +507,13 @@ func Combination0R16[T any](a []T) [][]T {
 														for i14 := i13 + 1; i14 < n-2; i14++ {
 															for i15 := i14 + 1; i15 < n-1; i15++ {
 																for i16 := i15 + 1; i16 < n; i16++ {
-																	result = append(result, []T{
+																	result[i] = []T{
 																		a[i1], a[i2], a[i3], a[i4],
 																		a[i5], a[i6], a[i7], a[i8],
 																		a[i9], a[i10], a[i11], a[i12],
 																		a[i13], a[i14], a[i15], a[i16],
-																	})
+																	}
+																	i++
 																}
 															}
 														}

@@ -10,9 +10,9 @@ import (
 // goarch: amd64
 // pkg: github.com/asukakenji/go-benchmarks/combination
 // cpu: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz
-// BenchmarkCombination0_4-36               6631039               180.0 ns/op
-// BenchmarkCombination0_8-36                992089              1164 ns/op
-// BenchmarkCombination0_16-36                 6726            181768 ns/op
+// BenchmarkCombination0_4-36               6646375               179.0 ns/op
+// BenchmarkCombination0_8-36                979368              1147 ns/op
+// BenchmarkCombination0_16-36                 6682            174610 ns/op
 // BenchmarkCombination1_4-36               5131611               230.9 ns/op
 // BenchmarkCombination1_8-36                764448              1485 ns/op
 // BenchmarkCombination1_16-36                 5386            222081 ns/op

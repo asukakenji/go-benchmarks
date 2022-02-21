@@ -1,12 +1,10 @@
 package combination
 
 func combinationWithRepetition1Callback[T any](a, result0, result []T, f func([]T)) {
-	// fmt.Printf("a: %v, result0: %v, result: %v\n", a, result0, result)
 	if len(a) == 0 {
 		return
 	}
 	if len(result) == 0 {
-		// fmt.Println("called")
 		f(result0)
 		return
 	}

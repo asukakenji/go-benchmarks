@@ -38,12 +38,12 @@ func TestCombinationCount(t *testing.T) {
 }
 
 func testCombination(t *testing.T, combination func([]int, int) [][]int) {
-	for n := 0; n < 10; n++ {
+	for n := 0; n <= 10; n++ {
 		a := make([]int, n)
 		for i := range a {
 			a[i] = i + 1
 		}
-		for r := -2; r <= 4; r++ {
+		for r := -2; r <= 10; r++ {
 			expected := Combination0(a, r)
 			got := combination(a, r)
 			if !reflect.DeepEqual(got, expected) {
@@ -63,6 +63,10 @@ func TestCombination2(t *testing.T) {
 
 func TestCombination2a(t *testing.T) {
 	testCombination(t, combination.Combination2a[int])
+}
+
+func TestCombination3(t *testing.T) {
+	testCombination(t, combination.Combination3[int])
 }
 
 func TestCombinationWithRepetitionCount(t *testing.T) {

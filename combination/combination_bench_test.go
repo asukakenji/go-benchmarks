@@ -10,20 +10,27 @@ import (
 // goarch: amd64
 // pkg: github.com/asukakenji/go-benchmarks/combination
 // cpu: Intel(R) Xeon(R) W-2191B CPU @ 2.30GHz
+// BenchmarkCombination0_4-36               6631039               180.0 ns/op
+// BenchmarkCombination0_8-36                992089              1164 ns/op
+// BenchmarkCombination0_16-36                 6726            181768 ns/op
 // BenchmarkCombination1_4-36               5131611               230.9 ns/op
 // BenchmarkCombination1_8-36                764448              1485 ns/op
 // BenchmarkCombination1_16-36                 5386            222081 ns/op
 // BenchmarkCombination1_24-36                  100          37095443 ns/op
-// BenchmarkCombination2_4-36               5274069               224.0 ns/op <- Best (putting style into consideration)
-// BenchmarkCombination2_8-36                795069              1412 ns/op   <- Best (putting style into consideration)
-// BenchmarkCombination2_16-36                 5755            209536 ns/op   <- Best (putting style into consideration)
-// BenchmarkCombination2_24-36                  100          35673170 ns/op   <- Best (putting style into consideration)
+// BenchmarkCombination2_4-36               5274069               224.0 ns/op
+// BenchmarkCombination2_8-36                795069              1412 ns/op
+// BenchmarkCombination2_16-36                 5755            209536 ns/op
+// BenchmarkCombination2_24-36                  100          35673170 ns/op
 // BenchmarkCombination2a_4-36              5215923               223.2 ns/op
 // BenchmarkCombination2a_8-36               797730              1417 ns/op
 // BenchmarkCombination2a_16-36                5499            208167 ns/op
 // BenchmarkCombination2a_24-36                 100          34846380 ns/op
+// BenchmarkCombination3_4-36               5497132               214.7 ns/op <- Best
+// BenchmarkCombination3_8-36                835213              1338 ns/op   <- Best
+// BenchmarkCombination3_16-36                 6132            193821 ns/op   <- Best
+// BenchmarkCombination3_24-36                  100          32456427 ns/op   <- Best
 // PASS
-// ok      github.com/asukakenji/go-benchmarks/combination 30.600s
+// ok      github.com/asukakenji/go-benchmarks/combination 32.864s
 
 // Exported (global) variable serving as input for some
 // of the benchmarks to ensure side-effect free calls
@@ -48,6 +55,24 @@ func benchmarkCombination(b *testing.B, combination func([]int, int) [][]int, n 
 }
 
 // ===
+
+func BenchmarkCombination0_4(b *testing.B) {
+	benchmarkCombination(b, Combination0[int], 4)
+}
+
+func BenchmarkCombination0_8(b *testing.B) {
+	benchmarkCombination(b, Combination0[int], 8)
+}
+
+func BenchmarkCombination0_16(b *testing.B) {
+	benchmarkCombination(b, Combination0[int], 16)
+}
+
+// func BenchmarkCombination0_24(b *testing.B) {
+// 	benchmarkCombination(b, Combination0[int], 24)
+// }
+
+// ---
 
 func BenchmarkCombination1_4(b *testing.B) {
 	benchmarkCombination(b, combination.Combination1[int], 4)
@@ -99,4 +124,22 @@ func BenchmarkCombination2a_16(b *testing.B) {
 
 func BenchmarkCombination2a_24(b *testing.B) {
 	benchmarkCombination(b, combination.Combination2a[int], 24)
+}
+
+// ---
+
+func BenchmarkCombination3_4(b *testing.B) {
+	benchmarkCombination(b, combination.Combination3[int], 4)
+}
+
+func BenchmarkCombination3_8(b *testing.B) {
+	benchmarkCombination(b, combination.Combination3[int], 8)
+}
+
+func BenchmarkCombination3_16(b *testing.B) {
+	benchmarkCombination(b, combination.Combination3[int], 16)
+}
+
+func BenchmarkCombination3_24(b *testing.B) {
+	benchmarkCombination(b, combination.Combination3[int], 24)
 }

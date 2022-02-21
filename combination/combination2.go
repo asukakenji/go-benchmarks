@@ -14,6 +14,9 @@ func combination2Callback[T any](a, result []T, rIndex int, f func([]T)) {
 }
 
 func Combination2Callback[T any](a []T, r int, f func([]T)) {
+	if r < 0 {
+		return
+	}
 	result := make([]T, r)
 	combination2Callback(a, result, 0, f)
 }

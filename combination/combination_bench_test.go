@@ -14,10 +14,10 @@ import (
 // BenchmarkCombination1_8-36                764448              1485 ns/op
 // BenchmarkCombination1_16-36                 5386            222081 ns/op
 // BenchmarkCombination1_24-36                  100          37095443 ns/op
-// BenchmarkCombination2_4-36               5274069               224.0 ns/op <- Best (considering style)
-// BenchmarkCombination2_8-36                795069              1412 ns/op   <- Best (considering style)
-// BenchmarkCombination2_16-36                 5755            209536 ns/op   <- Best (considering style)
-// BenchmarkCombination2_24-36                  100          35673170 ns/op   <- Best (considering style)
+// BenchmarkCombination2_4-36               5274069               224.0 ns/op <- Best (putting style into consideration)
+// BenchmarkCombination2_8-36                795069              1412 ns/op   <- Best (putting style into consideration)
+// BenchmarkCombination2_16-36                 5755            209536 ns/op   <- Best (putting style into consideration)
+// BenchmarkCombination2_24-36                  100          35673170 ns/op   <- Best (putting style into consideration)
 // BenchmarkCombination2a_4-36              5215923               223.2 ns/op
 // BenchmarkCombination2a_8-36               797730              1417 ns/op
 // BenchmarkCombination2a_16-36                5499            208167 ns/op
